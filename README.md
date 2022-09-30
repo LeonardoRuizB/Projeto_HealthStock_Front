@@ -18,9 +18,6 @@ O sistema é dividido em microsserviços com propositos diferentes, cada um com 
 
 O sistema de autenticação é feito por esse serviço, de forma descentralizada.
 
-[Click aqui para o repositório do serviço de login](https://github.com/JoaoGabrielOliveira/healthstock-login).
-
-
 ## Serviço de Produtos
 
 ## Serviço de Pedidos
