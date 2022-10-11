@@ -1,13 +1,17 @@
 <main>
     <fieldset>
     <div class="form">
-        <form>
+        <form [formGroup]="formCliente" (ngSubmit)="onSubmit()">
             <div class="item" style="width:88px ;">
                 <img src="assets/u8.png" alt="user-icon" />
+
             </div>
+            <p class="block has-text-danger" *ngIf="message">
+              {{message}}
+            </p>
             <div class="field">
                 <p class="control has-icons-left has-icons-right">
-                  <input class="input" type="email" placeholder="Email">
+                  <input class="input" type="email" placeholder="Email" formControlName="email">
                   <span class="icon is-small is-left">
                     <i class="fas fa-envelope"></i>
                   </span>
@@ -18,7 +22,7 @@
               </div>
               <div class="field">
                 <p class="control has-icons-left">
-                  <input class="input" type="password" placeholder="Senha">
+                  <input class="input" type="password" placeholder="Senha" formControlName="password" >
                   <span class="icon is-small is-left">
                     <i class="fas fa-lock"></i>
                   </span>
