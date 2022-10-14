@@ -1,43 +1,40 @@
 <main>
-    <fieldset>
-    <div class="form">
-        <form [formGroup]="formCliente" (ngSubmit)="onSubmit()">
-            <div class="item" style="width:88px ;">
-                <img src="assets/u8.png" alt="user-icon" />
+	<fieldset>
+		<div class="form">
+			<form [formGroup]="formCliente" (ngSubmit)="onSubmit()">
+				<div class="item" style="width:88px ;">
+					<img src="assets/u8.png" alt="user-icon" />
+				</div>
+				
+				<div class="field">
+					<p class="control has-icons-left has-icons-right">
+						<input class="input" type="email" placeholder="Digite seu email:" formControlName="email">
+						<span class="icon is-small is-left">
+							<i class="fas fa-envelope"></i>
+						</span>
+						<span class="icon is-small is-right">
+							<i class="fas fa-check"></i>
+						</span>
+					</p>
+				</div>
+				<div class="field">
+					<p class="control has-icons-left">
+						<input class="input" type="password" placeholder="Digite seu senha:" formControlName="password">
+						<span class="icon is-small is-left">
+							<i class="fas fa-lock"></i>
+						</span>
+					</p>
+				</div>
+				<p class="help is-danger" *ngIf="message" style="margin: 2% 0">{{message}}</p>
+				<div class="field">
+					<p class="control">
+						<button class="button is-success">
+							Login
+						</button>
+					</p>
+				</div>
+			</form>
 
-            </div>
-            <p class="block has-text-danger" *ngIf="message">
-              {{message}}
-            </p>
-            <div class="field">
-                <p class="control has-icons-left has-icons-right">
-                  <input class="input" type="email" placeholder="Email" formControlName="email">
-                  <span class="icon is-small is-left">
-                    <i class="fas fa-envelope"></i>
-                  </span>
-                  <span class="icon is-small is-right">
-                    <i class="fas fa-check"></i>
-                  </span>
-                </p>
-              </div>
-              <div class="field">
-                <p class="control has-icons-left">
-                  <input class="input" type="password" placeholder="Senha" formControlName="password" >
-                  <span class="icon is-small is-left">
-                    <i class="fas fa-lock"></i>
-                  </span>
-                </p>
-              </div>
-              <div class="field">
-                <p class="control">
-                  <button class="button is-success">
-                    Login
-                  </button>
-                </p>
-              </div>
-              
-              </form>
-            
-    </div>
-</fieldset>
+		</div>
+	</fieldset>
 </main>
