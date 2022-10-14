@@ -14,11 +14,11 @@ export class LoginComponent implements OnInit {
   message : string | undefined;
 
   constructor(private authService : AuthService) {
-    let formBuilder = new FormBuilder(), user = new User('', '');
+    let formBuilder = new FormBuilder();
     
     this.formCliente = formBuilder.group({
-      email: [ user.email ],
-      password: [ user.password ]
+      email: [ '' ],
+      password: [ '' ]
     });
   }
 
