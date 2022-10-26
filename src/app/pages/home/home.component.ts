@@ -9,8 +9,11 @@ import Slide from 'src/app/models/slide';
 })
 export class HomeComponent implements OnInit {
 	
+	slideIndex : number = 0;
 	mainSlide : Slide;
 	slides : Slide[];
+	interval : any | undefined;
+	timeLeft: number = 60;
 	
 	constructor() {
 		this.slides = [
@@ -28,7 +31,7 @@ export class HomeComponent implements OnInit {
 	
 	ngOnInit(): void {
 		try {
-			this.showSlide(this.slides[1]);
+			this.startTimer();
 		} catch (err) {
 			console.warn(err);
 		}
@@ -57,34 +60,28 @@ export class HomeComponent implements OnInit {
 		  	return element;
 	}
 
-	/*
-  slides : any[];
-  sliderProgressBar : HTMLProgressElement;
-  slideIndex : number = 0;
-  mainSlide : Slide | undefined;
+	startTimer() {
+		this.interval = setInterval(() => {
+			this.nextSlide();
+		},6000)
+	}
 
-  constructor() {
-    this.slides = [
-      this.slide("Natural Environment", 2027, "Mussum Ipsum, cacilds vidis litro abertis. Sapien in monti palavris qui num significa nadis i pareci latim.Quem num gosta di mé, boa gentis num é.Tá deprimidis, eu conheço uma cachacis que pode alegrar sua vidis.Mais vale um bebadis conhecidiss, que um alcoolatra anonimis.", "backgrounds/background1.jpg"),
-      this.slide("Family House", 2025, "Quem manda na minha terra sou euzis!Suco de cevadiss deixa as pessoas mais interessantis.Nec orci ornare consequat. Praesent lacinia ultrices consectetur. Sed non ipsum felis.Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis.", "backgrounds/background2.jpg"),
-      this.slide("Modern Architecture", 2026, "Si num tem leite então bota uma pinga aí cumpadi!Viva Forevis aptent taciti sociosqu ad litora torquent.Tá deprimidis, eu conheço uma cachacis que pode alegrar sua vidis.Si u mundo tá muito paradis? Toma um mé que o mundo vai girarzis!", "backgrounds/background3.jpg")
-    ];
+	nextSlide(){
+		if(this.slideIndex < this.slides.length - 1){
+			this.showSlide(this.slides[++this.slideIndex]); 
+			this.playAnimation(this.findElementBy('main-message'),'fadeOut');
+		} else {
+			this.slideIndex = -1;
+			this.showSlide(this.slides[++this.slideIndex]); 
+			this.playAnimation(this.findElementBy('main-message'),'fadeOut');
+		}
+	}
 
-    let sliderCounter = this.findElementBy('slider-counter');
-    this.sliderProgressBar = sliderCounter.getElementsByTagName('progress')[0];
-  }
-
-  getUpdateActualSlide(){
-    this.findElementBy("min-value").textContent = (this.slideIndex + 1).toString().padStart(2, "0");
-  }
-
-  playAnimation(element : HTMLElement = document.createElement('p'), animationName:string){
-    if(element.classList.contains(animationName))
-        element.classList.remove(animationName); 
-
-    void element.offsetWidth;
-    element.classList.add(animationName);  
-  }
-}*/
-
+	playAnimation(element : HTMLElement = document.createElement('p'), animationName:string){
+		if(element.classList.contains(animationName))
+			element.classList.remove(animationName); 
+	
+		void element.offsetWidth;
+		element.classList.add(animationName);  
+	}
 }
