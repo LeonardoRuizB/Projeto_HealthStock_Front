@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { MenuComponent } from './pages/components/menu/menu.component';
+import { CadastroProdutoComponent } from './pages/cadastro-produto/cadastro-produto.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     CadastroComponent,
-    MenuComponent
+    MenuComponent,
+    CadastroProdutoComponent
   ],
   imports: [
     HttpClientModule,

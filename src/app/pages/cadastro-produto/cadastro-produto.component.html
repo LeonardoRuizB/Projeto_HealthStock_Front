@@ -1,0 +1,56 @@
+<main>
+	<fieldset>
+		<div class="form">
+			<form [formGroup]="formProduto" (ngSubmit)="onSubmit()">
+				<div class="item" style="width:88px ;">
+					<img src="assets/u8.png" alt="user-icon" />
+				</div>
+				
+				<div class="field">
+					<p class="control has-icons-left has-icons-right">
+						<input class="input" type="text" placeholder="Digite o nome do seu produto:" formControlName="email">
+						<span class="icon is-small is-left">
+							<i class="fas fa-envelope"></i>
+						</span>
+						<span class="icon is-small is-right">
+							<i class="fas fa-check"></i>
+						</span>
+					</p>
+				</div>
+                <div class="field">
+					<p class="control has-icons-left has-icons-right">
+						<input class="input" type="text" placeholder="Descrição do produto:" formControlName="email">
+						<span class="icon is-small is-left">
+							<i class="fas fa-envelope"></i>
+						</span>
+						<span class="icon is-small is-right">
+							<i class="fas fa-check"></i>
+						</span>
+					</p>
+				</div>
+                <div class="field">
+					<p class="control has-icons-left has-icons-right">
+                        <select name="" id="">
+                            <option value="1">Material de escritorio</option>
+                        </select>
+                        <span class="icon is-small is-left">
+							<i class="fas fa-envelope"></i>
+						</span>
+						<span class="icon is-small is-right">
+							<i class="fas fa-check"></i>
+						</span>
+					</p>
+				</div>
+				<p class="help is-danger" *ngIf="" style="margin: 2% 0"></p>
+				<div class="field">
+					<p class="control">
+						<button class="button is-success">
+							Login
+						</button>
+					</p>
+				</div>
+			</form>
+
+		</div>
+	</fieldset>
+</main>
