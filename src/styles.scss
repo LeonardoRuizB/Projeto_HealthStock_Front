@@ -1,6 +1,2 @@
 @charset "UTF-8";
-@import "theme.scss";
-
-:root {
-    --primary: $primary;
-}
+@import "../node_modules/bulma/bulma.sass";
