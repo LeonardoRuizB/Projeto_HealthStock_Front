@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { Observable } from 'rxjs';
 
@@ -7,13 +7,16 @@ import { Observable } from 'rxjs';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent implements OnInit, OnChanges {
 
   auth : boolean = false;
-  userName : string | undefined;
+  userCompanyName : string = '';
 
   constructor(private authService: AuthService) {
     
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    this.checkIfLogin();
   }
 
   ngOnInit(): void {
@@ -40,6 +43,7 @@ export class MenuComponent implements OnInit {
 
   checkIfLogin(){
     this.auth = this.authService.isAuth();
+    this.userCompanyName = this.authService.getUserData().companyName;
   }
 
   onLogout() : void {
