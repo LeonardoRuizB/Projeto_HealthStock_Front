@@ -37,22 +37,21 @@ article #main-message {
 article #main-message .block {
     padding: 3%;
     transition: 1s all;
-    background-color: $background;
+    background-color: hsla(0, 0%, 98%, 0.6);
+    backdrop-filter: bluer(10px);
     filter: drop-shadow(-5px 5px 5px  $grey);
 }
 
 article #main-message .block .button {
-    font-size: $size-4;
+    font-size: $size-5;
     padding: 0 6%;
 }
 article #main-message h3 {
-    font-size: $size-4;
     padding: 0 2%;
     margin: 2% 0;
 } 
 
 article #main-message h1 {
-    font-size: $size-1;
     margin: 1% 0;
     padding: 0 2%;
 }
@@ -61,7 +60,6 @@ article #main-message p {
     text-align: justify;
     text-indent: 3%;
     color: $text;
-    font-size: $size-4;
     line-height: 200%;
     margin: 4% 0;
     padding: 0 2%;
@@ -69,7 +67,7 @@ article #main-message p {
 
 @media (max-width: 800px)
 {
-    $size-1: 250%;
+    $size-1: 200%;
 
     article#article-body {
         display: block;
