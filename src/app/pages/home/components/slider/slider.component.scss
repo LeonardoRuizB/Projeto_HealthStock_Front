@@ -26,26 +26,10 @@ article#article-body {
 
 }
 
-article #vertical-links {
-    padding: 0 2%;
-    background-color: $background;
-}
-
-article #vertical-links ul li {
-    writing-mode: vertical-lr;
-    display: block;
-    transition: 1s all;
-}
-
-article #vertical-links ul li:hover {
-    border-left: 4px solid $border;
-    filter:drop-shadow(0px 0px 5px $primary);
-}
-
 article #main-message {
     display: grid;
     grid-template-rows: 10% 20% 50% 20%;
-    width: 50%;
+    width: 80%;
     padding: 0 5%;
 }
 
@@ -54,32 +38,38 @@ article #main-message .block {
     padding: 3%;
     transition: 1s all;
     background-color: $background;
-    filter: drop-shadow(-5px 5px 5px  $grey-light);
+    filter: drop-shadow(-5px 5px 5px  $grey);
 }
 
-article #main-message .block .button- {
-    text-align: right;
+article #main-message .block .button {
+    font-size: $size-4;
+    padding: 0 6%;
 }
 article #main-message h3 {
     font-size: $size-4;
     text-indent: 5%;
-    margin: 4% 0;
+    margin: 2% 0;
 } 
 
 article #main-message h1 {
     font-size: $size-1;
-    margin: 4% 0;
+    margin: 1% 0;
 }
 
 article #main-message p {
     text-align: justify;
-    font-size: 100%;
+    text-indent: 3%;
+    color: $text;
+    font-size: $size-4;
     line-height: 200%;
-    margin: 8% 0;
+    margin: 4% 0;
+    padding: 0 2%;
 }
 
 @media (max-width: 800px)
 {
+    $size-1: 250%;
+
     article#article-body {
         display: block;
         align-items: center;
@@ -90,21 +80,19 @@ article #main-message p {
 
     article #main-message {
         text-align: center;
+        width: 100%;
     }
 
+    article #main-message h3 {
+        margin: 4% 0;
+    } 
+
     article #main-message h1 {
-        font-size: 250%;
+        margin: 4% 0;
     }
 
     article #main-message p {
-        padding: 0 2%;
+        font-size: $size-5;
+        margin: 8% 0;
     }
-
-    article #vertical-links {
-        display: none;
-    }
-    article #main-message {
-        width: 100%;
-    }
-  
 }
