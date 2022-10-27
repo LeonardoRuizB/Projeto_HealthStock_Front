@@ -10,6 +10,7 @@ import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { MenuComponent } from './pages/components/menu/menu.component';
 import { HomeComponent } from './pages/home/home.component';
 import { SliderComponent } from './pages/home/components/slider/slider.component';
+import { HomeModule } from './pages/home/home.module';
 
 @NgModule({
   declarations: [
@@ -17,12 +18,10 @@ import { SliderComponent } from './pages/home/components/slider/slider.component
     LoginComponent,
     CadastroComponent,
     MenuComponent,
-    HomeComponent,
-    SliderComponent
   ],
   imports: [
     HttpClientModule,
-    //FormsModule,
+    HomeModule,
     ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule
