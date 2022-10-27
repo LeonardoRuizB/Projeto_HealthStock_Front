@@ -13,11 +13,7 @@ export class SliderComponent implements OnInit {
 	slides : Slide[];
 	
 	constructor() {
-		this.slides = [
-			this.slide("Natural Environment", '2027', "Mussum Ipsum, cacilds vidis litro abertis. Sapien in monti palavris qui num significa nadis i pareci latim.Quem num gosta di mé, boa gentis num é.Tá deprimidis, eu conheço uma cachacis que pode alegrar sua vidis.Mais vale um bebadis conhecidiss, que um alcoolatra anonimis.", "backgrounds/background1.jpg"),
-		  	this.slide("Family House", '2025', "Quem manda na minha terra sou euzis!Suco de cevadiss deixa as pessoas mais interessantis.Nec orci ornare consequat. Praesent lacinia ultrices consectetur. Sed non ipsum felis.Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis.", "backgrounds/background2.jpg"),
-		  	this.slide("Modern Architecture", '2026', "Si num tem leite então bota uma pinga aí cumpadi!Viva Forevis aptent taciti sociosqu ad litora torquent.Tá deprimidis, eu conheço uma cachacis que pode alegrar sua vidis.Si u mundo tá muito paradis? Toma um mé que o mundo vai girarzis!", "backgrounds/background3.jpg")
-		];
+		this.slides = Slide.makeSlides();
 	}
 	
 	ngOnInit(): void {
@@ -27,10 +23,6 @@ export class SliderComponent implements OnInit {
 		} catch (err) {
 			console.warn(err);
 		}
-	}
-
-	slide(title:string, date:string, text:string, img:string){
-		return new Slide(title, date, text, img);
 	}
 
 	showSlide(slide: Slide){
@@ -69,7 +61,7 @@ export class SliderComponent implements OnInit {
 		}
 	}
 
-	playAnimation(element : HTMLElement = document.createElement('p'), animationName:string){
+	playAnimation(element : HTMLElement, animationName:string){
 		if(element.classList.contains(animationName))
 			element.classList.remove(animationName); 
 	
