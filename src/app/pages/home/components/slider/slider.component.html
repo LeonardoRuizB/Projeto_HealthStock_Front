@@ -1,13 +1,6 @@
 <article id="article-body">
-    <div id="vertical-links">
-        <ul>
-            <li>Instagram</li>
-            <li>Behance</li>
-        </ul>
-    </div>
-
     <div id="main-message" class="fadeOut">
-        <div class="block">
+        <div class="block" *ngIf="mainSlide">
             <h3>{{mainSlide.date}}</h3>
             <h1>{{mainSlide.title}}</h1>
             <p>{{mainSlide.text}}</p>
