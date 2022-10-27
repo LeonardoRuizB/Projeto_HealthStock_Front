@@ -1,0 +1,125 @@
+@import 'variables';
+.fadeOut {
+    animation-name: fadeOut;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+}
+
+@keyframes fadeOut {
+    from {opacity: 0; margin-left: -10%;}
+    to {opacity: 1; margin-left:0;}
+}
+
+main#main-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3%;
+
+    background-position: center;
+    background-size: cover;
+    background-clip: padding-box;
+    background-repeat: no-repeat;
+
+    min-height: 85vh;
+    max-height: 100vh;
+
+}
+
+main #vertical-links {
+    width: 15%;
+}
+
+main #vertical-links ul li {
+    line-height: 200%;
+    writing-mode: vertical-lr;
+    display: block;
+    margin: 20% 10%;
+}
+
+main #vertical-links ul li:hover {
+    border-right: 4px solid $border;
+    filter:drop-shadow(0px 0px 5px $primary);
+}
+
+main #main-message {
+    display: grid;
+    grid-template-rows: 10% 20% 50% 20%;
+    flex-grow: 1;
+    width: 50%;
+    padding: 0 5%;
+}
+
+main #main-message .block {
+    width: 75%;
+    padding: 3%;
+    transition: 1s all;
+    background-color: $green;
+}
+
+main #main-message .block .button-div {
+    text-align: right;
+}
+main #main-message h3 {
+    margin: 1% 0;
+} 
+
+main #main-message h1 {
+    font-size: 400%;
+    margin: 1% 0;
+}
+
+main #main-message p {
+    line-height: 200%;
+    margin: 4% 0;
+}
+/*
+main #main-message button#explore-button {
+    width: 20%;
+    height: 40px;
+    border-radius: 3px;
+    border: none;
+    background-color: $info;
+    box-shadow: 0px 0px 5px $dark;
+    font-weight: 800;
+    justify-self: flex-end;
+    margin-right: 20%;
+    transition: .5s;
+}
+
+main #main-message button#explore-button:hover {
+    filter: drop-shadow(0px 0px 10px $dark);
+}*/
+
+main #slider-counter ul{
+    list-style: none;
+}
+
+main #slider-counter ul li {
+    display: block;
+    text-align: center;
+    margin: 120% 0;
+}
+
+main #slider-counter progress {
+    width: 40%;
+    background-color: $background;
+    text-orientation: upright;
+    writing-mode: vertical-lr;
+    border: none;
+    border-radius: 50px;
+}
+
+main #slider-counter progress::-moz-progress-bar, progress::-webkit-progress-bar{
+    background-color: $primary;
+    border-radius: 10px;
+}
+
+main #slider-counter > *{
+    margin: 20% 0;
+}
+
+main #slider-counter span {
+    
+    margin: 10%;
+}

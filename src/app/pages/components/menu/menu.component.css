@@ -10,3 +10,8 @@ nav#main-navbar #navbarBasicExample .navbar-item {
 nav#main-navbar .navbar-brand {
     margin-right: 5%;
 }
+
+.navbar {
+    background-color: transparent;
+    background-image: none;
+}

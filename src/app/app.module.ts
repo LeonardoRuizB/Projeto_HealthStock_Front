@@ -9,6 +9,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { MenuComponent } from './pages/components/menu/menu.component';
 import { HomeComponent } from './pages/home/home.component';
+import { SliderComponent } from './pages/home/components/slider/slider.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HomeComponent } from './pages/home/home.component';
     LoginComponent,
     CadastroComponent,
     MenuComponent,
-    HomeComponent
+    HomeComponent,
+    SliderComponent
   ],
   imports: [
     HttpClientModule,
