@@ -47,13 +47,14 @@ article #main-message .block .button {
 }
 article #main-message h3 {
     font-size: $size-4;
-    text-indent: 5%;
+    padding: 0 2%;
     margin: 2% 0;
 } 
 
 article #main-message h1 {
     font-size: $size-1;
     margin: 1% 0;
+    padding: 0 2%;
 }
 
 article #main-message p {

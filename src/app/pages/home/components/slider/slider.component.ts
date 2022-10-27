@@ -11,8 +11,6 @@ export class SliderComponent implements OnInit {
 	slideIndex : number = 0;
 	mainSlide : Slide | undefined;
 	slides : Slide[];
-	interval : any | undefined;
-	timeLeft: number = 60;
 	
 	constructor() {
 		this.slides = [
@@ -25,7 +23,7 @@ export class SliderComponent implements OnInit {
 	ngOnInit(): void {
 		try {
 			this.showSlide(this.slides[this.slideIndex]);
-			this.startTimer();
+			this.startSlideLoop();
 		} catch (err) {
 			console.warn(err);
 		}
@@ -54,8 +52,8 @@ export class SliderComponent implements OnInit {
 		  	return element;
 	}
 
-	startTimer() {
-		this.interval = setInterval(() => {
+	startSlideLoop() {
+		setInterval(() => {
 			this.nextSlide();
 		},6000)
 	}
