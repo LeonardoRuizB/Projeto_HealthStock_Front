@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from 'src/app/service/auth.service';
 import { User } from 'src/app/models/user';
 import { environment } from 'src/environments/environment';
+import { ProductService } from 'src/app/service/product/product.service';
+import { CategoryService } from 'src/app/service/category/category.service';
 
 @Component({
   selector: 'app-cadastro-produto',
@@ -10,16 +12,28 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./cadastro-produto.component.css']
 })
 export class CadastroProdutoComponent implements OnInit {
+
   formProduto : FormGroup;
-  constructor() {let formBuilder = new FormBuilder();
+  categories : any = []
+
+  constructor(private productService:ProductService, private categoryService:CategoryService) {let formBuilder = new FormBuilder();
     
     this.formProduto = formBuilder.group({
-      Produto: [ '' ],
-      Descricao: [ '' ], 
-      Categoria: [ '' ]
+      name: [ '' ],
+      description: [ '' ], 
+      categoryId: [ '' ]
     }); }
 
   ngOnInit(): void {
+    this.categoryService.getCategories()
+    .subscribe({
+      next : response => {
+        this.categories = response;
+      }
+    })
   }
-onSubmit(){}
+onSubmit(){
+  this.productService.createProduto(this.formProduto.value)
+  console.log(this.formProduto.value)
+}
 }

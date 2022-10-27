@@ -8,7 +8,7 @@
 				
 				<div class="field">
 					<p class="control has-icons-left has-icons-right">
-						<input class="input" type="text" placeholder="Digite o nome do seu produto:" formControlName="email">
+						<input class="input" type="text" placeholder="Digite o nome do seu produto:" formControlName="name">
 						<span class="icon is-small is-left">
 							<i class="fas fa-envelope"></i>
 						</span>
@@ -19,7 +19,7 @@
 				</div>
                 <div class="field">
 					<p class="control has-icons-left has-icons-right">
-						<input class="input" type="text" placeholder="Descrição do produto:" formControlName="email">
+						<input class="input" type="text" placeholder="Descrição do produto:" formControlName="description">
 						<span class="icon is-small is-left">
 							<i class="fas fa-envelope"></i>
 						</span>
@@ -30,8 +30,8 @@
 				</div>
                 <div class="field">
 					<p class="control has-icons-left has-icons-right">
-                        <select name="" id="">
-                            <option value="1">Material de escritorio</option>
+                        <select name="" id="" formControlName="categoryId">
+                            <option value="1" *ngFor="let category of categories">{{category.name}}</option>
                         </select>
                         <span class="icon is-small is-left">
 							<i class="fas fa-envelope"></i>
@@ -45,7 +45,7 @@
 				<div class="field">
 					<p class="control">
 						<button class="button is-success">
-							Login
+							Cadastrar produto
 						</button>
 					</p>
 				</div>
