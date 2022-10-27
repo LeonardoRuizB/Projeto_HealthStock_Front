@@ -1,8 +1,8 @@
 @import 'variables';
 .fadeOut {
     animation-name: fadeOut;
-    animation-duration: 1s;
-    animation-timing-function: ease-out;
+    animation-duration: $speed;
+    animation-timing-function: $easing;
 }
 
 @keyframes fadeOut {
@@ -10,7 +10,7 @@
     to {opacity: 1; margin-left:0;}
 }
 
-main#main-body {
+article#article-body {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -26,100 +26,85 @@ main#main-body {
 
 }
 
-main #vertical-links {
-    width: 15%;
+article #vertical-links {
+    padding: 0 2%;
+    background-color: $background;
 }
 
-main #vertical-links ul li {
-    line-height: 200%;
+article #vertical-links ul li {
     writing-mode: vertical-lr;
     display: block;
-    margin: 20% 10%;
+    transition: 1s all;
 }
 
-main #vertical-links ul li:hover {
-    border-right: 4px solid $border;
+article #vertical-links ul li:hover {
+    border-left: 4px solid $border;
     filter:drop-shadow(0px 0px 5px $primary);
 }
 
-main #main-message {
+article #main-message {
     display: grid;
     grid-template-rows: 10% 20% 50% 20%;
-    flex-grow: 1;
     width: 50%;
     padding: 0 5%;
 }
 
-main #main-message .block {
-    width: 75%;
+
+article #main-message .block {
     padding: 3%;
     transition: 1s all;
-    background-color: $green;
+    background-color: $background;
+    filter: drop-shadow(-5px 5px 5px  $grey-light);
 }
 
-main #main-message .block .button-div {
+article #main-message .block .button- {
     text-align: right;
 }
-main #main-message h3 {
-    margin: 1% 0;
+article #main-message h3 {
+    font-size: $size-4;
+    text-indent: 5%;
+    margin: 4% 0;
 } 
 
-main #main-message h1 {
-    font-size: 400%;
-    margin: 1% 0;
-}
-
-main #main-message p {
-    line-height: 200%;
+article #main-message h1 {
+    font-size: $size-1;
     margin: 4% 0;
 }
-/*
-main #main-message button#explore-button {
-    width: 20%;
-    height: 40px;
-    border-radius: 3px;
-    border: none;
-    background-color: $info;
-    box-shadow: 0px 0px 5px $dark;
-    font-weight: 800;
-    justify-self: flex-end;
-    margin-right: 20%;
-    transition: .5s;
+
+article #main-message p {
+    text-align: justify;
+    font-size: 100%;
+    line-height: 200%;
+    margin: 8% 0;
 }
 
-main #main-message button#explore-button:hover {
-    filter: drop-shadow(0px 0px 10px $dark);
-}*/
+@media (max-width: 800px)
+{
+    article#article-body {
+        display: block;
+        align-items: center;
+        justify-content: center;
+        padding: 1%;
+        width: 100%;
+    }
 
-main #slider-counter ul{
-    list-style: none;
-}
+    article #main-message {
+        text-align: center;
+    }
 
-main #slider-counter ul li {
-    display: block;
-    text-align: center;
-    margin: 120% 0;
-}
+    article #main-message h1 {
+        font-size: 250%;
+    }
 
-main #slider-counter progress {
-    width: 40%;
-    background-color: $background;
-    text-orientation: upright;
-    writing-mode: vertical-lr;
-    border: none;
-    border-radius: 50px;
-}
+    article #main-message p {
+        padding: 0 2%;
+    }
 
-main #slider-counter progress::-moz-progress-bar, progress::-webkit-progress-bar{
-    background-color: $primary;
-    border-radius: 10px;
-}
-
-main #slider-counter > *{
-    margin: 20% 0;
-}
-
-main #slider-counter span {
-    
-    margin: 10%;
+    article #vertical-links {
+        display: none;
+    }
+    article #main-message {
+        width: 100%;
+    }
+  
 }
