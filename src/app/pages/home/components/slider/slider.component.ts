@@ -9,7 +9,7 @@ import Slide from 'src/app/models/slide';
 export class SliderComponent implements OnInit {
 	
 	slideIndex : number = 0;
-	mainSlide : Slide;
+	mainSlide : Slide | undefined;
 	slides : Slide[];
 	interval : any | undefined;
 	timeLeft: number = 60;
@@ -20,16 +20,11 @@ export class SliderComponent implements OnInit {
 		  this.slide("Family House", 2025, "Quem manda na minha terra sou euzis!Suco de cevadiss deixa as pessoas mais interessantis.Nec orci ornare consequat. Praesent lacinia ultrices consectetur. Sed non ipsum felis.Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis.", "backgrounds/background2.jpg"),
 		  this.slide("Modern Architecture", 2026, "Si num tem leite então bota uma pinga aí cumpadi!Viva Forevis aptent taciti sociosqu ad litora torquent.Tá deprimidis, eu conheço uma cachacis que pode alegrar sua vidis.Si u mundo tá muito paradis? Toma um mé que o mundo vai girarzis!", "backgrounds/background3.jpg")
 		];
-
-
-		this.mainSlide = this.slides[0];
-		
-		//let sliderCounter = this.findElementBy('slider-counter');
-		//this.sliderProgressBar = sliderCounter.getElementsByTagName('progress')[0];
 	}
 	
 	ngOnInit(): void {
 		try {
+			this.showSlide(this.slides[this.slideIndex]);
 			this.startTimer();
 		} catch (err) {
 			console.warn(err);
