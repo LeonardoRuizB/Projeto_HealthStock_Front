@@ -26,7 +26,7 @@ export class SliderComponent implements OnInit {
 	}
 
 	showSlide(slide: Slide){
-		var mainMessage = this.findElementBy('article-body');
+		var mainMessage = this.findElementBy('section-body');
 	
 		this.mainSlide = slide;
 	
