@@ -35,11 +35,11 @@ article #main-message {
 
 
 article #main-message .block {
+    border-radius: $radius;
     padding: 3%;
     transition: 1s all;
-    background-color: hsla(0, 0%, 98%, 0.6);
-    backdrop-filter: bluer(10px);
-    filter: drop-shadow(-5px 5px 5px  $grey);
+    background-color: hsla(0, 0%, 98%, 0.8);
+    box-shadow: -5px 5px 5px  $shadow;
 }
 
 article #main-message .block .button {
