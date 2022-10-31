@@ -17,11 +17,12 @@ section#section-body {
     padding: 3%;
 
     background-position: center;
-    background-size: cover;
     background-clip: padding-box;
+    background-attachment: fixed;
     background-repeat: no-repeat;
+    background-size: cover;
 
-    min-height: 85vh;
+    min-height: 95vh;
     max-height: 100vh;
 }
 
@@ -74,6 +75,7 @@ section #main-message p {
         justify-content: center;
         padding: 1%;
         width: 100%;
+        background-attachment: scroll;
     }
 
     section #main-message {
