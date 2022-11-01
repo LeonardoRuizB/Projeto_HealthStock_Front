@@ -2,25 +2,26 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { EventsService } from '../events/events.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  constructor(private client : HttpClient, private router : Router) { }
+  constructor(private client : HttpClient, private eventsService : EventsService) { }
 
   createProduto(body: any){
-    let resout = this.client.post("http://localhost:8090/product", body);
+    let resout = this.client.post(`${environment.productService.host}/product`, body);
     resout.subscribe({
       next:response => {
-        alert("Produto cadastrado com sucesso!")
-        console.log(response)
+        this.eventsService.SendEvent('Produto cadastrado com sucesso!', response);
       },
       error:errorResponse => {
-        alert("Erro no cadastro do produto")
-        console.log(errorResponse)
+        this.eventsService.SendEvent('Erro ao cadastrar Produto!', errorResponse);
       },
-    })
+    });
+
+    return resout
   };
 }
