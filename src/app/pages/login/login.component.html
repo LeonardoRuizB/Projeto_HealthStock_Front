@@ -5,6 +5,11 @@
 				<div class="item" style="width:88px ;">
 					<img src="assets/u8.png" alt="user-icon" />
 				</div>
+
+				<p class="notification is-danger is-light" *ngIf="message" style="margin: 2% 0">
+					<button class="delete" (click)="clearMessage()"></button>
+					{{message}}
+				</p>
 				
 				<div class="field">
 					<p class="control has-icons-left has-icons-right">
@@ -25,7 +30,6 @@
 						</span>
 					</p>
 				</div>
-				<p class="help is-danger" *ngIf="message" style="margin: 2% 0">{{message}}</p>
 				<div class="field">
 					<p class="control">
 						<button class="button is-success">
