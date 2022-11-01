@@ -4,9 +4,16 @@
 
 export const environment = {
   production: false,
+  host: "localhost:4200",
   loginService: {
     host: "http://localhost:8080"
-  }
+  },
+  productService: {
+    host: "http://localhost:8090"
+  },
+  eventsService: {
+    host: "http://localhost:10000"
+  },
 };
 
 /*
