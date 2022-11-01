@@ -14,7 +14,7 @@ section#section-body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 3%;
+    padding: 0 10%;
 
     background-position: center;
     background-clip: padding-box;
@@ -22,27 +22,20 @@ section#section-body {
     background-repeat: no-repeat;
     background-size: cover;
 
-    min-height: 95vh;
+    min-height: 90vh;
     max-height: 100vh;
 }
 
 section #main-message {
-    display: grid;
-    grid-template-rows: 10% 20% 50% 20%;
-    width: 80%;
-    padding: 0 5%;
-}
-
-
-section #main-message .block {
+    width: 100%;
+    background-color: hsla(0, 0%, 98%, 0.8);
     border-radius: $radius;
     padding: 3%;
     transition: 1s all;
-    background-color: hsla(0, 0%, 98%, 0.8);
     box-shadow: -5px 5px 5px  $shadow;
 }
 
-section #main-message .block .button {
+section #main-message .button {
     font-size: $size-5;
     padding: 0 6%;
 }

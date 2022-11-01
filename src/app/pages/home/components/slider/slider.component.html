@@ -1,7 +1,6 @@
 <section id="section-body">
-    <div id="main-message" class="fadeOut">
-        <div class="block media-content" *ngIf="mainSlide">
-            <h3 class="subtitle is-6">{{mainSlide.date}}</h3>
+    <div id="main-message" class="block media-content fadeOut" *ngIf="mainSlide">
+        <h3 class="subtitle is-6">{{mainSlide.date}}</h3>
             <h1 class="title is-4">{{mainSlide.title}}</h1>
             <p class="content">{{mainSlide.text}}</p>
             <div class="button-div">
@@ -9,6 +8,5 @@
                     {{mainSlide.buttonMessage}}
                 </button>
             </div>
-        </div>
     </div>
 </section>
