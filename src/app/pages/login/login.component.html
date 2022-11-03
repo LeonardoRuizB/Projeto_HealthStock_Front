@@ -1,4 +1,8 @@
-<main>
+<input type="checkbox" (click)="checkboxL()">
+
+
+<main *ngIf="checkbox">
+
 	<fieldset>
 		<div class="form">
 			<form [formGroup]="formCliente" (ngSubmit)="onSubmit()">
@@ -38,3 +42,6 @@
 		</div>
 	</fieldset>
 </main>
+
+
+<app-cadastro *ngIf="!checkbox"></app-cadastro>

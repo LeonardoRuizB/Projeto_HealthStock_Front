@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 export class LoginComponent implements OnInit {
   formCliente : FormGroup;
   message : string | undefined;
-
+ checkbox:Boolean = true;
   constructor(private authService : AuthService) {
     let formBuilder = new FormBuilder();
     
@@ -21,7 +21,9 @@ export class LoginComponent implements OnInit {
       password: [ '' ]
     });
   }
-
+ checkboxL(){
+this.checkbox=!this.checkbox;
+ }
   ngOnInit(): void {
     //this.onSubmit();
   }
