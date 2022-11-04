@@ -19,18 +19,26 @@
         </a>
     </section>
 
-    <section>
+    <section class="footer">
         <nav class="pagination" role="navigation" aria-label="pagination">
-            <a class="pagination-previous is-disabled" title="This is the first page" (click)="previusPage()">Pagina anterior</a>
-            <a class="pagination-next" (click)="nextPage()">Proxima Pagina</a>
-            <ul class="pagination-list">
-            <li *ngFor="let number of [].constructor(paginationService.totalPages); let pageNumber = index;">
-                <a class="pagination-link is-current" *ngIf="pageNumber + 1 == paginationService.pageNumber" aria-label="Page 1" aria-current="page" (click)="updatePage()"
-                    routerLink="/produtos" [queryParams]="{page: pageNumber + 1}">{{pageNumber + 1}}</a>
+            <button class="button pagination-previous"
+            [disabled]="paginationService.isFirstPage()" title="This is the first page" (click)="previusPage()">
+                Pagina anterior
+            </button>
 
-                <a class="pagination-link" aria-label="Page 1" *ngIf="pageNumber + 1 != paginationService.pageNumber" aria-current="page" (click)="updatePage()"
-                    routerLink="/produtos" [queryParams]="{page: pageNumber + 1}">{{pageNumber + 1}}</a>
-            </li>
+            <button class="button pagination-next" title="This is the first page" (click)="nextPage()"
+            [disabled]="paginationService.isLastPage()" >
+                Proxima Pagina
+            </button>
+
+            <ul class="pagination-list">
+                <li *ngFor="let number of [].constructor(paginationService.totalPages); let pageNumber = index;">
+                    <a class="pagination-link" aria-label="Page 1" aria-current="page" (click)="updatePage()"
+                        routerLink="/produtos" [queryParams]="{page: pageNumber + 1}"
+                        [ngClass]="{'is-current is-primary':pageNumber + 1 == paginationService.pageNumber}">
+                            {{pageNumber + 1}}
+                    </a>
+                </li>
             </ul>
         </nav>
     </section>
