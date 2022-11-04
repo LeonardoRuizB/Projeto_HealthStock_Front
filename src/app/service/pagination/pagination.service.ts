@@ -7,7 +7,7 @@ export class PaginationService {
   totalItems : number = 0;
   pageNumber : number = 1;
   totalPages : number = 0;
-  limitByPage : number = 2;
+  limitByPage : number = 25;
 
   constructor() {}
 
