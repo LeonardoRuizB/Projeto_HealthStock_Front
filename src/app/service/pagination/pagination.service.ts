@@ -39,4 +39,12 @@ export class PaginationService {
     if(this.pageNumber > 1)
       this.pageNumber--;
   }
+
+  isLastPage(){
+    return this.pageNumber == this.totalPages;
+  }
+
+  isFirstPage(){
+    return this.pageNumber == 1;
+  }
 }
