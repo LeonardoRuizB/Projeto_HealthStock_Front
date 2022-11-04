@@ -1,14 +1,16 @@
-<main>
-	<fieldset class="container">
+<main class="container is-fullheight">
+	<div class="">
         <div class="tabs is-centered">
             <ul>
               <li [ngClass]="{'is-active':checkbox}" (click)="checkboxL()"><a>Logar</a></li>
               <li [ngClass]="{'is-active':!checkbox}" (click)="checkboxL()"><a>Cadastrar</a></li>
             </ul>
           </div>
-		<div class="form box">
-            <app-signin *ngIf="checkbox"></app-signin>
-            <app-signup *ngIf="!checkbox"></app-signup>
-        </div>
-    </fieldset>
+          <div class="is-flex">
+              <div class="form box">
+                  <app-signin *ngIf="checkbox"></app-signin>
+                  <app-signup *ngIf="!checkbox"></app-signup>
+              </div>
+          </div>
+    </div>
 </main>
