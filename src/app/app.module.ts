@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './pages/components/menu/menu.component';
 import { CadastroProdutoComponent } from './pages/cadastro-produto/cadastro-produto.component';
 import { ProductsComponent } from './pages/products/products.component';
+import { LoginModule } from './pages/login/login.module';
+import { HomeModule } from './pages/home/home.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { ProductsComponent } from './pages/products/products.component';
     HttpClientModule,
     ReactiveFormsModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    LoginModule,
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

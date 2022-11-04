@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { AuthService } from 'src/app/service/auth.service';
-import { User } from 'src/app/models/user';
 import { environment } from 'src/environments/environment';
 import { ProductService } from 'src/app/service/product/product.service';
 import { CategoryService } from 'src/app/service/category/category.service';
