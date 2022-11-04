@@ -12,9 +12,6 @@
 						<span class="icon is-small is-left">
 							<i class="fas fa-envelope"></i>
 						</span>
-						<span class="icon is-small is-right">
-							<i class="fas fa-check"></i>
-						</span>
 					</p>
 				</div>
                 <div class="field">
@@ -23,24 +20,20 @@
 						<span class="icon is-small is-left">
 							<i class="fas fa-envelope"></i>
 						</span>
-						<span class="icon is-small is-right">
-							<i class="fas fa-check"></i>
-						</span>
 					</p>
 				</div>
-                <div class="field">
-					<p class="control has-icons-left has-icons-right">
-                        <select name="" id="" formControlName="categoryId">
-                            <option value="1" *ngFor="let category of categories">{{category.name}}</option>
+				<div class="control has-icons-left">
+					<div class="select">
+						<select formControlName="categoryId">
+							<option disabled selected>Selecionar categoria</option>
+                            <option value="{{category.id}}" *ngFor="let category of categories">{{category.name}}</option>
                         </select>
-                        <span class="icon is-small is-left">
-							<i class="fas fa-envelope"></i>
-						</span>
-						<span class="icon is-small is-right">
-							<i class="fas fa-check"></i>
-						</span>
-					</p>
+					</div>
+					<div class="icon is-small is-left">
+					  <i class="fas fa-list"></i>
+					</div>
 				</div>
+
 				<p class="help is-danger" *ngIf="" style="margin: 2% 0"></p>
 				<div class="field">
 					<p class="control">

@@ -33,7 +33,8 @@ export class CadastroProdutoComponent implements OnInit {
     })
   }
 onSubmit(){
-  this.productService.createProduto(this.formProduto.value)
+  this.productService.createProduto(this.formProduto.value);
+  this.formProduto.reset();
   console.log(this.formProduto.value)
 }
 }
