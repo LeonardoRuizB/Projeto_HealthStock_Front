@@ -38,6 +38,21 @@ export class ProductService {
     return result;
   }
 
+  searchProdutos(search:string,limit = 3, offset = 0) : Observable<[]> {
+    let result = this.client.get<[]>(`${environment.productService.host}/product?limit=${limit}&offset=${offset}&search=${search}`);
+
+    result.subscribe({
+      next: response => {
+        this.eventsService.SendEvent('Pesquisa de produto foi realizada com sucesso!', search);
+      },
+      error:errorResponse => {
+        this.eventsService.SendEvent('Erro ao pegar produtos!', errorResponse, 'error');
+      },
+    });
+
+    return result;
+  }
+
   getTotalProdutos() {
     let result = this.client.get<{total:number}>(`${environment.productService.host}/product?total`);
 
