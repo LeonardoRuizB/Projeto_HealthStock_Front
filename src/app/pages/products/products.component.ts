@@ -12,7 +12,7 @@ import { PaginationService } from 'src/app/services/pagination/pagination.servic
 export class ProductsComponent implements OnInit {
   products : any[] = [];
 
-  constructor(private productService : ProductService, private activatedRoute : ActivatedRoute,
+  constructor(private productService : ProductService, private activatedRoute : ActivatedRoute, private router : Router,
     public paginationService : PaginationService) {}
 
   ngOnInit(): void {
@@ -21,17 +21,14 @@ export class ProductsComponent implements OnInit {
 
   async initPagination(){
     
-    this.paginationService.pageNumber = await this.getPageNumber(); 
-    
     let total = await firstValueFrom(this.productService.getTotalProdutos());
+    this.paginationService.setPageNumber( await this.getPageNumber())
     
-    this.paginationService.totalItems = total.total;
-    this.paginationService.totalPages = this.paginationService.totalItems / this.paginationService.limitByPage;
+    
+    this.paginationService.setTotalItems(total.total)
+      .setTotalPages();
 
-    let offset = this.paginationService.limitByPage * (this.paginationService.pageNumber - 1);
-    console.log(offset);
-
-    this.products = await firstValueFrom(this.productService.getProdutos(this.paginationService.limitByPage, offset));
+    this.products = await firstValueFrom(this.productService.getProdutos(this.paginationService.limitByPage, this.paginationService.getOffset()));
   }
 
   updatePage(){
@@ -41,6 +38,16 @@ export class ProductsComponent implements OnInit {
   async getPageNumber(){
     let params = await firstValueFrom(this.activatedRoute.queryParams);
     return params['page'] ?? 1;
+  }
+
+  nextPage(){
+    this.paginationService.nextPage();
+    this.router.navigate(['produtos'],{queryParams: {page: this.paginationService.pageNumber}} );
+  }
+
+  previusPage(){
+    this.paginationService.previusPage();
+    this.router.navigate(['produtos'],{queryParams: {page: this.paginationService.pageNumber}} )
   }
 
 }
