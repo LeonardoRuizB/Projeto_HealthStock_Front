@@ -18,3 +18,8 @@ p.menu-label  {
     text-decoration:underline;
 
 }
+article#notification {
+    position: fixed;
+    right: 4%;
+    z-index: 5;
+}

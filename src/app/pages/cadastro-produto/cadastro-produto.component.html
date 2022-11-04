@@ -1,0 +1,49 @@
+<main>
+	<fieldset>
+		<div class="form">
+			<form [formGroup]="formProduto" (ngSubmit)="onSubmit()">
+				<div class="item" style="width:88px ;">
+					<img src="assets/u8.png" alt="user-icon" />
+				</div>
+				
+				<div class="field">
+					<p class="control has-icons-left has-icons-right">
+						<input class="input" type="text" placeholder="Digite o nome do seu produto:" formControlName="name">
+						<span class="icon is-small is-left">
+							<i class="fas fa-envelope"></i>
+						</span>
+					</p>
+				</div>
+                <div class="field">
+					<p class="control has-icons-left has-icons-right">
+						<input class="input" type="text" placeholder="Descrição do produto:" formControlName="description">
+						<span class="icon is-small is-left">
+							<i class="fas fa-envelope"></i>
+						</span>
+					</p>
+				</div>
+				<div class="control has-icons-left">
+					<div class="select">
+						<select formControlName="categoryId">
+							<option disabled selected>Selecionar categoria</option>
+                            <option value="{{category.id}}" *ngFor="let category of categories">{{category.name}}</option>
+                        </select>
+					</div>
+					<div class="icon is-small is-left">
+					  <i class="fas fa-list"></i>
+					</div>
+				</div>
+
+				<p class="help is-danger" *ngIf="" style="margin: 2% 0"></p>
+				<div class="field">
+					<p class="control">
+						<button class="button is-success">
+							Cadastrar produto
+						</button>
+					</p>
+				</div>
+			</form>
+
+		</div>
+	</fieldset>
+</main>

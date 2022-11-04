@@ -45,4 +45,8 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  clearMessage(): void {
+    this.message = '';
+  }
+
 }
