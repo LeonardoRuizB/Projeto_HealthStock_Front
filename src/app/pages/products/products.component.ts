@@ -32,7 +32,8 @@ export class ProductsComponent implements OnInit {
       () => this.productService.searchProdutos(this.filters.value.search, ).subscribe({
         next: productsResponse => {
           this.router.navigate(['produtos'],{queryParams: {page: this.paginationService.pageNumber, search: this.filters.value.search}});
-          this.products = productsResponse;
+          this.products = productsResponse[0];
+          this.paginationService.setTotalItems(productsResponse[1]);
           this.loadingSearching = false;
         }}),500);
   }

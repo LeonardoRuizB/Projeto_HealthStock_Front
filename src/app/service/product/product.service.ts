@@ -38,8 +38,8 @@ export class ProductService {
     return result;
   }
 
-  searchProdutos(search:string,limit = 3, offset = 0) : Observable<[]> {
-    let result = this.client.get<[]>(`${environment.productService.host}/product?limit=${limit}&offset=${offset}&search=${search}`);
+  searchProdutos(search:string,limit = 3, offset = 0) {
+    let result = this.client.get<any>(`${environment.productService.host}/product?limit=${limit}&offset=${offset}&search=${search}`);
 
     result.subscribe({
       next: response => {
