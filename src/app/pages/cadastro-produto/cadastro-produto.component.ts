@@ -5,6 +5,7 @@ import { User } from 'src/app/models/user';
 import { environment } from 'src/environments/environment';
 import { ProductService } from 'src/app/service/product/product.service';
 import { CategoryService } from 'src/app/service/category/category.service';
+import { NotificationService } from 'src/app/service/notification/notification.service';
 
 @Component({
   selector: 'app-cadastro-produto',
@@ -16,7 +17,8 @@ export class CadastroProdutoComponent implements OnInit {
   formProduto : FormGroup;
   categories : any = []
 
-  constructor(private productService:ProductService, private categoryService:CategoryService) {let formBuilder = new FormBuilder();
+  constructor(private productService:ProductService, private categoryService:CategoryService,
+    private notificationService: NotificationService ) {let formBuilder = new FormBuilder();
     
     this.formProduto = formBuilder.group({
       name: [ '' ],
@@ -33,8 +35,15 @@ export class CadastroProdutoComponent implements OnInit {
     })
   }
 onSubmit(){
-  this.productService.createProduto(this.formProduto.value);
-  this.formProduto.reset();
+  this.notificationService.showMessage('Produto cadastrado com sucesso!');
+  /*this.productService.createProduto(this.formProduto.value).subscribe({
+    next: response => {
+      this.notificationService.showMessage('Produto cadastrado com sucesso!');
+    }
+  });
+  */
+ this.formProduto.reset();
+
   console.log(this.formProduto.value)
 }
 }
