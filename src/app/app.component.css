@@ -1,3 +1,23 @@
+footer{
+    background-color: #000000;
+    
+    font-style: italic;
+
+}
+
+.menu-list a{
+    color: antiquewhite;
+    hover: #000000;
+    
+}
+p.menu-label  {
+    color: rgb(8, 163, 117);
+}
+.menu-list a:hover{
+    color:rgb(8, 163, 117);
+    text-decoration:underline;
+
+}
 article#notification {
     position: fixed;
     right: 4%;

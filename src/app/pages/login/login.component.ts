@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { AuthService } from 'src/app/service/auth.service';
-import { User } from 'src/app/models/user';
+
+import { AuthService } from 'src/app/service/auth/auth.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
   formCliente : FormGroup;
   message : string | undefined;
-
+  checkbox:Boolean = true;
   constructor(private authService : AuthService) {
     let formBuilder = new FormBuilder();
     
@@ -21,10 +21,13 @@ export class LoginComponent implements OnInit {
       password: [ '' ]
     });
   }
-
   ngOnInit(): void {
     //this.onSubmit();
   }
+
+  checkboxL(){
+    this.checkbox=!this.checkbox;
+ }
   
   onSubmit(): void {
     let messageLogin = this.authService.doLogin(this.formCliente.value);

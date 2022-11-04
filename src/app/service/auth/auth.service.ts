@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import Buyer from 'src/app/models/buyer';
+import Supplier from 'src/app/models/supplier';
 import { environment } from 'src/environments/environment';
-import { User } from '../models/user';
+import { IBaseUser, User } from '../../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -48,5 +50,19 @@ export class AuthService {
 	needBeAuth(){
 	if(!this.isAuth())
 		this.router.navigate(['/login']);
+	}
+
+	getUserData() : IBaseUser{
+		let jsonData = sessionStorage.getItem('userTypeData') ?? '{}'
+		let type = sessionStorage.getItem('userType');
+
+		
+		if(!jsonData && !type)
+			throw new Error("That's is not user session");
+
+		if(type == "buyer")
+			return new Buyer(JSON.parse(jsonData));
+		else
+			return new Supplier(JSON.parse(jsonData));
 	}
 }

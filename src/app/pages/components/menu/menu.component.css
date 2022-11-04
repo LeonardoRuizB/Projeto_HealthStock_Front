@@ -1,0 +1,27 @@
+nav#main-navbar {
+    padding: .0% 10%;
+}
+
+nav#main-navbar #navbarBasicExample .navbar-item {
+    margin: 0 10%;
+    
+    
+}
+
+nav#main-navbar .navbar-brand {
+    margin-right: 10%;
+}
+
+.navbar {
+    background-color:#11111152;  
+    background-image: none;
+    
+}
+.navbar-item a{
+color: #ffffff;
+}
+
+.navbar-item navbar-start {
+    color: #ffffff;
+}
+

@@ -1,0 +1,91 @@
+@import 'variables';
+.fadeOut {
+    animation-name: fadeOut;
+    animation-duration: $speed;
+    animation-timing-function: $easing;
+}
+
+@keyframes fadeOut {
+    from {opacity: 0; margin-left: -10%;}
+    to {opacity: 1; margin-left:0;}
+}
+
+section#section-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10%;
+
+    background-position: center;
+    background-clip: padding-box;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    min-height: 90vh;
+    max-height: 100vh;
+}
+
+section #main-message {
+    width: 100%;
+    background-color: hsla(0, 0%, 98%, 0.8);
+    border-radius: $radius;
+    padding: 3%;
+    transition: 1s all;
+    box-shadow: -5px 5px 5px  $shadow;
+}
+
+section #main-message .button {
+    font-size: $size-5;
+    padding: 0 6%;
+}
+section #main-message h3 {
+    padding: 0 2%;
+    margin: 2% 0;
+} 
+
+section #main-message h1 {
+    margin: 1% 0;
+    padding: 0 2%;
+}
+
+section #main-message p {
+    text-align: justify;
+    text-indent: 3%;
+    color: $text;
+    line-height: 200%;
+    margin: 4% 0;
+    padding: 0 2%;
+}
+
+@media (max-width: 800px)
+{
+    $size-1: 200%;
+
+    section#section-body {
+        display: block;
+        align-items: center;
+        justify-content: center;
+        padding: 1%;
+        width: 100%;
+        background-attachment: scroll;
+    }
+
+    section #main-message {
+        text-align: center;
+        width: 100%;
+    }
+
+    section #main-message h3 {
+        margin: 4% 0;
+    } 
+
+    section #main-message h1 {
+        margin: 4% 0;
+    }
+
+    section #main-message p {
+        font-size: $size-5;
+        margin: 8% 0;
+    }
+}

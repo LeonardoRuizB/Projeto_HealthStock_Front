@@ -1,0 +1,41 @@
+<form [formGroup]="formCliente" (ngSubmit)="onSubmit()">
+	<div class="field">
+		<p class="control has-icons-left has-icons-right">
+			<input class="input" type="email" placeholder="Digite seu email:" formControlName="email">
+			<span class="icon is-small is-left">
+				<i class="fas fa-envelope"></i>
+			</span>
+			<span class="icon is-small is-right">
+				<i class="fas fa-check"></i>
+			</span>
+		</p>
+	</div>
+	<div class="field">
+		<p class="control has-icons-left">
+			<input class="input" type="password" placeholder="Digite seu senha:" formControlName="password">
+			<span class="icon is-small is-left">
+				<i class="fas fa-lock"></i>
+			</span>
+		</p>
+	</div>
+
+	<div class="control">
+		<label class="radio">
+		  <input type="radio" name="answer">
+		  Yes
+		</label>
+		<label class="radio">
+		  <input type="radio" name="answer">
+		  No
+		</label>
+	  </div>
+	  <div class="field">
+		  <p class="control">
+			  <button class="button is-success">
+				  Cadastrar
+				</button>
+			</p>
+		</div>
+		
+		<p class="help is-danger"  style="margin: 2% 0"></p>
+	</form>
