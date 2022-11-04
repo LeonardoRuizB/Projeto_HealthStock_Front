@@ -20,12 +20,9 @@ export class ProductsComponent implements OnInit {
   }
 
   async initPagination(){
-    
     let total = await firstValueFrom(this.productService.getTotalProdutos());
     this.paginationService.setPageNumber( await this.getPageNumber())
-    
-    
-    this.paginationService.setTotalItems(total.total)
+      .setTotalItems(total.total)
       .setTotalPages();
 
     this.products = await firstValueFrom(this.productService.getProdutos(this.paginationService.limitByPage, this.paginationService.getOffset()));
@@ -43,11 +40,13 @@ export class ProductsComponent implements OnInit {
   nextPage(){
     this.paginationService.nextPage();
     this.router.navigate(['produtos'],{queryParams: {page: this.paginationService.pageNumber}} );
+    this.updatePage();
   }
 
   previusPage(){
     this.paginationService.previusPage();
-    this.router.navigate(['produtos'],{queryParams: {page: this.paginationService.pageNumber}} )
+    this.router.navigate(['produtos'],{queryParams: {page: this.paginationService.pageNumber}} );
+    this.updatePage();
   }
 
 }
