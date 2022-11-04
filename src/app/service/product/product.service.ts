@@ -26,8 +26,20 @@ export class ProductService {
     return resout
   };
 
-  getProdutos() : Observable<[]> {
-    let result = this.client.get<[]>(`${environment.productService.host}/product`);
+  getProdutos(limit = 3, offset = 0) : Observable<[]> {
+    let result = this.client.get<[]>(`${environment.productService.host}/product?limit=${limit}&offset=${offset}`);
+
+    result.subscribe({
+      error:errorResponse => {
+        this.eventsService.SendEvent('Erro ao pegar produtos!', errorResponse);
+      },
+    });
+
+    return result;
+  }
+
+  getTotalProdutos() {
+    let result = this.client.get<{total:number}>(`${environment.productService.host}/product?total`);
 
     result.subscribe({
       error:errorResponse => {
