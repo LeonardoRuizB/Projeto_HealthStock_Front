@@ -4,14 +4,14 @@
     </nav> 
 
     <section class="is-flex is-flex-wrap-wrap">
-        <a class="column is-3" *ngFor="let product of products" routerLink="https://dribbble.com/shots/14429340-DigitalEye-Cameras-Landing-Page">
+        <a class="column is-3" *ngFor="let product of products" routerLink='produtos/{{product.id}}'>
             <div class="card">
                 <div class="card-content">
                     <div class="content">
                         <img id="artwork" src="assets/logo.png">
                         <br>
                         <div class="button is-fullwidth has-text-weight-semibold"
-                            href="https://dribbble.com/shots/14429340-DigitalEye-Cameras-Landing-Page"
+                            href="https://dribbble.com/shots/14429340-DigitalEye-Cameras-Landing-Page" [title]="product.description"
                             target="_blank">{{product.name}}</div>
                     </div>
                 </div>

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { EventsService } from '../events/events.service';
 
@@ -24,4 +25,16 @@ export class ProductService {
 
     return resout
   };
+
+  getProdutos() : Observable<[]> {
+    let result = this.client.get<[]>(`${environment.productService.host}/product`);
+
+    result.subscribe({
+      error:errorResponse => {
+        this.eventsService.SendEvent('Erro ao pegar produtos!', errorResponse);
+      },
+    });
+
+    return result;
+  }
 }
