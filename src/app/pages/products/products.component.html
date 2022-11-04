@@ -24,7 +24,7 @@
             <a class="pagination-previous is-disabled" title="This is the first page">Pagina anterior</a>
             <a class="pagination-next">Proxima Pagina</a>
             <ul class="pagination-list">
-            <li *ngFor="let number of [].constructor(totalPages); let pageNumber = index">
+            <li *ngFor="let number of [].constructor(paginationService.totalPages); let pageNumber = index">
                 <a class="pagination-link" aria-label="Page 1" aria-current="page" (click)="updatePage()"
                     routerLink="/produtos" [queryParams]="{page: pageNumber + 1}">{{pageNumber + 1}}</a>
             </li>
