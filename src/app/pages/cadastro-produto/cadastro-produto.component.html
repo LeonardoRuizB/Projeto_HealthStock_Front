@@ -1,6 +1,6 @@
-<main>
-	<fieldset>
-		<div class="form">
+<main class="container">
+	<fieldset class="columns is-centered">
+		<div class="form box column ">
 			<form [formGroup]="formProduto" (ngSubmit)="onSubmit()">
 				<div class="item" style="width:88px ;">
 					<img src="assets/u8.png" alt="user-icon" />
@@ -34,6 +34,7 @@
 					</div>
 				</div>
 
+				<br>
 				<p class="help is-danger" *ngIf="" style="margin: 2% 0"></p>
 				<div class="field">
 					<p class="control">
