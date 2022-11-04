@@ -1,4 +1,14 @@
-<input type="checkbox" (click)="checkboxL()">
-
-<app-signin></app-signin>
-<app-signup></app-signup>
+<main>
+	<fieldset class="container">
+        <div class="tabs is-centered">
+            <ul>
+              <li [ngClass]="{'is-active':checkbox}" (click)="checkboxL()"><a>Logar</a></li>
+              <li [ngClass]="{'is-active':!checkbox}" (click)="checkboxL()"><a>Cadastrar</a></li>
+            </ul>
+          </div>
+		<div class="form box">
+            <app-signin *ngIf="checkbox"></app-signin>
+            <app-signup *ngIf="!checkbox"></app-signup>
+        </div>
+    </fieldset>
+</main>
