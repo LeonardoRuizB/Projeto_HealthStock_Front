@@ -2,7 +2,7 @@ import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/service/product/product.service';
 import {  firstValueFrom } from 'rxjs';
-import { PaginationService } from 'src/app/services/pagination/pagination.service';
+import { PaginationService } from 'src/app/service/pagination/pagination.service';
 
 @Component({
   selector: 'app-products',
