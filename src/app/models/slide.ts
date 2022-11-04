@@ -23,9 +23,10 @@ export default class Slide implements ISlide {
 
     static makeSlides(){
       return [
-        new Slide("HealthStock", 'Uma nova forma manter o estoque', "Mussum Ipsum, cacilds vidis litro abertis. Sapien in monti palavris qui num significa nadis i pareci latim.Quem num gosta di mé, boa gentis num é.Tá deprimidis, eu conheço uma cachacis que pode alegrar sua vidis.Mais vale um bebadis conhecidiss, que um alcoolatra anonimis.", "backgrounds/background1.jpg", "Venha conhecer a plataforma!"),
-        new Slide("Marketplace", 'Uma solução pensada para você', "Uma platforma segura para compra de itens hospitaláres.", "backgrounds/background2.jpg", "Saiba mais como comprar nossos produtos!"),
-        new Slide("Venda seus produtos aqui", '2026', "Com um grande número de compradores, venha fazer parte da história e venda seus produtos aqui. Conheça nossos estudos de caso e descobra como podemos aumentar suas vendas!", "backgrounds/background3.jpg", "Saiba mais sobre vendas")
+        new Slide(" 3 Motivos para utilizar a HealthStock ", '', "Nossa empresa é altamente conceituada, e estamos a cada dia desenvolvendo nossos serviços. ", "backgrounds/background1.jpg", "Venha conhecer a plataforma!"),
+        new Slide(" Agilidade", ' 1 - Motivo', " Nossos fornecedores possuem uma rede de entregas, oferecendo um prazo de entrega conveniente. ", "backgrounds/background1.jpg", "Venha conhecer a plataforma!"),
+        new Slide(" Diversidade", '2 - Motivo ', " Nossa plataforma possui a mais variada gama de produtos, visando oferecer a maior variedade de opções para nossos consumidores e clientes.", "backgrounds/background2.jpg", "Saiba mais como comprar nossos produtos!"),
+        new Slide(" Confiabilidade", '3 - Motivo', "Uma plataforma segura para comprar seus produtos, seja para uso pessoal, ou para fornecimento da sua empresa. ", "backgrounds/background3.jpg", "Saiba mais sobre vendas")
       ];
     }
 }
