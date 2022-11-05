@@ -8,10 +8,10 @@ import { environment } from 'src/environments/environment';
 })
 export class CategoryService {
 
-  constructor(private client : HttpClient, private router : Router) { }
+  constructor(private client : HttpClient) { }
 
   getCategories(){
-    let resout = this.client.get("http://localhost:8090/category");
+    let resout = this.client.get<any[]>("http://localhost:8090/category");
     resout.subscribe({
       next:response => {
         console.log(response)

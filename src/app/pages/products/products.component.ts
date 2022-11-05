@@ -4,6 +4,7 @@ import { ProductService } from 'src/app/service/product/product.service';
 import {  firstValueFrom } from 'rxjs';
 import { PaginationService } from 'src/app/service/pagination/pagination.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { CategoryService } from 'src/app/service/category/category.service';
 
 @Component({
   selector: 'app-products',
@@ -16,8 +17,10 @@ export class ProductsComponent implements OnInit {
   timer : any;
   products : any[] = [];
   loadingSearching : boolean = false;
+  categories : any[] = [];
 
   constructor(private productService : ProductService, private activatedRoute : ActivatedRoute, private router : Router,
+    private categoryService:CategoryService,
     public paginationService : PaginationService) {
       this.filters = new FormBuilder().group({
         search: [ '' ],
@@ -40,6 +43,13 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.initPagination();
+    this.categoryService.getCategories().subscribe({
+      next: response => {
+        this.categories = response;
+      }
+    })
+
+    
   }
 
   async initPagination(){

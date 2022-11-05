@@ -20,24 +20,10 @@
                 <li>
                     <p class="menu-label is-hidden-touch">Categorias</p>
                     <ul>
-                        <li>
+                        <li *ngFor="let category of categories">
                             <label class="checkbox">
                                 <input type="checkbox">
-                                Remember me
-                            </label>
-                        </li>
-
-                        <li>
-                            <label class="checkbox">
-                                <input type="checkbox">
-                                Remember me
-                            </label>
-                        </li>
-
-                        <li>
-                            <label class="checkbox">
-                                <input type="checkbox">
-                                Remember me
+                                {{category.name}}
                             </label>
                         </li>
                     </ul>
