@@ -5,12 +5,13 @@ import Buyer from 'src/app/models/buyer';
 import Supplier from 'src/app/models/supplier';
 import { environment } from 'src/environments/environment';
 import { IBaseUser, User } from '../../models/user';
+import { EventsService } from '../events/events.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-	constructor(private client : HttpClient, private router : Router) { }
+	constructor(private client : HttpClient, private router : Router, private eventsService : EventsService) { }
 
 	doLogin(user : User, redirect : string = ''){
     	let result = this.client.post(`${environment.loginService.host}/login`, user);
@@ -18,11 +19,14 @@ export class AuthService {
 		result.subscribe({
 			next: response => {
 				this.createLoginSession(response);
+				this.eventsService.SendEvent('Login foi realizado com sucesso!', response);
 				window.location.replace(redirect);
 			},
 			error: responseError => {
 				if(responseError.status == 401)
 					console.warn(responseError.error.error);
+
+				this.eventsService.SendEvent('Erro ao realizar um login!', responseError, 'error');
 			}
 		});
 

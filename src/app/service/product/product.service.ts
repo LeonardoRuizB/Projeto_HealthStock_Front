@@ -39,7 +39,8 @@ export class ProductService {
   }
 
   searchProdutos(search:string,limit = 3, offset = 0) {
-    let result = this.client.get<any>(`${environment.productService.host}/product?limit=${limit}&offset=${offset}&search=${search}`);
+    let searchQuery = `limit=${limit}&offset=${offset}&search=${search}`;
+    let result = this.client.get<any>(`${environment.productService.host}/product?${searchQuery}`);
 
     result.subscribe({
       next: response => {
