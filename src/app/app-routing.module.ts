@@ -7,16 +7,24 @@ import { ProductsComponent } from './pages/products/products.component';
 
 const routes: Routes = [
   {
-    path:"",component:HomeComponent
+    path:"",component:HomeComponent, data: {
+      title: "HealthStock - Pagina Principal"
+    }
   },
   {
-    path:"login",component:LoginComponent
+    path:"login",component:LoginComponent, data: {
+      title: "HealthStock - Login"
+    }
   },
   {
-    path:"cadastro/produto",component:CadastroProdutoComponent
+    path:"cadastro/produto",component:CadastroProdutoComponent, data: {
+      title: "HealthStock - Produtos - Cadastro"
+    }
   },
   {
-    path:"produtos",component:ProductsComponent
+    path:"produtos",component:ProductsComponent, data: {
+      title: "HealthStock - Produtos"
+    }
   },
 
 ];

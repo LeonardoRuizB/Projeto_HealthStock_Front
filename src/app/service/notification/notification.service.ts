@@ -20,10 +20,6 @@ export class NotificationService {
         notificationTag.firstElementChild?.remove()
       }
     }, 5000);
-
-    
-
-
   }
 
   findElementBy(id:string){
