@@ -10,13 +10,15 @@ import { CadastroProdutoComponent } from './pages/cadastro-produto/cadastro-prod
 import { ProductsComponent } from './pages/products/products.component';
 import { LoginModule } from './pages/login/login.module';
 import { HomeModule } from './pages/home/home.module';
+import { MarketplaceComponent } from './pages/marketplace/marketplace.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     CadastroProdutoComponent,
-    ProductsComponent
+    ProductsComponent,
+    MarketplaceComponent
   ],
   imports: [
     HttpClientModule,

@@ -22,28 +22,13 @@ export class LoginComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    //this.onSubmit();
+    if(this.authService.isAuth())
+      window.location.replace('');
   }
 
   checkboxL(){
     this.checkbox=!this.checkbox;
  }
-  
-  onSubmit(): void {
-    let messageLogin = this.authService.doLogin(this.formCliente.value);
-  
-    messageLogin.subscribe({
-      error: responseError => {
-        if(responseError.status == 0){
-          this.message = "O Serviço de Login não está funcionando corretamente!";
-          if(!environment.production)
-            this.message += "Você tem que dar um npm start no serviço de Login. Não esquece de clonar o serviço. https://github.com/JoaoGabrielOliveira/healthstock-login";
-        }
-        else
-          this.message = responseError.error.error;
-      },
-    });
-  }
 
   clearMessage(): void {
     this.message = '';

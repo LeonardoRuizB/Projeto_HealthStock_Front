@@ -12,13 +12,13 @@ import { IBaseUser, User } from '../../models/user';
 export class AuthService {
 	constructor(private client : HttpClient, private router : Router) { }
 
-	doLogin(user : User, redirect : string = '/'){
+	doLogin(user : User, redirect : string = ''){
     	let result = this.client.post(`${environment.loginService.host}/login`, user);
 
 		result.subscribe({
 			next: response => {
 				this.createLoginSession(response);
-				this.router.navigate([redirect]);
+				window.location.replace(redirect);
 			},
 			error: responseError => {
 				if(responseError.status == 401)
