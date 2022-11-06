@@ -34,8 +34,22 @@
 					</div>
 				</div>
 
-				<br>
 				<p class="help is-danger" *ngIf="" style="margin: 2% 0"></p>
+
+				<div class="field file is-info">
+					<label class="file-label">
+					  <input class="file-input" type="file" (change)="onChangeFileInput($event)">
+					  <span class="file-cta">
+						<span class="file-icon">
+						  <i class="fas fa-cloud-upload-alt"></i>
+						</span>
+						<span class="file-label">
+						  Adicionar imagens
+						</span>
+					  </span>
+					</label>
+				  </div>
+
 				<div class="field">
 					<p class="control">
 						<button class="button is-success">
@@ -45,6 +59,23 @@
 				</div>
 			</form>
 
+			<button class="button is-success" (click)="onUpload()">
+				Teste de imagem
+			</button>
+
 		</div>
+
 	</fieldset>
+	<div class="block">
+		<div class="is-flex">
+			<div class="box column is-2" *ngFor="let img of photos">
+				<button class="delete"></button>
+				<figure class="column image">
+					<img [src]="img.data" />
+					<caption>{{img.name}}</caption>
+				</figure>
+			</div>
+		</div>
+
+	</div>
 </main>
