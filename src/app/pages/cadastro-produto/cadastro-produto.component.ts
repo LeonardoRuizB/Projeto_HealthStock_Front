@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { ProductService } from 'src/app/service/product/product.service';
 import { CategoryService } from 'src/app/service/category/category.service';
 import { NotificationService } from 'src/app/service/notification/notification.service';
+import { IPhoto } from 'src/app/models/photo';
 
 @Component({
   selector: 'app-cadastro-produto',
@@ -14,7 +15,10 @@ export class CadastroProdutoComponent implements OnInit {
 
   formProduto: FormGroup;
   categories: any = [];
-  photos : any[] = [];
+  photo : IPhoto | undefined;
+
+  get nameInput() { return this.formProduto.get('name'); }
+  get categoryInput() { return this.formProduto.get('categoryId'); }
 
   constructor(private productService: ProductService, private categoryService: CategoryService,
     private notificationService: NotificationService) {
@@ -35,48 +39,53 @@ export class CadastroProdutoComponent implements OnInit {
         }
       })
   }
+
   onSubmit() {
-    this.notificationService.showMessage('Produto cadastrado com sucesso!');
-    /*this.productService.createProduto(this.formProduto.value).subscribe({
+    if(!this.formProduto.valid){
+      this.notificationService.showMessage("Campos não está preenchidos")
+      return;
+    }
+      
+    this.productService.createProduto(this.formProduto.value).subscribe({
       next: response => {
-        this.notificationService.showMessage('Produto cadastrado com sucesso!');
+        if(this.photo)
+          this.productService.uploadPhoto(response.id, this.photo).subscribe({
+            next: response => {
+              this.notificationService.showMessage('Produto cadastrado com sucesso!');
+            },
+            error: errorResponse => {
+              this.notificationService.showMessage('Produto cadastrado com sucesso!');
+              this.notificationService.showMessage('Erro ao cadastrar foto!');
+            }
+          });
+        else 
+          this.notificationService.showMessage('Produto cadastrado com sucesso!');
+
+        this.formProduto.reset();
+        this.removePhoto();
+      },
+      error: errorResponse => {
+        this.notificationService.showMessage("Erro ao cadastrar produto");
       }
     });
-    */
-    this.formProduto.reset();
-
-    console.log(this.formProduto.value)
-  }
-
-  onUpload(){
-
   }
 
   onChangeFileInput(event: Event){
     const input = event.target as HTMLInputElement;
-    let tempFiles = [].slice.call(input.files);
-    let photoFiles : any[] = [];
+    if(!input.files)
+      return;
+
+    let tempFile = input.files[0];
     
     const reader = new FileReader();
-    tempFiles.forEach((value : any, index) => {
-      let photoFile = {name:'', data:{}};
+    reader.onload = () => {
+      this.photo = { title: tempFile.name, data: reader.result as string, mimeType: tempFile.type};
+    }
 
-      reader.onload = () => {
-        photoFile.name = value.name;
-        photoFile.data = reader.result as string;
-      }
-
-      photoFiles.push(photoFile);
-
-      reader.readAsDataURL(value);
-    });
-
-    this.photos.push(...photoFiles);
-
-    this.updatePreview();
+    reader.readAsDataURL(tempFile);
   }
 
-  updatePreview(){
-    console.log(this.photos);
+  removePhoto(){
+    this.photo = undefined;
   }
 }

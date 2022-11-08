@@ -1,81 +1,93 @@
-<main class="container">
-	<fieldset class="columns is-centered">
-		<div class="form box column ">
-			<form [formGroup]="formProduto" (ngSubmit)="onSubmit()">
-				<div class="item" style="width:88px ;">
-					<img src="assets/u8.png" alt="user-icon" />
-				</div>
-				
-				<div class="field">
-					<p class="control has-icons-left has-icons-right">
-						<input class="input" type="text" placeholder="Digite o nome do seu produto:" formControlName="name">
-						<span class="icon is-small is-left">
-							<i class="fas fa-envelope"></i>
-						</span>
-					</p>
-				</div>
-                <div class="field">
-					<p class="control has-icons-left has-icons-right">
-						<input class="input" type="text" placeholder="Descrição do produto:" formControlName="description">
-						<span class="icon is-small is-left">
-							<i class="fas fa-envelope"></i>
-						</span>
-					</p>
-				</div>
-				<div class="control has-icons-left">
-					<div class="select">
-						<select formControlName="categoryId">
-							<option disabled selected>Selecionar categoria</option>
-                            <option value="{{category.id}}" *ngFor="let category of categories">{{category.name}}</option>
-                        </select>
-					</div>
-					<div class="icon is-small is-left">
-					  <i class="fas fa-list"></i>
-					</div>
-				</div>
-
-				<p class="help is-danger" *ngIf="" style="margin: 2% 0"></p>
-
-				<div class="field file is-info">
-					<label class="file-label">
-					  <input class="file-input" type="file" (change)="onChangeFileInput($event)">
-					  <span class="file-cta">
-						<span class="file-icon">
-						  <i class="fas fa-cloud-upload-alt"></i>
-						</span>
-						<span class="file-label">
-						  Adicionar imagens
-						</span>
-					  </span>
-					</label>
-				  </div>
-
-				<div class="field">
-					<p class="control">
-						<button class="button is-success">
-							Cadastrar produto
-						</button>
-					</p>
-				</div>
-			</form>
-
-			<button class="button is-success" (click)="onUpload()">
-				Teste de imagem
-			</button>
-
-		</div>
-
-	</fieldset>
-	<div class="block">
-		<div class="is-flex">
-			<div class="box column is-2" *ngFor="let img of photos">
-				<button class="delete"></button>
-				<figure class="column image">
-					<img [src]="img.data" />
-					<caption>{{img.name}}</caption>
-				</figure>
-			</div>
-		</div>
-
+<main class="container hero is-fullheight">
+	<div class="hero-head">
+		<h1 class="title is-2 is-spaced">Cadastro de produtos</h1>
 	</div>
+
+	<section class="hero-body">
+		<div class="columns">
+			<div class="column is-two-thirds">
+				<form class="form is-flex is-flex-direction-column" [formGroup]="formProduto" (ngSubmit)="onSubmit()">
+					<div class="field">
+						<p class="control has-icons-left has-icons-right">
+							<input class="input" type="text" placeholder="Digite o nome do seu produto:"
+							formControlName="name" required />
+							<span class="icon is-small is-left">
+								<i class="fas fa-box-open"></i>
+							</span>
+						</p>
+					</div>
+
+					<div class="field">
+						<p class="control">
+							<textarea class="textarea" placeholder="Descrição do produto:" formControlName="description"> </textarea>
+						</p>
+					</div>
+
+					<div class="field">
+						<div class="select">
+							<select formControlName="categoryId" required>
+								<option disabled selected>Selecionar categoria</option>
+								<option value="{{category.id}}" *ngFor="let category of categories">{{category.name}}</option>
+							</select>
+						</div>
+					</div>
+
+					<button class="button is-success">
+						<span class="icon">
+							<i class="fas fa-check"></i>
+						</span>
+						<span>Cadastror produto</span>
+					</button>
+				</form>
+			</div>
+
+			<div class="column">
+				  <div class="card" *ngIf="!photo">
+					<div class="card-image">
+						<figure class="image">
+							<img src="assets/logo.png" />
+						</figure>
+					</div>
+
+					<dir class="card-content">
+						<div class="field file is-link is-light">
+							<label class="file-label">
+							<input class="file-input" type="file" (change)="onChangeFileInput($event)">
+							<span class="file-cta">
+								<span class="file-icon">
+								<i class="fas fa-cloud-upload-alt"></i>
+								</span>
+								<span class="file-label">
+								Adicionar imagens
+								</span>
+							</span>
+							</label>
+						</div>
+					</dir>
+					
+				</div>
+
+				<div class="card" *ngIf="photo">
+					<header class="card-header">
+						<p class="card-header-title">
+							{{photo.title}}
+						</p>
+						<button class="card-header-icon" aria-label="Remover foto" (click)="removePhoto()">
+							<span class="icon">
+								<i class="fas fa-trash" aria-hidden="true"></i>
+							</span>
+						</button>	
+					</header>
+					<div class="card-image">
+						<figure class="image">
+							<img [src]="photo.data" />
+						</figure>
+					</div>
+					
+				</div>
+
+		</div>
+
+		</div>
+	</section>
 </main>
