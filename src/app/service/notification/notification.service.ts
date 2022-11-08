@@ -22,14 +22,14 @@ export class NotificationService {
     }, 5000);
   }
 
-  findElementBy(id:string){
+  private findElementBy(id:string){
 		let element = document.getElementById(id);
 		  	if(!element)
 				throw new Error(id + " is not find");
 		  	return element;
 	}
 
-  createMessage(text : string){
+  private createMessage(text : string){
     let messageBody = document.createElement('div');
     messageBody.classList.add('message-body');
     
@@ -41,7 +41,7 @@ export class NotificationService {
     return messageBody;
   }
 
-  playAnimation(element : HTMLElement, animationName:string){
+  private playAnimation(element : HTMLElement, animationName:string){
 		if(element.classList.contains(animationName))
 			element.classList.remove(animationName); 
 	
