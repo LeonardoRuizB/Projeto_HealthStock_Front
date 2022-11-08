@@ -26,7 +26,10 @@ const routes: Routes = [
       title: "HealthStock - Produtos"
     }
   },
-
+  {
+    path: 'fornecedor',
+    loadChildren: () => import('./pages/supplier/supplier.module').then(m => m.SupplierModule)
+  }
 ];
 
 @NgModule({
