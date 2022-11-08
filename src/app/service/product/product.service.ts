@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { EventsService } from '../events/events.service';
+import { IPhoto } from '../../models/photo';
+import { Buffer } from 'buffer';
 
 
 @Injectable({
@@ -13,17 +14,20 @@ export class ProductService {
   constructor(private client : HttpClient, private eventsService : EventsService) { }
 
   createProduto(body: any){
-    let resout = this.client.post(`${environment.productService.host}/product`, body);
-    resout.subscribe({
-      next:response => {
-        this.eventsService.SendEvent('Produto cadastrado com sucesso!', response);
-      },
-      error:errorResponse => {
-        this.eventsService.SendEvent('Erro ao cadastrar Produto!', errorResponse);
-      },
+    const resultObservable = new Observable<any>((observer) => {
+      this.client.post<any>(`${environment.productService.host}/product`, body).subscribe({
+        next:response => {
+          this.eventsService.SendEvent('Produto cadastrado com sucesso!', response);
+          observer.next(response);
+        },
+        error:errorResponse => {
+          this.eventsService.SendEvent('Erro ao cadastrar Produto!', errorResponse, 'error');
+          observer.error(errorResponse);
+        },
+      });
     });
 
-    return resout
+    return resultObservable
   };
 
   getProdutos(limit = 3, offset = 0) : Observable<[]> {
@@ -31,7 +35,7 @@ export class ProductService {
 
     result.subscribe({
       error:errorResponse => {
-        this.eventsService.SendEvent('Erro ao pegar produtos!', errorResponse);
+        this.eventsService.SendEvent('Erro ao pegar produtos!', errorResponse, 'error');
       },
     });
 
@@ -59,9 +63,28 @@ export class ProductService {
 
     result.subscribe({
       error:errorResponse => {
-        this.eventsService.SendEvent('Erro ao pegar produtos!', errorResponse);
+        this.eventsService.SendEvent('Erro ao pegar produtos!', errorResponse, 'error');
       },
     });
+
+    return result;
+  }
+
+  uploadPhoto(id:number, photo:IPhoto){
+    const formData = new FormData();
+
+    formData.append("photo", new Blob([Buffer.from(photo.data, 'base64').toString('ascii')], { type: photo.mimeType}), "photo." + photo.mimeType.split('/')[1]);
+    let result = this.client.post(`${environment.productService.host}/product/${id}/profile`, formData);
+
+    result.subscribe({
+      next: response => {
+        this.eventsService.SendEvent("Foto de produto cadastrada com sucesso!", {productId: id});
+      },
+
+      error: error => {
+        this.eventsService.SendEvent("Erro ao cadastrar foto de produto", error, 'error');
+      }
+    })
 
     return result;
   }
