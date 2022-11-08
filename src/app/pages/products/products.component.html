@@ -33,7 +33,7 @@
     </aside>
 
     <div class="container column is-8">
-        <section class="is-flex is-flex-wrap-wrap is-full">
+        <section class="is-flex is-flex-wrap-wrap is-full" *ngIf="products">
 
             <a class="column is-3" *ngFor="let product of products" routerLink='produtos/{{product.id}}'>
                 <div class="card">
