@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { EventsService } from '../events/events.service';
 import { IPhoto } from '../../models/photo';
 import { Buffer } from 'buffer';
+import { IProduct } from 'src/app/models/product';
 
 
 @Injectable({
@@ -13,9 +14,9 @@ import { Buffer } from 'buffer';
 export class ProductService {
   constructor(private client : HttpClient, private eventsService : EventsService) { }
 
-  createProduto(body: any){
-    const resultObservable = new Observable<any>((observer) => {
-      this.client.post<any>(`${environment.productService.host}/product`, body).subscribe({
+  createProduto(body: IProduct){
+    const resultObservable = new Observable<IProduct>((observer) => {
+      this.client.post<IProduct>(`${environment.productService.host}/product`, body).subscribe({
         next:response => {
           this.eventsService.SendEvent('Produto cadastrado com sucesso!', response);
           observer.next(response);
@@ -47,7 +48,7 @@ export class ProductService {
   searchProdutos(search:string,limit = 3, offset = 0) {
     let searchQuery = `limit=${limit}&offset=${offset}&search=${search}`;
     const resultObservable = new Observable<any>((observer) => {
-      this.client.get<any>(`${environment.productService.host}/product?${searchQuery}`)
+      this.client.get<IProduct|number[]>(`${environment.productService.host}/product?${searchQuery}`)
         .subscribe({
           next: response => {
             this.eventsService.SendEvent('Pesquisa de produto foi realizada com sucesso!', search);
@@ -79,11 +80,11 @@ export class ProductService {
   }
 
   uploadPhoto(id:number, photo:IPhoto){
-    const resultObservable = new Observable<any>((observer) => {
+    const resultObservable = new Observable<IPhoto>((observer) => {
       const formData = new FormData();
       formData.append("photo", new Blob([Buffer.from(photo.data, 'base64').toString('ascii')], { type: photo.mimeType}), "photo." + photo.mimeType.split('/')[1]);
 
-      this.client.post(`${environment.productService.host}/product/${id}/profile`, formData)
+      this.client.post<IPhoto>(`${environment.productService.host}/product/${id}/profile`, formData)
         .subscribe({
           next: response => {
             this.eventsService.SendEvent("Foto de produto cadastrada com sucesso!", {productId: id});
