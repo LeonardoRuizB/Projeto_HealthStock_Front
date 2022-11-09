@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ICategory } from 'src/app/models/category';
 import { IPackageType } from 'src/app/models/packageType';
+import { IPhoto } from 'src/app/models/photo';
 import { IProduct } from 'src/app/models/product';
 import { PackageTypeService } from 'src/app/service/packagetype/packagetype.service';
 
@@ -13,7 +14,7 @@ import { PackageTypeService } from 'src/app/service/packagetype/packagetype.serv
 export class RegisterComponent implements OnInit {
   formCatalogue : FormGroup;
   selectedProduct : any;
-  photos : any[] = [];
+  photos : IPhoto[] = [];
   packeges : IPackageType[] = [];
 
 
@@ -41,8 +42,24 @@ export class RegisterComponent implements OnInit {
     console.table(this.formCatalogue.value);
   }
 
-  onChangeImage($event:Event){
+  onChangeImage(event:Event){
+    const input = event.target as HTMLInputElement;
+    if(!input.files)
+      return;
+
+    let tempFiles = Array.from(input.files);
     
+    tempFiles.map( tempFile => {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        this.photos.push({ title: tempFile.name, data: reader.result as string, mimeType: tempFile.type});
+      }
+
+      reader.readAsDataURL(tempFile);
+    })
+    
+
   }
 
   outDescription(event : Event){
@@ -56,6 +73,11 @@ export class RegisterComponent implements OnInit {
 
   setProductId(){
     this.formCatalogue.get('productId')?.setValue(this.selectedProduct.id);
+  }
+
+  removePhoto(index:number){
+    this.photos.splice(index, 1);
+
   }
 
 }
