@@ -1,0 +1,36 @@
+<div class="hero">
+    <section class="hero-body columns">
+        <div class="is-fab has-content-centered">
+            <a class="button is-link is-rounded" routerLink="cadastro">
+              <span class="icon">
+                <i class="fas fa-plus"></i>
+              </span>
+              <span>Adicionar produto novo</span>
+            </a>
+        </div>
+
+        <div class="columns is-flex is-flex-wrap-wrap">
+            <div class="column is-2 is-6-mobile is-3-tablet" *ngFor="let product of catalogue">
+                <div class="card">
+                    <div class="card-image">
+                      <figure class="image">
+                        <img src="assets/logo.png" alt="Placeholder image">
+                      </figure>
+                    </div>
+                    <div class="card-content">
+                      <div class="media">
+                        <div class="media-content">
+                          <p class="subtitle is-5">{{product ? product.name : "Nome do produto não carregou"}}</p>
+                        </div>
+                      </div>
+                    </div>
+        
+                    <footer class="card-footer">
+                        <a class="card-footer-item">Editar</a>
+                        <a class="card-footer-item">Deletar</a>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
