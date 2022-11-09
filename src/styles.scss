@@ -26,3 +26,15 @@
     80% {opacity: 0; margin-left:-10;}
     100% { opacity: 0;}
 }
+
+.is-fab {
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    z-index: 5;
+}
+
+.has-content-centered {
+    display: flex;
+    justify-content: center;
+}
