@@ -4,6 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { CadastroProdutoComponent } from './pages/cadastro-produto/cadastro-produto.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProductsComponent } from './pages/products/products.component';
+import { MarketplaceComponent } from './pages/marketplace/marketplace.component';
 
 const routes: Routes = [
   {
@@ -29,7 +30,13 @@ const routes: Routes = [
   {
     path: 'fornecedor',
     loadChildren: () => import('./pages/supplier/supplier.module').then(m => m.SupplierModule)
-  }
+  },
+  {
+    path:"marketplace",component:MarketplaceComponent, data: {
+      title: "HealthStock - Marketplace"
+    }
+  },
+
 ];
 
 @NgModule({
