@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { ProductService } from 'src/app/service/product/product.service';
 import { CategoryService } from 'src/app/service/category/category.service';
-import { NotificationService } from 'src/app/service/notification/notification.service';
+import { NotificationService } from 'src/app/service/bulma/notification/notification.service';
 import { IPhoto } from 'src/app/models/photo';
 
 @Component({
