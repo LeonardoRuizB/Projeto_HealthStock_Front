@@ -1,1 +1,125 @@
-<p>register works!</p>
+<main class="container hero is-fullheight">
+	<div class="hero-head mt-5">
+		<h1 class="title is-2 is-spaced">Cadastrar novo produto</h1>
+	</div>
+
+	<section class="hero-body">
+		<div class="columns">
+			<div class="column is-two-thirds">
+				<form class="form is-flex is-flex-direction-column" [formGroup]="formCatalogue" (ngSubmit)="onSubmit()">
+					<div class="field has-addons">
+						 <div class="control">
+							<button class="button is-info" (click)="selectProduct()" type="button">
+								<i class="fas fa-box-open mr-3"></i>
+								Selecionar produto
+							</button>
+						</div>
+						<p class="control">
+							<input class="input" type="text" placeholder="Ex Caneta:" 
+								readonly [value]="selectedProduct.name" />
+						</p>
+					</div>
+
+					<div class="field">
+						<p class="control has-icons-left has-icons-right">
+							<input class="input" type="text" placeholder="Digite o nome do seu produto:"
+							formControlName="name" required />
+							<span class="icon is-small is-left">
+								<i class="fas fa-box-open"></i>
+							</span>
+						</p>
+					</div>
+
+					<div class="field">
+						<p class="control">
+							<textarea class="textarea" placeholder="Descrição do produto:" formControlName="description" (blur)="outDescription($event)"></textarea>
+						</p>
+					</div>
+
+
+					<div class="field">
+						<div class="control has-icons-left">
+							<div class="select">
+							  <select required formControlName="packageTypeId">
+								<option selected disabled>Escolher tipo de embalagem:</option>
+								<option [value]="package.id" *ngFor="let package of packeges">{{package.name}}</option>
+							  </select>
+							</div>
+							<div class="icon is-small is-left">
+							  <i class="fas fa-box"></i>
+							</div>
+						  </div>
+					</div>
+
+					
+
+					<div class="field buttons">
+						<button class="button is-success" type="submit">
+							<span class="icon">
+								<i class="fas fa-check"></i>
+							</span>
+							<span>Cadastror produto</span>
+						</button>
+
+						<a class="button is-warning" routerLink="/fornecedor">
+							<span class="icon">
+								<i class="fas fa-check"></i>
+							</span>
+							<span>Cancelar</span>
+						</a>
+					</div>
+				</form>
+			</div>
+
+			<div class="columns">
+				<div class="column">
+					<div class="card">
+					  <div class="card-image">
+						  <figure class="image">
+							  <img src="assets/logo.png" />
+						  </figure>
+					  </div>
+  
+					  <dir class="card-content">
+						  <div class="field file is-link is-light">
+							  <label class="file-label">
+							  <input class="file-input" multiple type="file" (change)="onChangeImage($event)">
+							  <span class="file-cta">
+								  <span class="file-icon">
+								  <i class="fas fa-cloud-upload-alt"></i>
+								  </span>
+								  <span class="file-label">
+								  Adicionar imagens
+								  </span>
+							  </span>
+							  </label>
+						  </div>
+					  </dir>
+					  
+				  </div>
+			  	</div>
+
+				<div class="column" *ngFor="let photo of photos">
+				  	<div class="card">
+					<header class="card-header">
+						<p class="card-header-title">
+							
+						</p>
+						<button class="card-header-icon" aria-label="Remover foto" type="button">
+							<span class="icon">
+								<i class="fas fa-trash" aria-hidden="true"></i>
+							</span>
+						</button>	
+					</header>
+					<div class="card-image">
+						<figure class="image">
+							<img src="" />
+						</figure>
+					</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+</main>
