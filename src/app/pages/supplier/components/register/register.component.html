@@ -85,49 +85,50 @@
 					</div>
 				</form>
 			</div>
+			<div class="column"> 
+				<div class="columns is-multiline">
+					<div class="column" *ngIf="photos.length < 1">
+						<div class="card">
+							<header class="card-header">
+								<p class="card-header-title">
+									Imagem padrão de produto
+								</p>
+						</header>
 
-			<div class="columns is-multiline">
-				<div class="column" *ngIf="photos.length < 1">
-					<div class="card">
+
+						<div class="card-image">
+							<figure class="image is-square">
+								<img src="assets/logo.png" />
+							</figure>
+						</div>
+	
+						<dir class="card-content">
+						</dir>
+						
+					</div>
+					</div>
+
+					<div class="column" *ngFor="let photo of photos; let i = index">
+						<div class="card">
 						<header class="card-header">
 							<p class="card-header-title">
-								Imagem padrão de produto
+								{{"supplier_" + selectedProduct.id + "_" + i + "." + photo.mimeType}}
 							</p>
-					</header>
-
-
-					  <div class="card-image">
-						  <figure class="image">
-							  <img src="assets/logo.png" />
-						  </figure>
-					  </div>
-  
-					  <dir class="card-content">
-					  </dir>
-					  
-				  </div>
-			  	</div>
-
-				<div class="column" *ngFor="let photo of photos; let i = index">
-				  	<div class="card">
-					<header class="card-header">
-						<p class="card-header-title">
-							{{"supplier_" + selectedProduct.id + "_" + i + "." + photo.mimeType}}
-						</p>
-						<button class="card-header-icon" aria-label="Remover foto" type="button" (click)="removePhoto(i)">
-							<span class="icon">
-								<i class="fas fa-trash" aria-hidden="true"></i>
-							</span>
-						</button>	
-					</header>
-					<div class="card-image">
-						<figure class="image">
-							<img [src]="photo.data" />
-						</figure>
+							<button class="card-header-icon" aria-label="Remover foto" type="button" (click)="removePhoto(i)">
+								<span class="icon">
+									<i class="fas fa-trash" aria-hidden="true"></i>
+								</span>
+							</button>	
+						</header>
+						<div class="card-image">
+							<figure class="image is-square">
+								<img [src]="photo.data" />
+							</figure>
+						</div>
+						</div>
 					</div>
-					</div>
+
 				</div>
-
 			</div>
 		</div>
 	</section>
