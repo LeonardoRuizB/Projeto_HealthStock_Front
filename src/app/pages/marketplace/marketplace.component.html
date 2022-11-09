@@ -1,1 +1,14 @@
-<p>marketplace works!</p>
+<section class="is-flex is-flex-wrap-wrap is-full" *ngIf="products">
+    <a class="column is-3" *ngFor="let product of products" routerLink='produtos/{{product.id}}'>
+        <div class="card">
+            <div class="card-content">
+                <div class="content">
+                    <img id="artwork" src="{{'assets/logo.png'}}">
+                    <br>    
+                   <div class="button is-fullwidth has-text-weight-semibold"
+                      [title]="">{{product.name}}</div>
+                </div>
+         </div>
+        </div>    
+    </a>
+</section>
