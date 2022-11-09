@@ -1,3 +1,27 @@
+
+ <aside class="column is-3 is-narrow-mobile is-fullheight section">
+    <p class="menu-label is-hidden-touch">Filtros</p>
+    <form [formGroup]="filters" (change)="changeSearch()">
+        <ul class="menu-list">
+            <li>
+                <div class="field is-horizontal">
+                    <p class="control has-icons-left has-icons-right" [ngClass]="{'is-loading': loadingSearching}">
+                        <input class="input" type="email" placeholder="Faça sua pesquisa..."
+                        formControlName="search">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-search"></i>
+                        </span>
+                    </p>
+                </div>
+            </li>
+
+            <hr />
+
+            
+        </ul>
+    </form>
+</aside>
+
 <section class="is-flex is-flex-wrap-wrap is-full" *ngIf="products">
     <a class="column is-3" *ngFor="let product of products" routerLink='produtos/{{product.id}}'>
         <div class="card">
