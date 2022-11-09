@@ -4,6 +4,7 @@ export interface IUser {
 }
 
 export interface IBaseUser {
+    id : number;
     companyName : string;
 }
 
