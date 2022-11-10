@@ -1,35 +1,80 @@
+<section class="main-content columns is-fullheight">
+    <aside class="column is-3 is-narrow-mobile is-fullheight section">
+        <p class="menu-label is-hidden-touch"></p>
+        <form [formGroup]="filters" (change)="changeSearch()">
+            <ul class="menu-list">
+                <li>
+                    <div class="field is-horizontal">
+                        <p class="control has-icons-left has-icons-right" [ngClass]="{'is-loading': loadingSearching}">
+                            <input class="input" type="email" placeholder="Faça sua pesquisa..."
+                            formControlName="search">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-search"></i>
+                            </span>
+                        </p>
+                    </div>
+                </li>
 
- <aside class="column is-3 is-narrow-mobile is-fullheight section">
-    <p class="menu-label is-hidden-touch">Filtros</p>
-    <form [formGroup]="filters" (change)="changeSearch()">
-        <ul class="menu-list">
-            <li>
-                <div class="field is-horizontal">
-                    <p class="control has-icons-left has-icons-right" [ngClass]="{'is-loading': loadingSearching}">
-                        <input class="input" type="email" placeholder="Faça sua pesquisa..."
-                        formControlName="search">
-                        <span class="icon is-small is-left">
-                            <i class="fas fa-search"></i>
-                        </span>
-                    </p>
-                </div>
+                <hr />
+
+                <li>
+                    <p class="menu-label is-hidden-touch">Categorias</p>
+                    <ul>
+                        <li *ngFor="let category of categories">
+                            <label class="checkbox">
+                                 <input type="checkbox">
+                                {{category.name}}
+                            </label>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </form>
+    </aside>
+
+    <div class="container column is-8">
+        <section class="is-flex is-flex-wrap-wrap is-full" *ngIf="products">
+            <a class="column is-3" *ngFor="let product of products" routerLink='produtos/{{product.id}}'>
+            
+                <div class="card">
+                    <div class="card-content">
+                        <div class="content">
+                            <img id="artwork" src="{{product.productPhoto ? product.productPhoto.path : 'assets/logo.png'}}">
+                            <br>   
+                    <div class="button-is-fullwidth has-text-weight-semibold"
+                            href="https://dribbble.com/shots/14429340-DigitalEye-Cameras-Landing-Page"
+                            [title]="product.description" target="_blank">{{product.name}}
+                        
+                        </div>
+                
+                        </div>
+                    </div>
+                </div>    
+            </a>
+        </section>
+    </div>    
+</section>
+
+<section class="footer" *ngIf="paginationService.totalPages > 1">
+    <nav class="pagination" role="navigation" aria-label="pagination">
+        <button class="button pagination-previous" [disabled]="paginationService.isFirstPage()"
+            title="This is the first page" (click)="previusPage()">
+            Pagina anterior
+        </button>
+
+        <button class="button pagination-next" title="This is the first page" (click)="nextPage()"
+            [disabled]="paginationService.isLastPage()">
+            Proxima Pagina
+        </button>
+
+        <ul class="pagination-list">
+            <li *ngFor="let number of [].constructor(paginationService.totalPages); let pageNumber = index;">
+                <a class="pagination-link" aria-label="Page 1" aria-current="page" (click)="updatePage()"
+                    routerLink="/produtos" [queryParams]="{page: pageNumber + 1}"
+                    [ngClass]="{'is-current is-primary':pageNumber + 1 == paginationService.pageNumber}">
+                    {{pageNumber + 1}}
+                </a>
             </li>
-            <hr />
         </ul>
-    </form>
-</aside>
-
-<section class="is-flex is-flex-wrap-wrap is-full" *ngIf="products">
-    <a class="column is-3" *ngFor="let product of products" routerLink='produtos/{{product.id}}'>
-        <div class="card">
-            <div class="card-content">
-                <div class="content">
-                    <img id="artwork" src="{{'assets/logo.png'}}">
-                    <br>    
-                   <div class="button is-fullwidth has-text-weight-semibold"
-                      [title]="">{{product.name}}</div>
-                </div>
-         </div>
-        </div>    
-    </a>
+    </nav>
 </section>
