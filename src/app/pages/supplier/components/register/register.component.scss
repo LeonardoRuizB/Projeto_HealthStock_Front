@@ -1,0 +1,6 @@
+@import 'variables.scss';
+
+.card.is-selected {
+    border: 1px solid $info;
+    box-shadow: 0px 0px 10px findDarkColor($info);
+}

@@ -98,7 +98,7 @@
 
 						<div class="card-image">
 							<figure class="image is-square">
-								<img src="assets/logo.png" />
+								<img [src]="selectedProduct.path ? selectedProduct.path : 'assets/logo.png'" />
 							</figure>
 						</div>
 	
@@ -133,3 +133,31 @@
 		</div>
 	</section>
 </main>
+
+<div class="modal" id="products-modal">
+	<div class="modal-background"></div>
+	<div class="modal-card">
+	  <header class="modal-card-head">
+		<h1 class="modal-card-title">Selecionar produtos</h1>
+		<button class="delete" aria-label="close" (click)="modalService.hideModal()"></button>
+	  </header>
+	  <section class="modal-card-body">
+		<div class="columns is-multiline">
+			<a class="column is-3" *ngFor="let product of products" (click)="setTemporaryProduct(product.id, product.name, product.productPhoto.path)">
+				<div class="card" [ngClass]="{'is-selected' : product.name == temporaryProduct.name}">
+					<div class="card-content">
+						<div class="content">
+							<img id="artwork" src="{{product.productPhoto ? product.productPhoto.path : 'assets/logo.png'}}">
+							<div class="button is-fullwidth has-text-weight-semibold" [title]="product.description" >{{product.name}}</div>
+						</div>
+					</div>
+				</div>
+			</a>
+		</div>
+	  </section>
+	  <footer class="modal-card-foot">
+		<button class="button is-link" (click)="confirmProduct()">Selecionar</button>
+		<button class="button" (click)="modalService.hideModal()">Cancelar</button>
+	  </footer>
+	</div>
+</div>
