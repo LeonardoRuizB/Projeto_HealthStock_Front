@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import ICartDao from 'src/app/models/dao/cartDao';
+import { ISupplierCatogue } from 'src/app/models/supplierCatalogue';
 import { environment } from 'src/environments/environment';
 import { EventsService } from '../../events/events.service';
 
@@ -24,5 +26,22 @@ export class MarketplaceService {
     })
 
     return resultObservable;
+  }
+
+  getCart(){
+    let cartStorage = sessionStorage.getItem('cart');
+    return cartStorage ? JSON.parse(cartStorage) as Array<ICartDao> : new Array<ICartDao>;
+  }
+
+  saveCart(cartItens : ICartDao[]){
+    let cart = this.getCart();
+    cart = cartItens;
+    sessionStorage.setItem('cart', JSON.stringify(cart));
+  }
+
+  addCart(...cartItem : ICartDao[]){
+    let cart = this.getCart();
+    cart.push(...cartItem);
+    this.saveCart(cart);
   }
 }
