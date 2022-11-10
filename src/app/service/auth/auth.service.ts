@@ -56,12 +56,19 @@ export class AuthService {
 		this.router.navigate(['/login']);
 	}
 
+	getUserType() : string{
+		let userType = sessionStorage.getItem('userType');
+		if(!this.isAuth() || !userType)
+			throw new Error("That's is not user session");
+
+		return userType;
+	}
+
 	needBeSupplier() : void{
 		if(!this.isAuth())
 			throw new Error("That's is not user session");
 
-		let type = sessionStorage.getItem('userType');
-		if(type != "supplier")
+		if(this.getUserType() != "supplier")
 			this.router.navigate([''])
 
 	}
@@ -70,8 +77,7 @@ export class AuthService {
 		if(!this.isAuth())
 			throw new Error("That's is not user session");
 		
-		let type = sessionStorage.getItem('userType');
-		if(type != "buyer")
+		if(this.getUserType() != "buyer")
 			this.router.navigate([''])
 	}
 
