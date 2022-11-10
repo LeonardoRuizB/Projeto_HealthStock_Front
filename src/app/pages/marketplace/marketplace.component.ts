@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ICategory } from 'src/app/models/category';
-import { MarketplaceService } from 'src/app/service/marketplace/marketplace.service';
+import { MarketplaceService } from 'src/app/service/models/marketplace/marketplace.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductService } from 'src/app/service/product/product.service';
+import { ProductService } from 'src/app/service/models/product/product.service';
 import {  firstValueFrom } from 'rxjs';
 import { PaginationService } from 'src/app/service/pagination/pagination.service';
-import { CategoryService } from 'src/app/service/category/category.service';
+import { CategoryService } from 'src/app/service/models/category/category.service';
 import { IProduct } from 'src/app/models/product';
 
 @Component({

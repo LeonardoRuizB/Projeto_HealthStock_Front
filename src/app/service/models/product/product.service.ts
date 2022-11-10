@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { EventsService } from '../events/events.service';
-import { IPhoto } from '../../models/photo';
+import { EventsService } from '../../events/events.service';
+import { IPhoto } from '../../../models/photo';
 import { Buffer } from 'buffer';
 import { IProduct } from 'src/app/models/product';
 

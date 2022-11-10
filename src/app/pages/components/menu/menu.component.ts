@@ -1,6 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AuthService } from 'src/app/service/auth/auth.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-menu',

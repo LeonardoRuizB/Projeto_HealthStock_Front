@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { IPhoto } from 'src/app/models/photo';
 import { ISupplierCatogue } from 'src/app/models/supplierCatalogue';
 import { environment } from 'src/environments/environment';
-import { EventsService } from '../events/events.service';
+import { EventsService } from '../../events/events.service';
 import { Buffer } from 'buffer';
 
 @Injectable({

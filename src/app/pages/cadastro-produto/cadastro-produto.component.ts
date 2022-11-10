@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { environment } from 'src/environments/environment';
-import { ProductService } from 'src/app/service/product/product.service';
-import { CategoryService } from 'src/app/service/category/category.service';
+import { ProductService } from 'src/app/service/models/product/product.service';
+import { CategoryService } from 'src/app/service/models/category/category.service';
 import { NotificationService } from 'src/app/service/bulma/notification/notification.service';
 import { IPhoto } from 'src/app/models/photo';
 

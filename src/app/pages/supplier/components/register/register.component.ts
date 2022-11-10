@@ -5,9 +5,9 @@ import { IPhoto } from 'src/app/models/photo';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { ModalService } from 'src/app/service/bulma/modal/modal.service';
 import { NotificationService } from 'src/app/service/bulma/notification/notification.service';
-import { PackageTypeService } from 'src/app/service/packagetype/packagetype.service';
-import { ProductService } from 'src/app/service/product/product.service';
-import { SupplierCatalogService } from 'src/app/service/supplierCatalog/supplier-catalog.service';
+import { PackageTypeService } from 'src/app/service/models/packagetype/packagetype.service';
+import { ProductService } from 'src/app/service/models/product/product.service';
+import { SupplierCatalogService } from 'src/app/service/models/supplierCatalog/supplier-catalog.service';
 
 @Component({
   selector: 'app-register',

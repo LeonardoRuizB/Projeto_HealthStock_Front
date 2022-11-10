@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Supplier from 'src/app/models/supplier';
 import { ISupplierCatogue } from 'src/app/models/supplierCatalogue';
 import { AuthService } from 'src/app/service/auth/auth.service';
-import { CatalogueService } from 'src/app/service/catalogue/catalogue.service';
+import { CatalogueService } from 'src/app/service/models/catalogue/catalogue.service';
 
 @Component({
   selector: 'app-catalogue',

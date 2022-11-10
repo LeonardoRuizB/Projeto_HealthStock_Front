@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ISupplierCatogue } from 'src/app/models/supplierCatalogue';
 import { environment } from 'src/environments/environment';
-import { EventsService } from '../events/events.service';
+import { EventsService } from '../../events/events.service';
 
 @Injectable({
   providedIn: 'root'
