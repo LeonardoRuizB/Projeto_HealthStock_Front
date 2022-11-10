@@ -46,6 +46,14 @@ export class MenuComponent implements OnInit, OnChanges {
     this.userCompanyName = this.authService.getUserData().companyName;
   }
 
+  isSupplier(){
+    return this.authService.getUserType() == "supplier";
+  }
+
+  isBuyer(){
+    return this.authService.getUserType() == "buyer";
+  }
+
   onLogout() : void {
     this.authService.doLogout();
     this.checkIfLogin();

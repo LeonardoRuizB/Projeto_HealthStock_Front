@@ -41,28 +41,35 @@
             </span>
           </a>
   
-          <div class="navbar-dropdown is-right" >
+          <div class="navbar-dropdown" >
             <a class="navbar-item">
               <span class="icon">
                 <i class="fas fa-user"></i>
               </span>
               Abrir perfil
             </a>
-            <a class="navbar-item">
+            <a class="navbar-item" *ngIf="isBuyer()">
               <span class="icon">
                 <i class="fas fa-list"></i>
               </span>
               Listar compras
             </a>
-            <a class="navbar-item">
+            <a class="navbar-item" *ngIf="isBuyer()">
               <span class="icon">
                 <i class="fas fa-cart-plus"></i>
               </span>
               Carrinho
             </a>
+
+            <a class="navbar-item" *ngIf="isSupplier()" routerLink="fornecedor">
+              <span class="icon">
+                <i class="fas fa-boxes"></i>
+              </span>
+              Meus produtos
+            </a>
+
             <hr class="navbar-divider">
             <a class="navbar-item is-link" (click)="onLogout()">
-              
               Log-out
             </a>
           </div>
