@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import Supplier from 'src/app/models/supplier';
 import { AuthService } from 'src/app/service/auth/auth.service';
+import { NotificationService } from 'src/app/service/bulma/notification/notification.service';
 
 @Component({
   selector: 'app-profile',
@@ -12,7 +13,7 @@ export class ProfileComponent implements OnInit {
 
   formProfile: FormGroup;
 
-  constructor(private authservice: AuthService) {
+  constructor(private authservice: AuthService, private notificationService: NotificationService) {
     let user = this.authservice.getUserData() as Supplier
     // user.contacts = [{name: "Leonardo", details: "1194002-8922", responsibleArea: "Vendas"}]
 
@@ -21,8 +22,8 @@ export class ProfileComponent implements OnInit {
       cnpj: user.cnpj,
       cnae: user.cnae,
       idUser: user.id,
-      // contacts: user.contacts,
-      // addresses: user.addresses
+      contacts: user.contacts,
+      addresses: user.addresses
     });
     console.info(this.formProfile.value)
   }
@@ -30,6 +31,13 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
   }
   onSubmit(){
-    console.log(this.formProfile.value)
+    this.authservice.updateProfileSupplier(this.formProfile.value).subscribe({
+      next: response => {
+        this.notificationService.showMessage("Perfil atualizado com sucesso");
+      },
+      error: errorResponse => {
+        this.notificationService.showMessage("Erro ao atualizar perfil");
+      }
+    });
   }
 }

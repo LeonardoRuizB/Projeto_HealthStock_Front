@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import Buyer from 'src/app/models/buyer';
 import Supplier from 'src/app/models/supplier';
 import { environment } from 'src/environments/environment';
@@ -43,14 +44,14 @@ export class AuthService {
 		sessionStorage.setItem('user', JSON.stringify(body.userType.user));
 		delete body.userType.user;
 		sessionStorage.setItem('userTypeData', JSON.stringify(body.userType));
-		
+
 		console.log(body);
 	}
 
 	isAuth(){
 		return sessionStorage.getItem('user') ? true : false;
 	}
-	
+
 	needBeAuth(){
 	if(!this.isAuth())
 		this.router.navigate(['/login']);
@@ -76,7 +77,7 @@ export class AuthService {
 	needBeBuyer(){
 		if(!this.isAuth())
 			throw new Error("That's is not user session");
-		
+
 		if(this.getUserType() != "buyer")
 			this.router.navigate([''])
 	}
@@ -85,7 +86,7 @@ export class AuthService {
 		let jsonData = sessionStorage.getItem('userTypeData') ?? '{}'
 		let type = sessionStorage.getItem('userType');
 
-		
+
 		if(!jsonData && !type)
 			throw new Error("That's is not user session");
 
@@ -94,4 +95,21 @@ export class AuthService {
 		else
 			return new Supplier(JSON.parse(jsonData));
 	}
+
+  updateProfileSupplier(profile: Supplier){
+    const resultObservable = new Observable<Supplier>((observer) => {
+      this.client.put<Supplier>(`${environment.loginService.host}/cadastro/fornecedor`, profile).subscribe({
+        next:response => {
+          this.eventsService.SendEvent('Perfil atualizado com Sucesso', response);
+          observer.next(response);
+        },
+        error:errorResponse => {
+          this.eventsService.SendEvent('Erro ao atualizar perfil', errorResponse, 'error');
+          observer.error(errorResponse);
+        },
+      });
+    });
+
+    return resultObservable
+  }
 }
