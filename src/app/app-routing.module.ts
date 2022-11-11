@@ -5,6 +5,7 @@ import { CadastroProdutoComponent } from './pages/cadastro-produto/cadastro-prod
 import { LoginComponent } from './pages/login/login.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { MarketplaceComponent } from './pages/marketplace/marketplace.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,11 @@ const routes: Routes = [
   {
     path:"marketplace",component:MarketplaceComponent, data: {
       title: "HealthStock - Marketplace"
+    }
+  },
+  {
+    path:"perfil",component:ProfileComponent, data: {
+      title: "HealthStock - Perfil"
     }
   },
 
