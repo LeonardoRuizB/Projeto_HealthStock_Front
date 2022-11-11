@@ -1,0 +1,61 @@
+<!-- Dados -->
+<div class="tile is-ancestor">
+  <div class="tile is-parent">
+    <div class="tile is-child box">
+      <form (submit)="onSubmit()" [formGroup]="formProfile">
+      <p class="title">Dados</p>
+
+      <input class="input" type="email" placeholder="Email">
+
+      <input class="input" formControlName="companyName" type="text" placeholder="Razão Social">
+
+      <input class="input" formControlName="cnpj" type="text" placeholder="CNPJ">
+
+      <input class="input" formControlName="cnae" type="text" placeholder="CNAE">
+
+      <!-- <input class="input" formControlName="contacts[0].name" type="text" placeholder="Nome do responsável">
+
+      <input class="input" formControlName="contacts[0].responsibleArea" type="text" placeholder="Área responsável">
+
+      <input class="input" formControlName="contacts[0].details" type="text" placeholder="Celular para Contato"> -->
+
+      <textarea class="textarea" placeholder="Digite aqui o motivo de sua mudança nos dados"></textarea>
+
+      <button type="submit" class="button is-link">
+        Salvar alterações
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- Endereços -->
+<div class="tile is-parent">
+    <div class="tile is-child box">
+      <p class="title">Endereços</p>
+
+      <div class="tabs">
+        <ul>
+          <li class="is-active"><a>Endereço 1</a></li>
+          <li><a>Endereço 2</a></li>
+        </ul>
+      </div>
+
+      <input class="input" type="text" placeholder="Endereço">
+
+      <input class="input" type="text" placeholder="Bairro">
+
+      <input class="input" type="text" placeholder="CEP">
+
+      <input class="input" type="text" placeholder="Número">
+
+      <input class="input" type="text" placeholder="Complemento">
+
+      <textarea class="textarea" placeholder="Digite aqui o motivo de sua mudança nos endereços"></textarea>
+
+      <button class="button is-link">
+        Salvar alterações
+      </button>
+
+    </div>
+  </div>
+</div>

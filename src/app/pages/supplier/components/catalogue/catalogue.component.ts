@@ -16,7 +16,7 @@ export class CatalogueComponent implements OnInit {
 
   constructor(private authService:AuthService, private catalogueService:CatalogueService) {
     try {
-      this.supplier = this.authService.getUserData();
+      this.supplier = this.authService.getUserData() as Supplier;
     }
     catch(error) {
       this.authService.needBeAuth();
