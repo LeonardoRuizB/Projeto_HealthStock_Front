@@ -4,19 +4,19 @@ button:disabled {
 
 .card{
     width: 100%;
-   
+
 }
 
 .card-content{
     width: 100%;
-    
-    
+
+
 }
 
 .content{
     width: 100%;
     color: rgb(0, 0, 0);
-  
+
 }
 
 
@@ -28,3 +28,14 @@ button:disabled {
 .hero-body{
     background-color: #1abb97;
 }
+
+figure img   {
+  border-radius: 25px;
+  padding: 3%;
+}
+
+.card {
+  border-radius: 20px;
+  padding: 5%;
+}
+

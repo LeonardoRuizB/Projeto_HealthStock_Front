@@ -9,13 +9,14 @@ import { PaginationService } from 'src/app/service/pagination/pagination.service
 import { CategoryService } from 'src/app/service/models/category/category.service';
 import { IProduct } from 'src/app/models/product';
 
+
 @Component({
   selector: 'app-marketplace',
   templateUrl: './marketplace.component.html',
   styleUrls: ['./marketplace.component.scss']
 })
 export class MarketplaceComponent implements OnInit {
-  
+
   products : any[] = [];
   filters : FormGroup;
   loadingSearching : boolean = false;
@@ -23,7 +24,7 @@ export class MarketplaceComponent implements OnInit {
   timer : any;
 
   constructor(
-    private marketplaceService : MarketplaceService, private productService : ProductService, 
+    private marketplaceService : MarketplaceService, private productService : ProductService,
     private activatedRoute : ActivatedRoute, private router : Router,
     private categoryService:CategoryService,
     public paginationService : PaginationService) {
@@ -43,7 +44,7 @@ export class MarketplaceComponent implements OnInit {
           this.products = marketplaceResponse;
           this.loadingSearching = false;
         }}),500);
-  } 
+  }
 
   ngOnInit(): void {
     this.marketplaceService.getProdutos(this.paginationService.limitByPage, this.paginationService.getOffset())
@@ -53,7 +54,6 @@ export class MarketplaceComponent implements OnInit {
       console.log(this.products)
       }
     });
-
 
     this.categoryService.getCategories().subscribe({
       next: response => {

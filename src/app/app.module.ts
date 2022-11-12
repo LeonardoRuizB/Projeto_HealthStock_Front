@@ -12,6 +12,7 @@ import { LoginModule } from './pages/login/login.module';
 import { HomeModule } from './pages/home/home.module';
 import { MarketplaceComponent } from './pages/marketplace/marketplace.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { SliderComponent } from './pages/marketplace/slider/slider.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
     CadastroProdutoComponent,
     ProductsComponent,
     MarketplaceComponent,
-    ProfileComponent
+    ProfileComponent,
+    SliderComponent
   ],
   imports: [
     HttpClientModule,

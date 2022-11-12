@@ -17,9 +17,14 @@
     </p>
   </div>
 
-<section class="main-content columns is-fullheight">
-    <aside class="column is-3 is-narrow-mobile is-fullheight section">
-        <p class="menu-label is-hidden-touch"></p>
+
+<!-- Testando card bulma -->
+
+  <section class="container">
+    <div class="columns features">
+
+      <aside class="column is-3 is-narrow-mobile is-fullheight section">
+        <p class="menu-label is-hidden-touch">Filtros</p>
         <form [formGroup]="filters" (change)="changeSearch()">
             <ul class="menu-list">
                 <li>
@@ -41,7 +46,7 @@
                     <ul>
                         <li *ngFor="let category of categories">
                             <label class="checkbox">
-                                 <input type="checkbox">
+                                <input type="checkbox">
                                 {{category.name}}
                             </label>
                         </li>
@@ -49,162 +54,25 @@
                 </li>
             </ul>
         </form>
-    </aside>
-    
+      </aside>
 
-    <div class="container column is-8.5">
-        <section class="is-flex is-flex-wrap-wrap is-full" *ngIf="products">
-            <a class="column is-3" *ngFor="let product of products" routerLink='produtos/{{product.id}}'>
-            
-                <div class="card">
-                    <div class="card-content">
-                        <div class="content">
-                            <img id="artwork" src="{{product.productPhoto ? product.productPhoto.path : 'assets/logo.png'}}">
-                            <br>   
-                    <div class="button is-fullwidth has-text-weight-semibold is-full"
-                            href="https://dribbble.com/shots/14429340-DigitalEye-Cameras-Landing-Page"
-                            [title]="product.description" target="_blank">{{product.name}}
-                        
-                        </div>
-                
-                        </div>
-                    </div>
-                </div>    
-            </a>
-        </section>
-    </div>    
-</section>
-
-<section class="footer" *ngIf="paginationService.totalPages > 1">
-    <nav class="pagination" role="navigation" aria-label="pagination">
-        <button class="button pagination-previous" [disabled]="paginationService.isFirstPage()"
-            title="This is the first page" (click)="previusPage()">
-            Pagina anterior
-        </button>
-
-        <button class="button pagination-next" title="This is the first page" (click)="nextPage()"
-            [disabled]="paginationService.isLastPage()">
-            Proxima Pagina
-        </button>
-
-        <ul class="pagination-list">
-            <li *ngFor="let number of [].constructor(paginationService.totalPages); let pageNumber = index;">
-                <a class="pagination-link" aria-label="Page 1" aria-current="page" (click)="updatePage()"
-                    routerLink="/produtos" [queryParams]="{page: pageNumber + 1}"
-                    [ngClass]="{'is-current is-primary':pageNumber + 1 == paginationService.pageNumber}">
-                    {{pageNumber + 1}}
-                </a>
-            </li>
-        </ul>
-    </nav>
-</section>
-<!-- Testando card bulma -->
-
-  <section class="container">
-    <div class="columns features">
-      <div class="column is-4">
-        <div class="card is-shady">
-          <!-- <div class="card-image">
-            <figure class="image is-4by3">
-              <img src="https://source.unsplash.com/RWnpyGtY1aU" alt="Placeholder image" class="modal-button" data-target="modal-image2">
-            </figure>
-          </div> -->
-
-          
-            <!-- <a class="column is-3" *ngFor="let product of products" routerLink='produtos/{{product.id}}'>
-            
-                <div class="card">
-                    <div class="card-content">
-                        <div class="content">
-                            <img id="artwork" src="{{product.productPhoto ? product.productPhoto.path : 'assets/logo.png'}}">
-                            <br>   
-                    <div class="button is-fullwidth has-text-weight-semibold"
-                            href="https://dribbble.com/shots/14429340-DigitalEye-Cameras-Landing-Page"
-                            [title]="product.description" target="_blank">{{product.name}}
-                        
-                        </div>
-                
-                        </div>
-                    </div>
-                </div>    
-            </a> -->
-        
-
-          <div class="card-content">
-            <div class="content">
-              <h4>Click on image above</h4>
-              <p>Purus semper eget duis at tellus at urna condimentum mattis. Non blandit massa enim nec. Integer enim neque volutpat ac tincidunt vitae semper quis. Accumsan tortor posuere ac ut consequat semper viverra nam.</p>
-              <span class="button is-link modal-button" data-target="modal-image2">Image modal</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="column is-4">
+      <div class="column is-3">
         <div class="card is-shady">
           <div class="card-image">
             <figure class="image is-4by3">
-              <img src="https://source.unsplash.com/6Ticnhs1AG0" alt="Placeholder image">
+              <img src="assets/ferramenta.png" class="is-rounded" alt="Placeholder image">
             </figure>
           </div>
           <div class="card-content">
             <div class="content">
               <h4>Tempor orci dapibus faber in.</h4>
-              <p>Ut venenatis tellus in metus vulputate. Amet consectetur adipiscing elit pellentesque. Sed arcu non odio euismod lacinia at quis risus. Faucibus turpis in eu mi bibendum neque egestas cmonsu songue. Phasellus vestibulum lorem
+              <p>Ut venenatis tellus in metus vulputate.  S neque egestas cmonsu songue. Phasellus vestibulum lorem
               sed risus.</p>
               <span class="button is-link modal-button" data-target="modal-card">Modal Card</span>
             </div>
           </div>
         </div>
       </div>
-      <div class="column is-4 modal-button" data-target="modal-image">
-        <div class="card is-shady">
-          <div class="card-image">
-            <figure class="image is-4by3">
-              <img src="https://res.cloudinary.com/ameo/image/upload/v1568711475/pexels-photo-1302883_fjje0f.jpg" alt="Placeholder image">
-            </figure>
-          </div>
-          <div class="card-content">
-            <div class="content">
-              <h4>Click anywhere on card</h4>
-              <p>Imperdiet dui accumsan sit amet nulla facilisi morbi. Fusce ut placerat orci nulla pellentesque dignissim enim. Libero id faucibus nisl tincidunt eget nullam. Commodo viverra maecenas accumsan lacus vel facilisis.</p>
-              <span class="button is-link modal-button" data-target="modal-image">Image modal</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="columns features">
-      <div class="column is-4 modal-button" data-target="modal-card">
-        <div class="card is-shady">
-          <div class="card-image">
-            <figure class="image is-4by3">
-              <img src="https://res.cloudinary.com/ameo/image/upload/v1568711475/pexels-photo-1302883_fjje0f.jpg" alt="Placeholder image">
-            </figure>
-          </div>
-          <div class="card-content">
-            <div class="content">
-              <h4>Click anywhere on card to <br>expand into modal card</h4>
-              <p>Purus semper eget duis at tellus at urna condimentum mattis. Non blandit massa enim nec. Integer enim neque volutpat ac tincidunt vitae semper quis. Accumsan tortor posuere ac ut consequat semper viverra nam.</p>
-              <span class="button is-link modal-button">Modal card</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="column is-4">
-        <div class="card is-shady">
-          <div class="card-image">
-            <figure class="image is-4by3">
-              <img src="https://source.unsplash.com/hLyd1LukQ7E" alt="butterfly image" class="modal-button" data-target="modal-image4">
-            </figure>
-          </div>
-          <div class="card-content  modal-button" data-target="modal-card2">
-            <div class="content">
-              <h4>Click anywhere on card to <br>expand into modal card - header image expands into bigger image</h4>
-              <p>Purus semper eget duis at tellus at urna condimentum mattis. Non blandit massa enim nec. Integer enim neque volutpat ac tincidunt vitae semper quis.</p>
-              <span class="button is-link modal-button">Modal card</span>
-            </div>
-          </div>
-        </div>
-      </div>
+
     </div>
   </section>
