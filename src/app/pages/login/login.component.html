@@ -6,7 +6,7 @@
               <li [ngClass]="{'is-active':!checkbox}" (click)="checkboxL()"><a>Cadastrar</a></li>
             </ul>
           </div>
-          <div class="is-flex">
+          <div class="is-flex is-justify-content-center">
               <div class="form box">
                   <app-signin *ngIf="checkbox"></app-signin>
                   <app-signup *ngIf="!checkbox"></app-signup>
