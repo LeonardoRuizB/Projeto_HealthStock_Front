@@ -14,6 +14,8 @@ import { MarketplaceComponent } from './pages/marketplace/marketplace.component'
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SliderComponent } from './pages/marketplace/slider/slider.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { OrderComponent } from './pages/order/order.component';
+import { OrderItemComponent } from './pages/order/components/order-item/order-item.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { CartComponent } from './pages/cart/cart.component';
     MarketplaceComponent,
     ProfileComponent,
     SliderComponent,
-    CartComponent
+    CartComponent,
+    OrderComponent,
+    OrderItemComponent
   ],
   imports: [
     HttpClientModule,

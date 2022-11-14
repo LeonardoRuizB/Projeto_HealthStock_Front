@@ -1,0 +1,47 @@
+<h3 class="title is-3"> Pedido #{{orderNumber}}</h3>
+<ul class="steps is-balanced">
+    <li class="steps-segment" [ngClass]="{'is-active': step == 0}">
+    <span class="steps-marker">
+        <span class="icon">
+            <i class="fas fa-cart-plus"></i>
+        </span>
+    </span>
+    <div class="steps-content">
+        <p class="is-size-4">Carrinho</p>
+    </div>
+    </li>
+    <li class="steps-segment" [ngClass]="{'is-active': step == 1}">
+    <span class="steps-marker">
+        <span class="icon">
+            <i class="fas fa-user"></i>
+        </span>
+        </span>
+    <div class="steps-content">
+        <p class="is-size-4">Login</p>
+    </div>
+    </li>
+    <li class="steps-segment" [ngClass]="{'is-active': step == 2}">
+    <span class="steps-marker">
+        <i class="fas fa-money-bill"></i>
+    </span>
+    <div class="steps-content">
+        <p class="is-size-4">Pagamento</p>
+    </div>
+    </li>
+    <li class="steps-segment" [ngClass]="{'is-active': step == 3}">
+        <span class="steps-marker">
+        <i class="fas fa-truck"></i>
+        </span>
+        <div class="steps-content">
+        <p class="is-size-4">Entrega</p>
+        </div>
+    </li>
+    <li class="steps-segment" [ngClass]="{'is-active': step == 4}">
+        <span class="steps-marker">
+        <i class="fas fa-check"></i>
+        </span>
+        <div class="steps-content">
+        <p class="is-size-4">Confirmação</p>
+        </div>
+    </li>
+</ul>

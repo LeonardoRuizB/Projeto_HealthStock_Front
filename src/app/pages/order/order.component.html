@@ -1,0 +1,14 @@
+<main class="container">
+    <div class="block" *ngIf="ordersStatus">
+        <div class="column box" *ngFor="let orderStatus of ordersStatus">
+            <app-order-item [orderNumber]="orderStatus.number" [step]="orderStatus.step"></app-order-item>
+        </div>
+    </div>
+
+    <div class="block" *ngIf="ordersStatus.length < 1">
+        <p>
+            Não há produtos para ser entregues
+        </p>
+    </div>
+    
+</main>
