@@ -16,37 +16,6 @@ export class CartComponent implements OnInit, OnDestroy {
 
   constructor(private marketplaceService : MarketplaceService, private authService : AuthService) {
     this.cartList = marketplaceService.getCart();
-
-    this.cartList.push({
-      id: 1,
-      quantity: 2,
-      supplierCatalog: {
-        id: 1, name: "Caneta Bic - 50 canetas", description: "Lorem ipsum", price: 10.00,
-        packageTypeId: 1, productId:1, supplierId:1,
-        photo: {title:"", data:"", mimeType:"", type:""},
-      }
-    });
-
-    this.cartList.push({
-      id: 1,
-      quantity: 2,
-      supplierCatalog: {
-        id: 1, name: "Caneta Bic - 50 canetas", description: "Lorem ipsum", price: 10.00,
-        packageTypeId: 1, productId:1, supplierId:1,
-        photo: {title:"", data:"https://bulma.io/images/placeholders/128x128.png", mimeType:"", type:""},
-      }
-    });
-
-    this.cartList.push({
-      id: 1,
-      quantity: 2,
-      supplierCatalog: {
-        id: 1, name: "Caneta Bic - 50 canetas", description: "Lorem ipsum", price: 10.00,
-        packageTypeId: 1, productId:1, supplierId:1,
-        photo: {title:"", data:"https://bulma.io/images/placeholders/128x128.png", mimeType:"image/png", type:"png"},
-      }
-    });
-
     this.updateTotalPrice();
   }
   ngOnInit(): void {
@@ -60,16 +29,19 @@ export class CartComponent implements OnInit, OnDestroy {
 
   removeItem(index : number){
     this.cartList.splice(index, 1);
+    this.updateTotalPrice();
   }
 
   decreaseQuantity(index : number){
     if(this.cartList[index].quantity <= 1)
       return;
     this.cartList[index].quantity--;
+    this.updateTotalPrice();
   }
 
   increaseQuantity(index : number){
     this.cartList[index].quantity++;
+    this.updateTotalPrice();
   }
 
   updateTotalPrice(){
