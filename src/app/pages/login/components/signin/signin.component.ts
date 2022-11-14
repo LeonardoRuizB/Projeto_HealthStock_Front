@@ -35,7 +35,7 @@ export class SigninComponent implements OnInit {
             this.message += "Você tem que dar um npm start no serviço de Login. Não esquece de clonar o serviço. https://github.com/JoaoGabrielOliveira/healthstock-login";
         }
         else
-          this.message = responseError.error.error;
+          this.message = responseError.error.message;
       },
     });
   }

@@ -15,23 +15,25 @@ export class AuthService {
 	constructor(private client : HttpClient, private router : Router, private eventsService : EventsService) { }
 
 	doLogin(user : User, redirect : string = ''){
-    	let result = this.client.post(`${environment.loginService.host}/login`, user);
-
-		result.subscribe({
-			next: response => {
-				this.createLoginSession(response);
-				this.eventsService.SendEvent('Login foi realizado com sucesso!', response);
-				window.location.replace(redirect);
-			},
-			error: responseError => {
-				if(responseError.status == 401)
-					console.warn(responseError.error.error);
-
-				this.eventsService.SendEvent('Erro ao realizar um login!', responseError, 'error');
-			}
+		const resultObservable = new Observable((observer) => {
+    		let result = this.client.post(`${environment.loginService.host}/login`, user);
+			result.subscribe({
+				next: response => {
+					this.createLoginSession(response);
+					this.eventsService.SendEvent('Login foi realizado com sucesso!', response);
+					window.location.replace(redirect);
+					observer.next(response)
+				},
+				error: responseError => {
+					if(responseError.status == 401)
+						console.warn(responseError.error.error);
+					this.eventsService.SendEvent('Erro ao realizar um login!', responseError, 'error');
+					observer.error(responseError)
+				}
+			});
 		});
 
-    	return result;
+    	return resultObservable;
 	}
 
 	doLogout() {
