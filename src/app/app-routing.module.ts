@@ -6,6 +6,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { MarketplaceComponent } from './pages/marketplace/marketplace.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,11 @@ const routes: Routes = [
   {
     path:"perfil",component:ProfileComponent, data: {
       title: "HealthStock - Perfil"
+    }
+  },
+  {
+    path:"carrinho",component:CartComponent, data: {
+      title: "HealthStock - Carrinho"
     }
   },
 

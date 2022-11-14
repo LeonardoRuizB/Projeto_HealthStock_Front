@@ -13,6 +13,7 @@ import { HomeModule } from './pages/home/home.module';
 import { MarketplaceComponent } from './pages/marketplace/marketplace.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SliderComponent } from './pages/marketplace/slider/slider.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SliderComponent } from './pages/marketplace/slider/slider.component';
     ProductsComponent,
     MarketplaceComponent,
     ProfileComponent,
-    SliderComponent
+    SliderComponent,
+    CartComponent
   ],
   imports: [
     HttpClientModule,

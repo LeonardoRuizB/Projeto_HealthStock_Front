@@ -1,0 +1,111 @@
+
+<section class="section container">
+    <section class="hero is-fullheight">
+        <div class="hero-header">
+            <div class="block" *ngIf="cartList.length > 0">
+                <button class="button is-danger is-outlined" (click)="clearCart()">
+                    <span class="icon">
+                      <i class="fas fa-trash"></i>
+                    </span>
+                    <span>Limpar carrinho</span>
+                </button>
+            </div>
+
+            
+        </div>
+        <div class="hero-body">
+            <div class="content has-text-centered" *ngIf="cartList.length < 1">
+                <p class="title">
+                  O seu carrinho está vazio.
+                </p>
+                <p class="subtitle">
+                  Deseja olhar outros produtos similares?
+                </p>
+
+                <a class="button is-link is-large" routerLink="/marketplace">
+                    Ver produtos
+                </a>
+            </div>
+
+            <div class="columns is-multiline" *ngIf="cartList">
+                <div class="column is-half card block" *ngFor="let item of cartList; let i = index">
+                    <div class="card-content">
+                        <div class="media">
+                            <div class="media-left">
+                                <figure class="image is-128x128">
+                                    <img src={{item.supplierCatalog.photo.data}}>
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <h3 class="title is-4">{{item.supplierCatalog.name}}</h3>
+                                <p>{{item.supplierCatalog.description}}</p>
+                                <p class="subtitle is-5">{{item.supplierCatalog.price | currency : 'BRL'}}</p>
+                                <p class="subtitle is-5">Total:{{item.quantity * item.supplierCatalog.price | currency : 'BRL' }} x{{item.quantity}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <footer class="card-footer">
+                        <div href="#" class="card-footer-item">
+                            <div class="icon-text">
+                                <span class="icon has-text-info">
+                                  <i class="fas fa-info-circle"></i>
+                                </span>
+                                <span>Quantidade:</span>
+                            </div>
+                            
+        
+                            <div class="block">
+                                <a (click)="decreaseQuantity(i)">
+                                    <span class="icon">
+                                        <i class="fas fa-arrow-left"></i>
+                                    </span>
+                                </a>
+                                    {{item.quantity}}
+                                <a (click)="increaseQuantity(i)">
+                                    <span class="icon">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+        
+                        <a (click)="removeItem(i)" class="card-footer-item has-text-danger">
+                            <span class="icon">
+                                <i class="fas fa-trash"></i>
+                              </span>
+                            Remover item
+                        </a>
+                    </footer>
+                </div>
+            </div>
+        </div>
+      </section>
+</section>
+
+<nav *ngIf="cartList.length > 0" class="level is-floating has-background-white">
+    <div class="level-left">
+        <div class="level-item has-text-centered">
+            <div class="title">
+                Total: {{totalPrice | currency : 'BRL'}}
+            </div>
+        </div>
+    </div>
+
+    <div class="level-right">
+        <div class="level-item">
+            <div class="select">
+                <select>
+                  <option disabled selected>Selecionar forma de pagamento</option>
+                  <option>Cartão de Credito</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="level-item has-text-centered">
+            <button class="button is-primary is-medium">
+                Ir para pagamento!
+            </button>
+        </div>
+    </div>
+
+</nav>
