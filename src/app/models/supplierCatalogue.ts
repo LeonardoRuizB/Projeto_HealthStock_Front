@@ -8,4 +8,5 @@ export interface ISupplierCatogue {
     supplierId: number;
     packageTypeId : number;
     productId: number;
+    price : number;
 }
