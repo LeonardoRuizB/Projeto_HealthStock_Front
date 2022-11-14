@@ -19,7 +19,7 @@ const routes: Routes = [
     }
   },
   {
-    path:"cadastro/produto",component:CadastroProdutoComponent, data: {
+    path:"produto/cadastro",component:CadastroProdutoComponent, data: {
       title: "HealthStock - Produtos - Cadastro"
     }
   },

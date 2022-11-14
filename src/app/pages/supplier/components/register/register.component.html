@@ -153,11 +153,23 @@
 					</div>
 				</div>
 			</a>
+
+			<div class="column is-full box" *ngIf="!products">
+				<b>Não produto foi listado!</b>
+			</div>
 		</div>
 	  </section>
 	  <footer class="modal-card-foot">
 		<button class="button is-link" (click)="confirmProduct()">Selecionar</button>
 		<button class="button" (click)="modalService.hideModal()">Cancelar</button>
+		<a class="button is-info" routerLink="/produto/cadastro">
+			<span class=" icon-text">
+				<span class="icon">
+				  <i class="fas fa-plus"></i>
+				</span>
+				<span>Cadastrar produto novo</span>
+			</span>
+		</a>
 	  </footer>
 	</div>
 </div>
