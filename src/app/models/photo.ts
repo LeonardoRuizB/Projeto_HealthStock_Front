@@ -9,12 +9,14 @@ export class Photo implements IPhoto {
     data: any;
     mimeType: string;
     type : string;
+    path: string;
 
     constructor(body : any){
         this.title = body.title;
         this.data = body.data;
         this.mimeType = body.mimeType;
         this.type = this.mimeType.split('/')[1];
+        this.path = body?.path;
 
     }
 
