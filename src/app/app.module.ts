@@ -12,7 +12,6 @@ import { LoginModule } from './pages/login/login.module';
 import { HomeModule } from './pages/home/home.module';
 import { MarketplaceComponent } from './pages/marketplace/marketplace.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { SliderComponent } from './pages/marketplace/slider/slider.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { OrderComponent } from './pages/order/order.component';
 import { OrderItemComponent } from './pages/order/components/order-item/order-item.component';
@@ -25,7 +24,6 @@ import { OrderItemComponent } from './pages/order/components/order-item/order-it
     ProductsComponent,
     MarketplaceComponent,
     ProfileComponent,
-    SliderComponent,
     CartComponent,
     OrderComponent,
     OrderItemComponent
