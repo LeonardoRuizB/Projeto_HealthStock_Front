@@ -2,23 +2,6 @@ button:disabled {
     cursor: default;
 }
 
-.card{
-    width: 100%;
-
-}
-
-.card-content{
-    width: 100%;
-
-
-}
-
-.content{
-    width: 100%;
-    color: rgb(0, 0, 0);
-
-}
-
 
 .title {
     font-size: 40px;
@@ -36,6 +19,14 @@ figure img   {
 
 .card {
   border-radius: 20px;
-  padding: 5%;
+  padding: 3%;
+  width: 100%;
 }
 
+.column .is-3 {
+    width: 30%;
+}
+
+.card-content .content p.description {
+    font-size: 80%;
+}

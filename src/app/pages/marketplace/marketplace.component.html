@@ -1,13 +1,11 @@
 <!-- Testando card bulma -->
-<section class="hero is-info is-small">
+<header>
+  <section class="hero is-info is-small">
     <div class="hero-body">
       <div class="container has-text-centered">
         <p class="title">
           Marketplace
         </p>
-        <!-- <p class="subtitle">
-          Subtitle teste
-        </p> -->
       </div>
     </div>
   </section>
@@ -16,63 +14,65 @@
       <span class="tag is-primary ">OFERTA</span> BLACK FRIDAY 10% DE DESCONTO .
     </p>
   </div>
+</header>
 
+<main class="main-content columns is-fullheight">
+  <aside class="column is-3 is-narrow-mobile is-fullheight section is-hidden-mobile">
+    <p class="menu-label is-hidden-touch">Filtros</p>
+    <form [formGroup]="filters" (change)="changeSearch()">
+        <ul class="menu-list">
+            <li>
+                <div class="field is-horizontal">
+                    <p class="control has-icons-left has-icons-right" [ngClass]="{'is-loading': loadingSearching}">
+                        <input class="input" type="email" placeholder="Faça sua pesquisa..."
+                        formControlName="search">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-search"></i>
+                        </span>
+                    </p>
+                </div>
+            </li>
 
-<!-- Testando card bulma -->
+            <hr />
 
-  <section class="container">
-    <div class="columns features">
+            <li>
+                <p class="menu-label is-hidden-touch">Categorias</p>
+                <ul>
+                    <li *ngFor="let category of categories">
+                        <label class="checkbox">
+                            <input type="checkbox">
+                            {{category.name}}
+                        </label>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </form>
+  </aside>
 
-      <aside class="column is-3 is-narrow-mobile is-fullheight section">
-        <p class="menu-label is-hidden-touch">Filtros</p>
-        <form [formGroup]="filters" (change)="changeSearch()">
-            <ul class="menu-list">
-                <li>
-                    <div class="field is-horizontal">
-                        <p class="control has-icons-left has-icons-right" [ngClass]="{'is-loading': loadingSearching}">
-                            <input class="input" type="email" placeholder="Faça sua pesquisa..."
-                            formControlName="search">
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-search"></i>
-                            </span>
-                        </p>
-                    </div>
-                </li>
+  <section class="section column columns is-9 is-multiline">
+    <a class="column is-3">
+      <div class="card is-shady">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img src="assets/ferramenta.png" class="is-rounded" alt="Placeholder image">
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="content">
+            <h4>Tempor orci dapibus faber in.</h4>
+            <p class="description">Ut venenatis tellus in metus vulputate...</p>
+            <p><strong>R$ 19.99</strong></p>
 
-                <hr />
-
-                <li>
-                    <p class="menu-label is-hidden-touch">Categorias</p>
-                    <ul>
-                        <li *ngFor="let category of categories">
-                            <label class="checkbox">
-                                <input type="checkbox">
-                                {{category.name}}
-                            </label>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </form>
-      </aside>
-
-      <div class="column is-3">
-        <div class="card is-shady">
-          <div class="card-image">
-            <figure class="image is-4by3">
-              <img src="assets/ferramenta.png" class="is-rounded" alt="Placeholder image">
-            </figure>
-          </div>
-          <div class="card-content">
-            <div class="content">
-              <h4>Tempor orci dapibus faber in.</h4>
-              <p>Ut venenatis tellus in metus vulputate.  S neque egestas cmonsu songue. Phasellus vestibulum lorem
-              sed risus.</p>
-              <span class="button is-link modal-button" data-target="modal-card">Modal Card</span>
-            </div>
+            <button class="button is-link modal-button" data-target="modal-card">
+              <span class="icon">
+                <i class="fas fa-cart-plus"></i>
+              </span>
+              <span>Adicionar no carrinho</span>
+            </button>
           </div>
         </div>
       </div>
-
-    </div>
+    </a>
   </section>
+</main>
