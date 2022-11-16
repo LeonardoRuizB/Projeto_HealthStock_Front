@@ -33,7 +33,8 @@ export class RegisterComponent implements OnInit {
       name: '',
       description: '',
       packageTypeId: 0,
-      supplierId: this.authService.getUserData().id
+      supplierId: this.authService.getUserData().id,
+      price: 0
     });
 
     packageTypeService.getPackageType().subscribe({
@@ -56,6 +57,9 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(){
+    if(!this.formCatalogue.valid)
+      return;
+    
     this.setProductId();
   
     this.catalogService.createProduct(this.formCatalogue.value).subscribe({
