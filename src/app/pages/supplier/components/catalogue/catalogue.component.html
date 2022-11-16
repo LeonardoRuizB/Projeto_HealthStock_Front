@@ -14,7 +14,7 @@
                 <div class="card">
                     <div class="card-image">
                       <figure class="image">
-                        <img src="assets/logo.png" alt="Placeholder image">
+                        <img [src]="product.photo ? product.photo.path : 'assets/logo.png' " alt="Placeholder image">
                       </figure>
                     </div>
                     <div class="card-content">

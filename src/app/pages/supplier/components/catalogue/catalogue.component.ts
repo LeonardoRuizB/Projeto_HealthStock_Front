@@ -31,8 +31,6 @@ export class CatalogueComponent implements OnInit {
     this.catalogueService.getCatalogue(this.supplier.id).subscribe({
       next: catalogue => {
         this.catalogue = catalogue;
-        this.catalogue.push(this.catalogue[0],this.catalogue[0],this.catalogue[0],this.catalogue[0]);
-        this.catalogue.push(this.catalogue[0],this.catalogue[0],this.catalogue[0],this.catalogue[0]);
       }
     })
 
