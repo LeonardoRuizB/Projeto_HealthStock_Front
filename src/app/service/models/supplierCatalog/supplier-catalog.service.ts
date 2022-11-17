@@ -44,7 +44,7 @@ export class SupplierCatalogService {
 
     photos.forEach((photo, index) => {
       formData.append("photo" + index,
-        new Blob([Buffer.from(photo.data, 'base64').toString('ascii')],{ type: photo.mimeType}),
+        new Blob([Buffer.from(photo.data, 'base64').toString()],{ type: photo.mimeType}),
         "photo." + photo.mimeType.split('/')[1]);
     })
 
