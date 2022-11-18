@@ -27,6 +27,20 @@ export class MarketplaceService {
 
     return resultObservable;
   }
+  
+  getProduto(id:number) : Observable<ISupplierCatogue> {
+    const resultObservable = new Observable<ISupplierCatogue>((observer) => {
+      this.client.get<ISupplierCatogue>(`${environment.productService.host}/marketplace/${id}`).subscribe({
+        next: response => observer.next(response),
+        error:errorResponse => {
+          this.eventsService.SendEvent('Erro ao carregar produto do marketplace', errorResponse, 'error');
+          observer.error(errorResponse);
+        }
+      });
+    })
+
+    return resultObservable;
+  }
 
   getCart(){
     let cartStorage = sessionStorage.getItem('cart');

@@ -8,6 +8,7 @@ import { MarketplaceComponent } from './pages/marketplace/marketplace.component'
 import { ProfileComponent } from './pages/profile/profile.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { OrderComponent } from './pages/order/order.component';
+import { MarketplaceProductComponent } from './pages/marketplace-product/marketplace-product.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,11 @@ const routes: Routes = [
   {
     path:"marketplace",component:MarketplaceComponent, data: {
       title: "HealthStock - Marketplace"
+    }
+  },
+  {
+    path:"marketplace/produto",component:MarketplaceProductComponent, data: {
+      title: "HealthStock - Marketplace - Produto"
     }
   },
   {
