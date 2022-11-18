@@ -7,8 +7,8 @@ button:disabled {
 }
 
 .textarea{
-margin: 10px;
-margin-left: 10px;
+  margin: 10px;
+  margin-left: 10px;
 }
 
 .button {
@@ -16,6 +16,10 @@ margin-left: 10px;
   margin-left: 10px;
 }
 
-.tile is-ancestor{
-margin: 50%;
+.tile.is-ancestor{
+  margin: auto;
+}
+
+.title.is-child {
+  margin: auto;
 }
