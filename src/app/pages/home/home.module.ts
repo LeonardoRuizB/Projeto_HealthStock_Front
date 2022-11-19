@@ -8,7 +8,7 @@ import { SliderComponent } from './components/slider/slider.component';
 @NgModule({
   declarations: [
     HomeComponent,
-    SliderComponent
+    SliderComponent,
   ],
   imports: [
     CommonModule
