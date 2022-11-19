@@ -14,15 +14,16 @@ button:disabled {
 }
 
 figure img   {
-  border-radius: 25px;
   padding: 3%;
 }
 
 .card {
-  border-radius: 20px;
   padding: 3%;
 }
 
 .card-content .content p.description {
     font-size: 80%;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: clip; 
 }
