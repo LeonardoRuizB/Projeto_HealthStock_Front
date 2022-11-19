@@ -56,13 +56,13 @@
       <div class="card is-shady">
         <div class="card-image">
           <figure class="image is-4by3">
-            <img [src]="product.photo ? product.photo.path : 'assets/ferramenta.png'" class="is-rounded" [alt]="product.title">
+            <img [src]="product.photo ? product.photo.path : 'assets/logo.png'" [alt]="product.title">
           </figure>
         </div>
         <div class="card-content">
           <div class="content">
             <h4>{{product.name}}</h4>
-            <p class="description">Ut venenatis tellus in metus vulputate...</p>
+            <p class="description">{{product.description}}</p>
             <p><strong>{{product.price | currency : 'BRL'}}</strong></p>
 
             <button class="button is-link modal-button" data-target="modal-card">
