@@ -11,8 +11,8 @@ nav#main-navbar .navbar-brand {
 }
 
 .navbar {
-    background-color:#11111152;  
-    background-image: none;   
+    background-color:#0465a5;
+    background-image: none;
 }
 
 .navbar-dropdown .navbar-item {
@@ -22,4 +22,14 @@ nav#main-navbar .navbar-brand {
 .navbar-dropdown .navbar-item .icon {
     text-align: left;
     margin-right:5%;
+}
+
+.navbar-item {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+}
+
+.navbar-item:hover {
+  background-color: ;
+
 }

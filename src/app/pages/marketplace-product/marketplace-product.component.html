@@ -1,0 +1,95 @@
+<header>
+    <section class="hero is-info is-small">
+      <!-- <div class="hero-body">
+        <div class="container has-text-centered">
+          <p class="title">
+            Marketplace
+          </p>
+        </div>
+      </div> -->
+    </section>
+    <div class="box cta">
+      <p class="has-text-centered">
+        <span class="tag is-warning is-medium">ESQUENTA BLACK FRIDAY</span> Confira as ofertas por tempo limitado.
+      </p>
+    </div>
+</header>
+
+<section class="section"*ngIf="product">
+    <div class="container">
+      <div class="columns is-vcentered is-multiline">
+        <div class="column is-6-tablet is-3-desktop">
+          <h1 class="is-size-3-mobile is-size-1-desktop title">{{product.name}}</h1>
+          <!-- <h2 class="is-size-3-mobile is-size-2-desktop subtitle">Dark Roast</h2> -->
+          <p>{{product.description}}</p>
+        </div>
+        <div class="column is-6-tablet is-5-desktop has-text-centered">
+          <img src="{{product.photo ? product.photo.data: 'assets/product.png'}}" alt="image" class="px-6">
+        </div>
+        <tbody>
+            <tr>
+                <td class="is-size-8 mb-2 a-color-secundary a-size-base a-text-right a-nowrap ">Por:</td>
+                <div class="column is-12-tablet is--desktop">
+                    <p class="mb-4">    <br>   </p>
+                    <td class="is-size-5 mb-4">{{product.price | currency : 'BRL'}}</td>
+                
+                </div>
+                <button class="button is-primary">Adicionar ao carrinho</button>
+            </tr>    
+        </tbody>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="columns is-variable is-8">
+        <div class="column is-7-tablet">
+          <!-- tabs -->
+          <!-- <div class="tabs is-boxed is-centered">
+            <ul>
+              <li class="is-active" data-target="product-details">
+                <a>Product Details</a> 
+              </li>
+              <li data-target="delivery-information">
+                <a>Delivery Information</a>
+              </li>
+            </ul>
+          </div> -->
+          <div class="px-2" id="tab-content">
+            <div id="product-details">
+              <h3 class="is-size-5 title">Product Details</h3>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, reprehenderit voluptates! Quisquam dolores distinctio minima eligendi, sint enim quaerat. Totam eaque eligendi quis, itaque beatae id sit fuga voluptatibus a autem debitis sequi, officiis dolores corporis! Necessitatibus, libero voluptate? Fuga, natus iusto! Perspiciatis iure officiis rerum, illo temporibus iusto voluptatum.</p>
+            </div>
+            <div id="delivery-information" class="is-hidden">
+              <h3 class="is-size-5 title">Delivery Information</h3>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, reprehenderit voluptates! Quisquam dolores distinctio minima eligendi, sint enim quaerat. Totam eaque eligendi quis, itaque beatae id sit fuga voluptatibus a autem debitis sequi, officiis dolores corporis! Necessitatibus, libero voluptate? Fuga, natus iusto! Perspiciatis iure officiis rerum, illo temporibus iusto voluptatum.</p>
+            </div>
+          </div>
+        </div>
+        <div class="column is-5-tablet">
+          <!-- message box -->
+          <!-- <div id="partialStateBuybox" class="a-box">
+            <div class="a-box-inner is-">
+                <div class="a-section a-spacing-small a-text-center">
+                    <span> Para comprar, selecione 
+                        <strong class="unselectedDims">Tamanho</strong>
+                    </span> 
+                </div>
+            </div>
+          </div> -->
+          <div class="message is-dark">
+            <div class="message-header">
+              <p>Earn Points with the Coffee Club</p>
+            </div>
+            <div class="message-body">
+              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora incidunt repudiandae assumenda facilis maxime corporis inventore, nisi sunt quos officiis magnam totam tenetur est? Eius laudantium a veritatis eaque commodi?</p>
+              <div class="has-text-centered">
+                <button class="button mt-5" id="signup">Sign Up</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

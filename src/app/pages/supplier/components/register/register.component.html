@@ -155,7 +155,7 @@
 	  </header>
 	  <section class="modal-card-body">
 		<div class="columns is-multiline">
-			<a class="column is-3" *ngFor="let product of products" (click)="setTemporaryProduct(product.id, product.name, product.productPhoto.path)">
+			<a class="column is-3" *ngFor="let product of products" (click)="setTemporaryProduct(product.id, product.name, product.productPhoto ? product.productPhoto.path : 'assets/logo.png')">
 				<div class="card" [ngClass]="{'is-selected' : product.name == temporaryProduct.name}">
 					<div class="card-content">
 						<div class="content">

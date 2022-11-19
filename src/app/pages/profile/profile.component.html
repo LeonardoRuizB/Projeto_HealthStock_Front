@@ -13,11 +13,14 @@
 
       <input class="input" formControlName="cnae" type="text" placeholder="CNAE">
 
-      <!-- <input class="input" formControlName="contacts[0].name" type="text" placeholder="Nome do responsável">
+      <div  formArrayName="contacts" *ngFor="let contact of contacts.controls; let i = index">
+        <form class="form-control" [formGroupName]="i">
+          <input class="input" type="text" formControlName="name" placeholder="Nome do responsável" (click)="mostrarAi()">
+          <input class="input" type="text" formControlName="responsibleArea" placeholder="Área responsável">
+          <input class="input" type="text" formControlName="details"placeholder="Celular para Contato">
+        </form>
+      </div>
 
-      <input class="input" formControlName="contacts[0].responsibleArea" type="text" placeholder="Área responsável">
-
-      <input class="input" formControlName="contacts[0].details" type="text" placeholder="Celular para Contato"> -->
 
       <textarea class="textarea" placeholder="Digite aqui o motivo de sua mudança nos dados"></textarea>
 
@@ -29,28 +32,25 @@
 </div>
 
 <!-- Endereços -->
-<div class="tile is-parent">
+<!-- <div class="tile is-parent">
     <div class="tile is-child box">
       <p class="title">Endereços</p>
 
       <div class="tabs">
         <ul>
           <li class="is-active"><a>Endereço 1</a></li>
-          <li><a>Endereço 2</a></li>
         </ul>
       </div>
 
-      <input class="input" type="text" placeholder="Endereço">
-
-      <input class="input" type="text" placeholder="Bairro">
-
-      <input class="input" type="text" placeholder="CEP">
-
-      <input class="input" type="text" placeholder="Número">
-
-      <input class="input" type="text" placeholder="Complemento">
-
-      <textarea class="textarea" placeholder="Digite aqui o motivo de sua mudança nos endereços"></textarea>
+      <div  formArrayName="addresses" *ngFor="let address of addresses.controls; let i = index">
+        <form class="form-control" [formGroupName]="i">
+          <input class="input" type="text" placeholder="Endereço">
+          <input class="input" type="text" placeholder="Bairro">
+          <input class="input" formControlName="cep" type="text" placeholder="CEP">
+          <input class="input" formControlName="number" type="text" placeholder="Número">
+          <input class="input" formControlName="complement" type="text" placeholder="Complemento">
+        </form>
+      </div>
 
       <button class="button is-link">
         Salvar alterações
@@ -58,4 +58,4 @@
 
     </div>
   </div>
-</div>
+</div> -->

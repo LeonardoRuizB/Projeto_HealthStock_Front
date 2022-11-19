@@ -28,12 +28,12 @@
             </div>
 
             <div class="columns is-multiline" *ngIf="cartList">
-                <div class="column is-half card block" *ngFor="let item of cartList; let i = index">
+                <div class="column card block" *ngFor="let item of cartList; let i = index">
                     <div class="card-content">
                         <div class="media">
                             <div class="media-left">
                                 <figure class="image is-128x128">
-                                    <img src={{item.supplierCatalog.photo.data}}>
+                                    <img src="{{item.supplierCatalog.photo ? item.supplierCatalog.photo.data : 'assets/logo.png'}}">
                                 </figure>
                             </div>
                             <div class="media-content">
