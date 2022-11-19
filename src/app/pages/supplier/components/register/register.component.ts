@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
+import { firstValueFrom } from 'rxjs';
 import { IPackageType } from 'src/app/models/packageType';
-import { IPhoto } from 'src/app/models/photo';
+import { IPhoto, Photo } from 'src/app/models/photo';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { ModalService } from 'src/app/service/bulma/modal/modal.service';
 import { NotificationService } from 'src/app/service/bulma/notification/notification.service';
@@ -18,14 +20,14 @@ export class RegisterComponent implements OnInit {
   formCatalogue : FormGroup;
   temporaryProduct : {id: number, name: string, path:string} = {id: 0, name: 'Ex. Caneta', path:''};
   selectedProduct : {id: number, name: string, path:string} = {id: 0, name: 'Ex. Caneta', path:''};
-  photos : IPhoto[] = [];
+  photos : Photo[] = [];
   packeges : IPackageType[] = [];
   products : any[] = []
 
 
   constructor(private packageTypeService : PackageTypeService, public modalService : ModalService,
     private productsService : ProductService, private catalogService : SupplierCatalogService,
-    private notificationService : NotificationService, private authService : AuthService,) {
+    private notificationService : NotificationService, private authService : AuthService, private sanitizer : DomSanitizer) {
       this.authService.needBeAuth();
 
     this.formCatalogue = new FormBuilder().group({
@@ -94,15 +96,8 @@ export class RegisterComponent implements OnInit {
     let tempFiles = Array.from(input.files);
     
     tempFiles.map( tempFile => {
-      const reader = new FileReader();
-
-      reader.onload = () => {
-        this.photos.push({ title: tempFile.name, data: reader.result as string, mimeType: tempFile.type});
-      }
-
-      reader.readAsDataURL(tempFile);
-    })
-    
+      this.photos.push(new Photo({ title: tempFile.name, data: tempFile, mimeType: tempFile.type}));
+    });
 
   }
 
@@ -134,6 +129,10 @@ export class RegisterComponent implements OnInit {
 
   removePhoto(index:number){
     this.photos.splice(index, 1);
+  }
+
+  getBlob(photo:Photo){
+    return this.sanitizer.bypassSecurityTrustUrl(photo.base64);
   }
 
 }

@@ -1,3 +1,6 @@
+import { Buffer } from 'buffer';
+import { Observable } from 'rxjs';
+
 export interface IPhoto {
     title : string;
     data : any;
@@ -18,6 +21,10 @@ export class Photo implements IPhoto {
         this.type = this.mimeType.split('/')[1];
         this.path = body?.path;
 
+    }
+
+    get base64(){
+        return URL.createObjectURL(this.data)
     }
 
 }

@@ -5,7 +5,6 @@ import { IPhoto } from 'src/app/models/photo';
 import { ISupplierCatogue } from 'src/app/models/supplierCatalogue';
 import { environment } from 'src/environments/environment';
 import { EventsService } from '../../events/events.service';
-import { Buffer } from 'buffer';
 
 @Injectable({
   providedIn: 'root'
@@ -37,14 +36,13 @@ export class SupplierCatalogService {
       });
   }
 
-  uploadPhotos(id:number, photos : any[]){
+  uploadPhotos(id:number, photos : IPhoto[]){
     const formData = new FormData();
 
     formData.append('length', photos.length.toString());
 
     photos.forEach((photo, index) => {
-      formData.append("photo" + index,
-        new Blob([Buffer.from(photo.data, 'base64').toString()],{ type: photo.mimeType}),
+      formData.append("photo" + index, photo.data,
         "photo." + photo.mimeType.split('/')[1]);
     })
 
