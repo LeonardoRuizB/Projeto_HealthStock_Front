@@ -1,4 +1,5 @@
 import { Photo } from "./photo";
+import { IProduct } from "./product";
 
 export interface ISupplierCatogue {
     id: number;
@@ -9,5 +10,6 @@ export interface ISupplierCatogue {
     supplierId: number;
     packageTypeId : number;
     productId: number;
+    product: IProduct;
     price : number;
 }
