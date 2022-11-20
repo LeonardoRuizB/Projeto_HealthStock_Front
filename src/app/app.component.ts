@@ -30,4 +30,12 @@ export class AppComponent implements OnInit{
     }
 
   }
+
+  static encodeURL(url : string) {
+    return url.trim().replace(/ /g, '_');
+  }
+
+  static decodeURL(url : string){
+    return url.trim().replace(/_/g, ' ');
+  }
 }

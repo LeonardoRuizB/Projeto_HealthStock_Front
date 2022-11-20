@@ -24,7 +24,7 @@
           <p>{{product.description}}</p>
         </div>
         <div class="column is-6-tablet is-5-desktop has-text-centered">
-          <img src="{{product.photo ? product.photo.data: 'assets/product.png'}}" alt="image" class="px-6">
+          <img src="{{product.photo ? product.photo.path: 'assets/logo.png'}}" alt="image" class="px-6">
         </div>
         <tbody>
             <tr>
@@ -57,7 +57,7 @@
             </ul>
           </div> -->
           <div class="px-2" id="tab-content">
-            <div id="product-details">
+            <div id="product-details" class="is-hidden">
               <h3 class="is-size-5 title">Product Details</h3>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, reprehenderit voluptates! Quisquam dolores distinctio minima eligendi, sint enim quaerat. Totam eaque eligendi quis, itaque beatae id sit fuga voluptatibus a autem debitis sequi, officiis dolores corporis! Necessitatibus, libero voluptate? Fuga, natus iusto! Perspiciatis iure officiis rerum, illo temporibus iusto voluptatum.</p>
             </div>

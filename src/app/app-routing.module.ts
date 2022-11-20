@@ -41,7 +41,7 @@ const routes: Routes = [
     }
   },
   {
-    path:"marketplace/produto",component:MarketplaceProductComponent, data: {
+    path:"marketplace/:produto",component:MarketplaceProductComponent, data: {
       title: "HealthStock - Marketplace - Produto"
     }
   },

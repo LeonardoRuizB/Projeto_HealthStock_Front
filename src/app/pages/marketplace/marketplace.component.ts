@@ -8,6 +8,7 @@ import {  firstValueFrom } from 'rxjs';
 import { PaginationService } from 'src/app/service/pagination/pagination.service';
 import { CategoryService } from 'src/app/service/models/category/category.service';
 import { IProduct } from 'src/app/models/product';
+import { AppComponent } from 'src/app/app.component';
 
 
 @Component({
@@ -32,16 +33,18 @@ export class MarketplaceComponent implements OnInit {
       this.filters = fb.group({
         search: [ '' ]
       });
+      this.paginationService.limitByPage = 25;
    }
 
    changeSearch(){
     this.loadingSearching = true;
     clearTimeout(this.timer);
     this.timer = setTimeout(
-      () => this.marketplaceService.getProdutos().subscribe({
+      () => this.marketplaceService.searchProdutos(this.filters.value.search).subscribe({
         next: marketplaceResponse => {
-          this.router.navigate(['produtos'],{queryParams: {page: this.paginationService.pageNumber, search: this.filters.value.search}});
+          this.router.navigate(['marketplace'],{queryParams: {page: this.paginationService.pageNumber, search: this.filters.value.search}});
           this.products = marketplaceResponse;
+
           this.loadingSearching = false;
         }}),500);
   }
@@ -91,5 +94,7 @@ export class MarketplaceComponent implements OnInit {
     this.updatePage();
   }
 
- }
-
+  encode(url : string){
+    return AppComponent.encodeURL(url);
+  }
+}

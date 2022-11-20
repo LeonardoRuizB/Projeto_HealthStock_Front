@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AppComponent } from 'src/app/app.component';
 import { ISupplierCatogue } from 'src/app/models/supplierCatalogue';
 import { MarketplaceService } from 'src/app/service/models/marketplace/marketplace.service';
 
@@ -10,19 +12,27 @@ import { MarketplaceService } from 'src/app/service/models/marketplace/marketpla
 })
 export class MarketplaceProductComponent implements OnInit {
 
-  id : number = 3;
   product : ISupplierCatogue | undefined;
-  constructor(private marketplaceService:MarketplaceService, private router:Router) {}
+  constructor(private marketplaceService:MarketplaceService, private router:Router,
+    private route : ActivatedRoute, private title : Title) {}
 
   ngOnInit(): void {
-    this.marketplaceService.getProduto(this.id).subscribe({
-      next:product=> this.product = product,
-      error:error=> this.router.navigate(['marketplace'])
+    this.route.params.subscribe(params => {
+      const searchText = AppComponent.decodeURL(params['produto']);
+
+      this.title.setTitle("HealthStock - Marketplace - " + searchText);
+
+      this.marketplaceService.getProduto(searchText).subscribe({
+        next:product => {
+          this.product = product;
+        },
+        error:error => this.router.navigate(['marketplace'])
+      });
     });
   }
 
   addCart(){
-    if(this.product !== undefined)
+    if(this.product)
     this.marketplaceService.addCart({id: 1, supplierCatalog: this.product, quantity: 1})
   }
 
