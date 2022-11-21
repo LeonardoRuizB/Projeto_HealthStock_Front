@@ -5,7 +5,7 @@
       <form (submit)="onSubmit()" [formGroup]="formProfile">
       <p class="title">Dados</p>
 
-      <input class="input" type="email" placeholder="Email">
+      <input class="input" formControlName="email" type="email" placeholder="Email">
 
       <input class="input" formControlName="companyName" type="text" placeholder="Razão Social">
 

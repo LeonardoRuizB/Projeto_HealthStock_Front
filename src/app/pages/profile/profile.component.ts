@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
     const formBuilder =  new FormBuilder();
 
     this.formProfile = formBuilder.group({
+      email: this.authservice.getUser().email,
       companyName: user.companyName,
       cnpj: user.cnpj,
       cnae: user.cnae,
@@ -32,7 +33,7 @@ export class ProfileComponent implements OnInit {
       ]),
       addresses: formBuilder.array([]),
     });
-    
+
     user.addresses?.forEach( address => {
       this.addresses.push(
         formBuilder.group({
