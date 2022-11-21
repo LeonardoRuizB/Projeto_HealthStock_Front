@@ -43,6 +43,10 @@ nav#main-navbar .navbar-brand {
   color: white;
 }
 
-.text.is-primary{
+#company-name{
   color: white;
+}
+
+.has-dropdown.is-hoverable #company-name{
+  color: black;
 }
