@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import Slide from 'src/app/models/slide';
 
 @Component({
@@ -6,14 +6,19 @@ import Slide from 'src/app/models/slide';
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.scss']
 })
-export class SliderComponent implements OnInit {
+export class SliderComponent implements OnInit, OnDestroy {
 
 	slideIndex : number = 0;
 	mainSlide : Slide | undefined;
 	slides : Slide[];
+	timer : any;
 
 	constructor() {
 		this.slides = Slide.makeSlides();
+	}
+
+	ngOnDestroy(): void {
+		clearInterval(this.timer);
 	}
 
 	ngOnInit(): void {
@@ -45,7 +50,7 @@ export class SliderComponent implements OnInit {
 	}
 
 	startSlideLoop() {
-		setInterval(() => {
+		this.timer = setInterval(() => {
 			this.nextSlide();
 		},6000)
 	}

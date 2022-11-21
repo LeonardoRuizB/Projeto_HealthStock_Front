@@ -154,17 +154,19 @@
 		<button class="delete" aria-label="close" (click)="modalService.hideModal()"></button>
 	  </header>
 	  <section class="modal-card-body">
-		<div class="columns is-multiline">
-			<a class="column is-3" *ngFor="let product of products" (click)="setTemporaryProduct(product.id, product.name, product.productPhoto ? product.productPhoto.path : 'assets/logo.png')">
-				<div class="card" [ngClass]="{'is-selected' : product.name == temporaryProduct.name}">
-					<div class="card-content">
-						<div class="content">
-							<img id="artwork" src="{{product.productPhoto ? product.productPhoto.path : 'assets/logo.png'}}">
-							<div class="button is-fullwidth has-text-weight-semibold" [title]="product.description" >{{product.name}}</div>
+		<div class="columns is-multiple">
+			<div class="column is-3" *ngFor="let product of products">
+				<a (click)="setTemporaryProduct(product.id, product.name, product.photo ? product.photo.path : 'assets/logo.png')">
+					<div class="card" [ngClass]="{'is-selected' : product.name == temporaryProduct.name}">
+						<div class="card-content">
+							<div class="content">
+								<img id="artwork" src="{{product.photo ? product.photo.path : 'assets/logo.png'}}">
+								<div class="button is-fullwidth has-text-weight-semibold" [title]="product.description">{{product.name}}</div>
+							</div>
 						</div>
 					</div>
-				</div>
-			</a>
+				</a>
+			</div>
 
 			<div class="column is-full box" *ngIf="!products">
 				<b>Não produto foi listado!</b>

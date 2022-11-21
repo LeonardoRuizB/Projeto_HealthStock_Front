@@ -54,7 +54,8 @@ export class MarketplaceComponent implements OnInit {
     .subscribe({
       next: products => {
         this.products = products;
-      console.log(this.products)
+        this.products.push(...products);
+        this.products.push(...products);
       }
     });
 
