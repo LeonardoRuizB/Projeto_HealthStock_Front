@@ -34,6 +34,15 @@ nav#main-navbar .navbar-brand {
 }
 
 .navbar-item:hover {
-  background-color: ;
+  background-color: #0274c0;
+  color: white;
+}
 
+.navbar-item:focus {
+  background-color: #0274c0;
+  color: white;
+}
+
+.text.is-primary{
+  color: white;
 }
