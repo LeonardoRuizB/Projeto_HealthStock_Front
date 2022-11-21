@@ -29,6 +29,10 @@ nav#main-navbar .navbar-brand {
   color: white;
 }
 
+.navbar-dropdown .navbar-item {
+    color: initial;
+}
+
 .navbar-item:hover {
   background-color: ;
 
