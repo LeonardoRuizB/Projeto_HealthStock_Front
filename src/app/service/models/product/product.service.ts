@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { EventsService } from '../../events/events.service';
-import { IPhoto } from '../../../models/photo';
+import { IPhoto, Photo } from '../../../models/photo';
 import { Buffer } from 'buffer';
 import { IProduct } from 'src/app/models/product';
 
@@ -79,10 +79,10 @@ export class ProductService {
     return resultObservable;
   }
 
-  uploadPhoto(id:number, photo:IPhoto){
+  uploadPhoto(id:number, photo:Photo){
     const resultObservable = new Observable<IPhoto>((observer) => {
       const formData = new FormData();
-      formData.append("photo", new Blob([Buffer.from(photo.data, 'base64').toString('ascii')], { type: photo.mimeType}), "photo." + photo.mimeType.split('/')[1]);
+      formData.append("photo", photo.data, "photo." + photo.type);
 
       this.client.post<IPhoto>(`${environment.productService.host}/product/${id}/profile`, formData)
         .subscribe({
