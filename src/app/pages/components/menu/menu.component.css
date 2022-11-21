@@ -1,7 +1,8 @@
-.logo-name {
-    font-family: 'Futura Bk BT';
+#logo-name {
+    font-family: 'Futura Bk BT' sans-serif;
     font-weight: normal;
     font-style: normal;
+    font-size: 180%;
 
 }
 
