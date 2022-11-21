@@ -84,10 +84,14 @@ export class AuthService {
 			this.router.navigate([''])
 	}
 
+  getUser(){
+    let jsonData = sessionStorage.getItem('user') ?? '{}'
+    return JSON.parse(jsonData);
+  }
+
 	getUserData() : IBaseUser{
 		let jsonData = sessionStorage.getItem('userTypeData') ?? '{}'
 		let type = sessionStorage.getItem('userType');
-
 
 		if(!jsonData && !type)
 			throw new Error("That's is not user session");
