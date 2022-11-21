@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
 import { Photo } from 'src/app/models/photo';
 import { ISupplierCatogue } from 'src/app/models/supplierCatalogue';
+import { AuthService } from 'src/app/service/auth/auth.service';
 import { MarketplaceService } from 'src/app/service/models/marketplace/marketplace.service';
 
 @Component({
@@ -15,8 +16,10 @@ export class MarketplaceProductComponent implements OnInit {
 
   product : ISupplierCatogue | undefined;
   selectedPhoto : Photo | undefined;
+  isSupplier = this.authService.getUserType() == 'supplier';
+
   constructor(private marketplaceService:MarketplaceService, private router:Router,
-    private route : ActivatedRoute, private title : Title) {}
+    private route : ActivatedRoute, private title : Title, public authService : AuthService) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -35,8 +38,12 @@ export class MarketplaceProductComponent implements OnInit {
   }
 
   addCart(){
-    if(this.product)
-    this.marketplaceService.addCart({id: 1, supplierCatalog: this.product, quantity: 1})
+    if(!this.product)
+      return
+
+    this.marketplaceService.addCart({id: 1, supplierCatalog: this.product, quantity: 1});
+
+    this.router.navigate(['carrinho'])
   }
 
 }

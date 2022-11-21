@@ -26,7 +26,11 @@
       <p>{{product.description}}</p>
 
       <p class="mt-6 mb-3">Por: <span class="subtitle is-4">{{product.price | currency : 'BRL'}}</span></p>
-      <p><button class="button is-link">Adicionar ao carrinho</button></p>
+      <p><button class="button is-link"
+        (click)="addCart()" [disabled]="isSupplier"
+        [title]="isSupplier ? 'Esse botão é desabilitado para fornecedores!' : 'Pressione para adicionar esse item ao carrinho e depois finalizar a compra' ">
+        Adicionar ao carrinho
+      </button></p>
     </div>
   </div>
 </section>
