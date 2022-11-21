@@ -1,3 +1,10 @@
+.logo-name {
+    font-family: 'Futura Bk BT';
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 nav#main-navbar {
     padding: .0% 10%;
 }
@@ -33,3 +40,5 @@ nav#main-navbar .navbar-brand {
   background-color: ;
 
 }
+
+
