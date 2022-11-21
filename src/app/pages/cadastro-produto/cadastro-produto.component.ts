@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ProductService } from 'src/app/service/models/product/product.service';
 import { CategoryService } from 'src/app/service/models/category/category.service';
 import { NotificationService } from 'src/app/service/bulma/notification/notification.service';
-import { IPhoto } from 'src/app/models/photo';
+import { IPhoto, Photo } from 'src/app/models/photo';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-cadastro-produto',
@@ -14,13 +15,13 @@ export class CadastroProdutoComponent implements OnInit {
 
   formProduto: FormGroup;
   categories: any = [];
-  photo : IPhoto | undefined;
+  photo : Photo | undefined;
 
   get nameInput() { return this.formProduto.get('name'); }
   get categoryInput() { return this.formProduto.get('categoryId'); }
 
   constructor(private productService: ProductService, private categoryService: CategoryService,
-    private notificationService: NotificationService) {
+    private notificationService: NotificationService, private sanitizer : DomSanitizer) {
       let formBuilder = new FormBuilder();
 
     this.formProduto = formBuilder.group({
@@ -71,17 +72,16 @@ export class CadastroProdutoComponent implements OnInit {
 
   onChangeFileInput(event: Event){
     const input = event.target as HTMLInputElement;
-    if(!input.files)
+    if(!input.files || input.files.length < 1)
       return;
 
     let tempFile = input.files[0];
     
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.photo = { title: tempFile.name, data: reader.result as string, mimeType: tempFile.type};
-    }
+    this.photo = new Photo({ title: tempFile.name, data: tempFile, mimeType: tempFile.type});
+  }
 
-    reader.readAsDataURL(tempFile);
+  getBlob(photo : Photo){
+    return this.sanitizer.bypassSecurityTrustUrl(photo.base64);
   }
 
   removePhoto(){

@@ -27,5 +27,21 @@ export class CatalogueService {
       })
     });
     return resultObservable;
-  };
+  }
+
+  deleteCatalogue(supplierId : number, supplierCatalogId : number){
+    return new Observable<any>((observer) => {
+      this.client.delete<any>(`${environment.productService.host}/suppliercatalog/${supplierId}/${supplierCatalogId}`)
+      .subscribe({
+        next:response => {
+          this.eventsService.SendEvent(`Catalogo de Forncedor ${supplierId} foi deletado com sucesso!`, response);
+          observer.next(response);
+        },
+        error:errorResponse => {
+          this.eventsService.SendEvent(`Erro ao deletar Catalogo de Forncedor ${supplierId}!`, errorResponse, 'error');
+          observer.error(errorResponse);
+        },
+      })
+    });
+  }
 }

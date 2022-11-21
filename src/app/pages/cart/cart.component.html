@@ -33,7 +33,7 @@
                         <div class="media">
                             <div class="media-left">
                                 <figure class="image is-128x128">
-                                    <img src="{{item.supplierCatalog.photo ? item.supplierCatalog.photo.data : 'assets/logo.png'}}">
+                                    <img src="{{item.supplierCatalog.photos ? item.supplierCatalog.photos[0].path : 'assets/logo.png'}}">
                                 </figure>
                             </div>
                             <div class="media-content">
@@ -102,6 +102,12 @@
         </div>
 
         <div class="level-item has-text-centered">
+            <div class="level-item has-text-centered">
+                <a class="button is-link is-medium" routerLink="/marketplace">
+                    Continuar comprando
+                </a>
+            </div>
+            
             <button class="button is-primary is-medium">
                 Ir para pagamento!
             </button>

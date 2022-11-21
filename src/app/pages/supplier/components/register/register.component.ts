@@ -45,7 +45,7 @@ export class RegisterComponent implements OnInit {
       }
     });
 
-    productsService.getProdutos().subscribe({
+    productsService.getProdutos(100).subscribe({
       next: products => {
         this.products = products;
       }

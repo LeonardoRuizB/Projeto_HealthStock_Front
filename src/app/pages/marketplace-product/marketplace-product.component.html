@@ -18,7 +18,7 @@
 <section class="section"*ngIf="product">
   <div class="columns is-vcentered is-multiline">
     <div class="column is-6-tablet is-5-desktop has-text-centered">
-      <img src="{{product.photo ? product.photo.path: 'assets/logo.png'}}" alt="image" class="px-6">
+      <img src="{{selectedPhoto ? selectedPhoto.path : 'assets/logo.png'}}" alt="image" class="px-6">
     </div>
     <div class="column is-6-tablet is-5-desktop">
       <h1 class="is-size-3-mobile is-size-1-desktop title">{{product.name}}</h1>
@@ -26,7 +26,11 @@
       <p>{{product.description}}</p>
 
       <p class="mt-6 mb-3">Por: <span class="subtitle is-4">{{product.price | currency : 'BRL'}}</span></p>
-      <p><button class="button is-link">Adicionar ao carrinho</button></p>
+      <p><button class="button is-link"
+        (click)="addCart()" [disabled]="isSupplier"
+        [title]="isSupplier ? 'Esse botão é desabilitado para fornecedores!' : 'Pressione para adicionar esse item ao carrinho e depois finalizar a compra' ">
+        Adicionar ao carrinho
+      </button></p>
     </div>
   </div>
 </section>
