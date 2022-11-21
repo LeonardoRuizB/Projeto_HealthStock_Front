@@ -50,13 +50,13 @@ nav#main-navbar .navbar-brand {
   color: white;
 }
 
-#company-name{
+#login{
   color: white;
 }
 
-
-
-
+#company-name{
+  color: white;
+}
 
 .has-dropdown.is-hoverable #company-name{
   color: black;
