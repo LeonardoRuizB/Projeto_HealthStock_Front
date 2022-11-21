@@ -15,7 +15,7 @@ export class CadastroProdutoComponent implements OnInit {
 
   formProduto: FormGroup;
   categories: any = [];
-  photo : IPhoto | undefined;
+  photo : Photo | undefined;
 
   get nameInput() { return this.formProduto.get('name'); }
   get categoryInput() { return this.formProduto.get('categoryId'); }
@@ -72,12 +72,12 @@ export class CadastroProdutoComponent implements OnInit {
 
   onChangeFileInput(event: Event){
     const input = event.target as HTMLInputElement;
-    if(!input.files)
+    if(!input.files || input.files.length < 1)
       return;
 
     let tempFile = input.files[0];
     
-    this.photo = { title: tempFile.name, data: tempFile, mimeType: tempFile.type};
+    this.photo = new Photo({ title: tempFile.name, data: tempFile, mimeType: tempFile.type});
   }
 
   getBlob(photo : Photo){
