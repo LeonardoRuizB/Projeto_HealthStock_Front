@@ -154,13 +154,13 @@
 		<button class="delete" aria-label="close" (click)="modalService.hideModal()"></button>
 	  </header>
 	  <section class="modal-card-body">
-		<div class="columns is-multiple">
-			<div class="column is-3" *ngFor="let product of products">
+		<div class="columns is-multiline">
+			<div class="column is-4" *ngFor="let product of products">
 				<a (click)="setTemporaryProduct(product.id, product.name, product.photo ? product.photo.path : 'assets/logo.png')">
 					<div class="card" [ngClass]="{'is-selected' : product.name == temporaryProduct.name}">
 						<div class="card-content">
 							<div class="content">
-								<img id="artwork" src="{{product.photo ? product.photo.path : 'assets/logo.png'}}">
+								<img id="artwork" src="{{product.productPhoto ? product.productPhoto.path : 'assets/logo.png'}}">
 								<div class="button is-fullwidth has-text-weight-semibold" [title]="product.description">{{product.name}}</div>
 							</div>
 						</div>
