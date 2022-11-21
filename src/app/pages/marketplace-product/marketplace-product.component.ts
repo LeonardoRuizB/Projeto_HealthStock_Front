@@ -16,16 +16,24 @@ export class MarketplaceProductComponent implements OnInit {
 
   product : ISupplierCatogue | undefined;
   selectedPhoto : Photo | undefined;
-  isSupplier = this.authService.getUserType() == 'supplier';
+  isSupplier : boolean ;
 
   constructor(private marketplaceService:MarketplaceService, private router:Router,
-    private route : ActivatedRoute, private title : Title, public authService : AuthService) {}
+    private route : ActivatedRoute, private title : Title, public authService : AuthService) {
+      try {
+        this.isSupplier = this.authService.getUserType() == 'supplier';
+      } catch (error) {
+        this.isSupplier = false;
+      }
+    }
 
   ngOnInit(): void {
+
     this.route.params.subscribe(params => {
       const searchText = AppComponent.decodeURL(params['produto']);
 
       this.title.setTitle("HealthStock - Marketplace - " + searchText);
+
 
       this.marketplaceService.getProduto(searchText).subscribe({
         next:product => {
