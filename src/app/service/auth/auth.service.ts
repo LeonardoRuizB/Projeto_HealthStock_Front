@@ -118,4 +118,21 @@ export class AuthService {
 
     return resultObservable
   }
+
+  updateProfileBuyer(profile: Buyer){
+    const resultObservable = new Observable<Buyer>((observer) => {
+      this.client.put<Buyer>(`${environment.loginService.host}/cadastro/comprador`, profile).subscribe({
+        next:response => {
+          this.eventsService.SendEvent('Perfil atualizado com Sucesso', response);
+          observer.next(response);
+        },
+        error:errorResponse => {
+          this.eventsService.SendEvent('Erro ao atualizar perfil', errorResponse, 'error');
+          observer.error(errorResponse);
+        },
+      });
+    });
+
+    return resultObservable
+  }
 }

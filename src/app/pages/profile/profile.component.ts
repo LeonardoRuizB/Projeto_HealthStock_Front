@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import Buyer from 'src/app/models/buyer';
 import Supplier from 'src/app/models/supplier';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { NotificationService } from 'src/app/service/bulma/notification/notification.service';
@@ -14,15 +15,13 @@ export class ProfileComponent implements OnInit {
   formProfile: FormGroup;
 
   constructor(private authservice: AuthService, private notificationService: NotificationService) {
-    let user = this.authservice.getUserData() as Supplier
-    // user.contacts = [{name: "Leonardo", details: "1194002-8922", responsibleArea: "Vendas"}]
+    let user = this.authservice.getUserData();
     const formBuilder =  new FormBuilder();
 
     this.formProfile = formBuilder.group({
       email: this.authservice.getUser().email,
       companyName: user.companyName,
       cnpj: user.cnpj,
-      cnae: user.cnae,
       idUser: user.id,
       contacts: formBuilder.array([
         formBuilder.group({
@@ -33,6 +32,10 @@ export class ProfileComponent implements OnInit {
       ]),
       addresses: formBuilder.array([]),
     });
+
+    if(this.isSupplier()){
+      this.formProfile.addControl('cnae', new Supplier(user).cnae);
+    }
 
     user.addresses?.forEach( address => {
       this.addresses.push(
@@ -56,19 +59,27 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
   }
   onSubmit(){
-    this.authservice.updateProfileSupplier(this.formProfile.value).subscribe({
-      next: response => {
-        this.notificationService.showMessage("Perfil atualizado com sucesso");
-      },
-      error: errorResponse => {
-        this.notificationService.showMessage("Erro ao atualizar perfil");
-      }
-    });
+    if(this.authservice.getUserType() == 'supplier')
+      this.authservice.updateProfileSupplier(this.formProfile.value).subscribe({
+        next: response => {
+          this.notificationService.showMessage("Perfil atualizado com sucesso");
+        },
+        error: errorResponse => {
+          this.notificationService.showMessage("Erro ao atualizar perfil");
+        }
+      });
+    else if(this.authservice.getUserType() == 'buyer')
+      this.authservice.updateProfileBuyer(this.formProfile.value).subscribe({
+        next: response => {
+          this.notificationService.showMessage("Perfil atualizado com sucesso");
+        },
+        error: errorResponse => {
+          this.notificationService.showMessage("Erro ao atualizar perfil");
+        }
+      });
   }
 
-  mostrarAi(){
-    for(let contact of this.contacts.controls){
-      console.log("Primeiro cara",contact.value);
-    }
+  isSupplier(){
+    return this.authservice.getUserType() == "supplier";
   }
 }

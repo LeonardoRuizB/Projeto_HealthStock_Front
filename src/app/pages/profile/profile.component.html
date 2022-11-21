@@ -11,11 +11,11 @@
 
       <input class="input" formControlName="cnpj" type="text" placeholder="CNPJ">
 
-      <input class="input" formControlName="cnae" type="text" placeholder="CNAE">
+      <input class="input" formControlName="cnae" type="text" placeholder="CNAE" *ngIf="isSupplier()">
 
       <div  formArrayName="contacts" *ngFor="let contact of contacts.controls; let i = index">
         <form class="form-control" [formGroupName]="i">
-          <input class="input" type="text" formControlName="name" placeholder="Nome do responsável" (click)="mostrarAi()">
+          <input class="input" type="text" formControlName="name" placeholder="Nome do responsável">
           <input class="input" type="text" formControlName="responsibleArea" placeholder="Área responsável">
           <input class="input" type="text" formControlName="details"placeholder="Celular para Contato">
         </form>
