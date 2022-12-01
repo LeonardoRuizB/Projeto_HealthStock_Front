@@ -62,6 +62,19 @@ export class MarketplaceService {
     return resultObservable;
   }
 
+  getTotalProducts(){
+    return new Observable<{total:number}>((observer) => {
+      this.client.get<{total:number}>(`${environment.productService.host}/marketplace?total`)
+        .subscribe({
+          next: response => observer.next(response),
+          error:errorResponse => {
+            this.eventsService.SendEvent('Erro ao pegar produtos de marketplace!', errorResponse, 'error');
+            observer.error(errorResponse);
+        },
+      });
+    });
+  }
+
   getCart(){
     let cartStorage = sessionStorage.getItem('cart');
     return cartStorage ? JSON.parse(cartStorage) as Array<ICartDao> : new Array<ICartDao>;
