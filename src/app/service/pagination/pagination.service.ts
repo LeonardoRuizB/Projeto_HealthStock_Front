@@ -26,7 +26,7 @@ export class PaginationService {
   }
 
   setTotalPages(){
-    this.totalPages = this.totalItems / this.limitByPage;
+    this.totalPages = Math.round(this.totalItems / this.limitByPage);
     return this;
   }
 
