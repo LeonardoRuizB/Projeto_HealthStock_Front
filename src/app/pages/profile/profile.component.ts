@@ -34,7 +34,7 @@ export class ProfileComponent implements OnInit {
     });
 
     if(this.isSupplier()){
-      this.formProfile.addControl('cnae', new Supplier(user).cnae);
+      this.formProfile.addControl('cnae', new FormControl(new Supplier(user).cnae));
     }
 
     user.addresses?.forEach( address => {
