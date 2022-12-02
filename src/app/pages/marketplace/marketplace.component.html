@@ -77,3 +77,27 @@
     </a>
   </section>
 </main>
+
+<section class="footer">
+  <nav class="pagination" role="navigation" aria-label="pagination">
+      <button class="button pagination-previous" [disabled]="paginationService.isFirstPage()"
+          title="This is the first page" (click)="previusPage()">
+          Pagina anterior
+      </button>
+
+      <button class="button pagination-next" title="This is the first page" (click)="nextPage()"
+          [disabled]="paginationService.isLastPage()">
+          Proxima Pagina
+      </button>
+
+      <ul class="pagination-list">
+          <li *ngFor="let number of [].constructor(paginationService.totalPages); let pageNumber = index;">
+              <a class="pagination-link" aria-label="Page 1" aria-current="page" (click)="updatePage()"
+                  routerLink="/marketplace" [queryParams]="{page: pageNumber + 1}"
+                  [ngClass]="{'is-current is-primary':pageNumber + 1 == paginationService.pageNumber}">
+                  {{pageNumber + 1}}
+              </a>
+          </li>
+      </ul>
+  </nav>
+</section>

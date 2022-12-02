@@ -45,12 +45,12 @@ export class MarketplaceService {
   searchProdutos(search:string,limit = 3, offset = 0) {
     let searchQuery = `search=${search}&limit=${limit}&offset=${offset}`;
 
-    const resultObservable = new Observable<[ISupplierCatogue[]|number]>((observer) => {
-      this.client.get<[ISupplierCatogue[]|number]>(`${environment.productService.host}/marketplace?${searchQuery}`)
+    const resultObservable = new Observable<{total: number, catalog: ISupplierCatogue[]}>((observer) => {
+      this.client.get<any>(`${environment.productService.host}/marketplace?${searchQuery}`)
         .subscribe({
           next: response => {
             this.eventsService.SendEvent('Pesquisa de produto foi realizada com sucesso!', search);
-            observer.next(response);
+            observer.next({total: response[1], catalog: response[0]});
           },
           error:errorResponse => {
             this.eventsService.SendEvent('Erro ao pegar produtos!', errorResponse, 'error');

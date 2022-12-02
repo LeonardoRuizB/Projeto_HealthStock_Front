@@ -2,12 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ICategory } from 'src/app/models/category';
 import { MarketplaceService } from 'src/app/service/models/marketplace/marketplace.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ProductService } from 'src/app/service/models/product/product.service';
+import { ActivatedRoute, Router } from '@angular/router'
 import {  firstValueFrom } from 'rxjs';
 import { PaginationService } from 'src/app/service/pagination/pagination.service';
 import { CategoryService } from 'src/app/service/models/category/category.service';
-import { IProduct } from 'src/app/models/product';
 import { AppComponent } from 'src/app/app.component';
 
 
@@ -25,7 +23,7 @@ export class MarketplaceComponent implements OnInit {
   timer : any;
 
   constructor(
-    private marketplaceService : MarketplaceService, private productService : ProductService,
+    private marketplaceService : MarketplaceService,
     private activatedRoute : ActivatedRoute, private router : Router,
     private categoryService:CategoryService,
     public paginationService : PaginationService) {
@@ -37,13 +35,27 @@ export class MarketplaceComponent implements OnInit {
    }
 
    changeSearch(){
+    if(!this.filters.value.search) {
+      this.marketplaceService.getProdutos(this.paginationService.limitByPage, this.paginationService.getOffset())
+        .subscribe({
+          next: products => {
+            this.products = products;
+          }
+        });
+      return;
+    }
     this.loadingSearching = true;
     clearTimeout(this.timer);
     this.timer = setTimeout(
       () => this.marketplaceService.searchProdutos(this.filters.value.search).subscribe({
         next: marketplaceResponse => {
           this.router.navigate(['marketplace'],{queryParams: {page: this.paginationService.pageNumber, search: this.filters.value.search}});
-          this.products = marketplaceResponse;
+          console.info(marketplaceResponse);
+          this.products = marketplaceResponse.catalog;
+          
+          this.paginationService.setPageNumber(1)
+          .setTotalItems(marketplaceResponse.total)
+          .setTotalPages();
 
           this.loadingSearching = false;
         }}),500);
@@ -51,11 +63,13 @@ export class MarketplaceComponent implements OnInit {
 
   ngOnInit(): void {
     this.marketplaceService.getProdutos(this.paginationService.limitByPage, this.paginationService.getOffset())
-    .subscribe({
-      next: products => {
-        this.products = products;
-      }
-    });
+      .subscribe({
+          next: products => {
+            this.products = products;
+          }
+      });
+
+    this.initPagination();
 
     this.categoryService.getCategories().subscribe({
       next: response => {
@@ -65,7 +79,7 @@ export class MarketplaceComponent implements OnInit {
   }
 
   async initPagination(){
-    let total = await firstValueFrom(this.productService.getTotalProdutos());
+    let total = await firstValueFrom(this.marketplaceService.getTotalProducts());
 
     this.paginationService.setPageNumber( await this.getPageNumber())
       .setTotalItems(total.total)
@@ -83,13 +97,13 @@ export class MarketplaceComponent implements OnInit {
 
   nextPage(){
     this.paginationService.nextPage();
-    this.router.navigate(['produtos'],{queryParams: {page: this.paginationService.pageNumber}} );
+    this.router.navigate(['marketplace'],{queryParams: {page: this.paginationService.pageNumber}} );
     this.updatePage();
   }
 
   previusPage(){
     this.paginationService.previusPage();
-    this.router.navigate(['produtos'],{queryParams: {page: this.paginationService.pageNumber}} );
+    this.router.navigate(['marketplace'],{queryParams: {page: this.paginationService.pageNumber}} );
     this.updatePage();
   }
 
