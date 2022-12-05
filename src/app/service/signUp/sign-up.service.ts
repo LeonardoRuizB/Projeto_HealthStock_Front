@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import Buyer from 'src/app/models/buyer';
 import Supplier from 'src/app/models/supplier';
+import { IUser } from 'src/app/models/user';
 import { environment } from 'src/environments/environment';
 import { EventsService } from '../events/events.service';
 
@@ -12,6 +13,23 @@ import { EventsService } from '../events/events.service';
 export class SignUpService {
 
   constructor(private client:HttpClient, private eventsService : EventsService) {}
+
+  singUpUser(user : IUser){
+    return new Observable<IUser>((observer) => {
+      this.client.post<IUser>(`${environment.loginService.host}/users`, user).subscribe({
+        next: response => {
+          this.eventsService.SendEvent("Dados do usuário cadastrados com sucesso!", response);
+          observer.next(response);
+        },
+        error: errorResponse => {
+          this.eventsService.SendEvent("Erro ao cadastrar dados do usuário!", errorResponse);
+          observer.error(errorResponse);
+        }
+      })
+
+    })
+
+  }
 
   signUpSupplier(userId : number, supplier : Supplier){
     let supplierRequest : any = {idUser : userId, ...supplier};
@@ -46,6 +64,19 @@ export class SignUpService {
           observer.error(errorResponse);
         },
       })
+    });
+  }
+
+  sendEmailMessage(userType : string, motivationMessage:string = ""){
+    return new Observable<any>((observer) => {
+      this.client.post(`${environment.loginService}/sendEmail`, {userType: userType, motivationMessage: motivationMessage}).subscribe({
+        next: response => {
+          observer.next(response);
+        },
+        error: errorResponse => {
+          observer.error(errorResponse);
+        }
+      });
     });
   }
 }

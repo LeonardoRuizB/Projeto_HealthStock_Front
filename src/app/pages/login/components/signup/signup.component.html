@@ -19,24 +19,33 @@
 		</p>
 	</div>
 
-	<div class="control">
-		<label class="radio">
-		  <input type="radio" name="answer">
-		  Fornecedor
-		</label>
-		<label class="radio">
-		  <input type="radio" name="answer">
-		  Comprador
-		</label>
+	<div class="field">
+		<div class="control">
+			<label class="radio">
+			  <input type="radio" formControlName="userType" value="supplier">
+			  Fornecedor
+			</label>
+			<label class="radio">
+			  <input type="radio" formControlName="userType" value="buyer">
+			  Comprador
+			</label>
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="control">
+			<textarea class="textarea" formControlName="motivation"
+			placeholder="Caso queira, pode usar esse campo para adicionar informações adicionais"></textarea>
+		</div>
 	</div>
 	
-	  <div class="field">
+	<div class="field">
 		  <p class="control">
-			  <button class="button is-success">
-				  Cadastrar
+			  <button class="button is-success" type="submit">
+				  Enviar pré-cadastro
 				</button>
 			</p>
-		</div>
+	</div>
 		
-		<p class="help is-danger"  style="margin: 2% 0"></p>
-	</form>
+	<p class="help is-danger"  style="margin: 2% 0"></p>
+</form>
