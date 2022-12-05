@@ -22,7 +22,7 @@ export class CategoryService {
         },
         error:errorResponse => {
           this.eventsService.SendEvent('Erro ao pegar categorias!', errorResponse, 'error');
-          observer.next(errorResponse);
+          observer.error(errorResponse);
         },
       })
     });

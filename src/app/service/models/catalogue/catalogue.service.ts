@@ -22,7 +22,7 @@ export class CatalogueService {
         },
         error:errorResponse => {
           this.eventsService.SendEvent(`Erro ao pegar Catalogo de Forncedor ${supplierId}!`, errorResponse, 'error');
-          observer.next(errorResponse);
+          observer.error(errorResponse);
         },
       })
     });

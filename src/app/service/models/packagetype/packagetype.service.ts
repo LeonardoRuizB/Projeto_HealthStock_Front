@@ -22,7 +22,7 @@ export class PackageTypeService {
         },
         error:errorResponse => {
           this.eventsService.SendEvent('Erro ao pegar tipo de pacote!', errorResponse, 'error');
-          observer.next(errorResponse);
+          observer.error(errorResponse);
         },
       })
     });
