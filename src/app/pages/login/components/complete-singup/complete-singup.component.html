@@ -1,0 +1,98 @@
+<section class="section">
+  <p class="title">Informações complementares</p>
+  <p class="subtitle">Para completarmos o seu cadastro, precisamos de mais algumas informações</p>
+
+  <form class="form" (submit)="onSubmit()" [formGroup]="formProfile">
+    <div class="field">
+      <label class="label">Dados empresárias</label>
+      <div class="field">
+        <div class="control">
+          <input class="input" required formControlName="companyName" type="text" placeholder="Razão Social">
+        </div>
+      </div>
+
+
+      <div class="field">
+        <div class="control">
+          <input class="input" required formControlName="cnpj" type="text" placeholder="CNPJ">
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control">
+          <input class="input" required formControlName="cnae" type="text" placeholder="CNAE" *ngIf="isSupplier">
+        </div>
+      </div>
+
+    </div>
+
+    <div class="field">
+      <label class="label">Contatos</label>
+      <div formArrayName="contacts" *ngFor="let contact of contacts.controls; let i = index">
+        <form class="form-control" [formGroupName]="i">
+          <div class="field">
+            <div class="control">
+              <input class="input" required type="text" formControlName="name" placeholder="Nome do responsável">
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <input class="input" required type="text" formControlName="responsibleArea" placeholder="Área responsável">
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <input class="input" required type="text" formControlName="details" placeholder="Celular para Contato">
+            </div>
+          </div>
+        </form>
+        <hr>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Endereços</label>
+      <div formArrayName="addresses" *ngFor="let address of addresses.controls; let i = index">
+        <form class="form-control" [formGroupName]="i">
+          <div class="field has-addons">
+            <div class="control">
+              <input class="input" type="text" formControlName="cep" placeholder="Digite o CEP do endereço:" required>
+            </div>
+            <div class="control">
+              <button class="button is-info is-loading" disabled>
+                Pesquisar CEP
+              </button>
+            </div>
+          </div>
+
+          <div class="field has-addons">
+            <div class="control">
+              <input class="input" required type="number" formControlName="number" placeholder="Número do endereço:">
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <input class="input" type="text" formControlName="complement" placeholder="Complemento:">
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <input class="input is-info is-static" type="text" placeholder="Endereço completo:" readonly>
+            </div>
+          </div>
+        </form>
+        <hr>
+      </div>
+    </div>
+
+    <div class="control">
+      <button type="submit" class="button is-primary is-medium">
+        Enviar formulário
+      </button>
+    </div>
+
+
+  </form>
+</section>

@@ -9,6 +9,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { OrderComponent } from './pages/order/order.component';
 import { MarketplaceProductComponent } from './pages/marketplace-product/marketplace-product.component';
+import { MessageComponent } from './pages/login/components/message/message.component';
+import { CompleteSingupComponent } from './pages/login/components/complete-singup/complete-singup.component';
 
 const routes: Routes = [
   {
@@ -19,6 +21,16 @@ const routes: Routes = [
   {
     path:"login",component:LoginComponent, data: {
       title: "HealthStock - Login"
+    }
+  },
+  {
+    path:"login/precadastro",component:MessageComponent, data: {
+      title: "HealthStock - Pre-cadastro"
+    }
+  },
+  {
+    path:"login/cadastrar/:userType/:userId",component:CompleteSingupComponent, data: {
+      title: "HealthStock - Completar cadastro"
     }
   },
   {
