@@ -54,18 +54,14 @@
       <label class="label">Endereços</label>
       <div formArrayName="addresses" *ngFor="let address of addresses.controls; let i = index">
         <form class="form-control" [formGroupName]="i">
-          <div class="field has-addons">
+          <div class="field">
             <div class="control">
-              <input class="input" type="text" formControlName="cep" placeholder="Digite o CEP do endereço:" required>
+              <input class="input" type="text" formControlName="cep" placeholder="Digite o CEP do endereço:" required (change)="searchCEP($event)">
             </div>
-            <div class="control">
-              <button class="button is-info is-loading" disabled>
-                Pesquisar CEP
-              </button>
-            </div>
+            <p class="help is-danger" *ngIf="!address.get('cep')?.valid && address.get('cep')?.value != '' ">CEP digitado não é valido!</p>
           </div>
 
-          <div class="field has-addons">
+          <div class="field">
             <div class="control">
               <input class="input" required type="number" formControlName="number" placeholder="Número do endereço:">
             </div>
@@ -77,10 +73,15 @@
             </div>
           </div>
 
-          <div class="field">
+          <div class="field has-addons" title="O endereço irá aparecer aqui quando o CEP for digitado!">
             <div class="control">
-              <input class="input is-info is-static" type="text" placeholder="Endereço completo:" readonly>
+              <button class="button is-static">Endereço completo:</button>
             </div>
+
+            <div class="control is-expanded">
+              <input class="input" placeholder="Ex: Rua Expedito, Bairro Imaculado - São Paulo/SP" readonly [value]="completeAddress">
+            </div>
+
           </div>
         </form>
         <hr>

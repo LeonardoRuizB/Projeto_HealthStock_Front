@@ -5,6 +5,7 @@ import Buyer from 'src/app/models/buyer';
 import Supplier from 'src/app/models/supplier';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { NotificationService } from 'src/app/service/bulma/notification/notification.service';
+import { AddressResponse, SearchService } from 'src/app/service/search/search.service';
 import { SignUpService } from 'src/app/service/signUp/sign-up.service';
 
 @Component({
@@ -16,6 +17,8 @@ export class CompleteSingupComponent implements OnInit {
 
   formProfile : FormGroup;
   isSupplier = false;
+  cepLoading = false;
+  completeAddress : string = '';
 
   get contacts() {
     return this.formProfile.get('contacts') as FormArray;
@@ -26,7 +29,7 @@ export class CompleteSingupComponent implements OnInit {
 
   constructor(private formBuilder : FormBuilder, private activatedRoute : ActivatedRoute,
     private signUpService : SignUpService, private notificationService : NotificationService,
-    private router : Router){
+    private router : Router, private search : SearchService){
     let userId = 0;
     this.activatedRoute.params.subscribe({
       next: params => {
@@ -48,7 +51,7 @@ export class CompleteSingupComponent implements OnInit {
       ]),
       addresses: formBuilder.array([
         formBuilder.group({
-          cep: '',
+          cep: this.formBuilder.control('', [Validators.maxLength(8), Validators.minLength(8)]),
           number: '',
           complement: '',
         })
@@ -62,6 +65,24 @@ export class CompleteSingupComponent implements OnInit {
   ngOnInit(): void {
     
     
+  }
+
+  searchCEP(event : Event){
+    this.cepLoading = true;
+    const target = event.target as HTMLInputElement;
+
+    this.search.searchCEP(target.value).subscribe({
+      next: response => {
+        this.completeAddress = this.getCompleteAddress(response);
+        this.cepLoading = false;
+      },
+      
+      complete: () => this.cepLoading = false
+    })
+  }
+
+  getCompleteAddress(address : AddressResponse) {
+    return `${address.publicPlace}, ${address.neighborhood} - ${address.city}/${address.state}`
   }
 
   onSubmit(){
