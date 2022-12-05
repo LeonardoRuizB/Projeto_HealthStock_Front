@@ -32,7 +32,7 @@ export class SignupComponent implements OnInit {
   onSubmit(){
     this.signUpService.singUpUser(this.formCliente.value as IUser).subscribe({
       next: response => {
-        this.signUpService.sendEmailMessage(this.formCliente.value.userType, this.formCliente.value.motivation);
+        this.signUpService.sendEmailMessage(response.id,this.formCliente.value.userType, this.formCliente.value.motivation);
         this.notification.showMessage("Pré cadastro foi realizado co sucesso!");
         this.router.navigate(['login/precadastro'])
 

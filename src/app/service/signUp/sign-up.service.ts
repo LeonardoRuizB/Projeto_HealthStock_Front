@@ -67,9 +67,11 @@ export class SignUpService {
     });
   }
 
-  sendEmailMessage(userType : string, motivationMessage:string = ""){
+  sendEmailMessage(userId : number, userType : string, motivationMessage:string = ""){
     return new Observable<any>((observer) => {
-      this.client.post(`${environment.loginService}/sendEmail`, {userType: userType, motivationMessage: motivationMessage}).subscribe({
+      this.client.post(`${environment.loginService}/sendEmail`,
+        {userId: userId, userType: userType, linkToRedirect: `${environment.host}/cadastro/fornecedor`, motivationMessage: motivationMessage})
+      .subscribe({
         next: response => {
           observer.next(response);
         },
