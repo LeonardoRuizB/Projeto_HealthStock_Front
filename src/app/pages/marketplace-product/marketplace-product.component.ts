@@ -54,4 +54,8 @@ export class MarketplaceProductComponent implements OnInit {
     this.router.navigate(['carrinho'])
   }
 
+  changeImage(photo : Photo) {
+    this.selectedPhoto = photo;
+  }
+
 }

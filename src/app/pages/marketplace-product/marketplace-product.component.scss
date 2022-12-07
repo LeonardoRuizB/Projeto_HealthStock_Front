@@ -1,0 +1,29 @@
+.column > figure.image {
+    text-align: center;
+}
+
+.column > figure.image img {
+    width: auto;
+    min-height: 400px;
+    margin: auto;
+    display: block;
+}
+
+.image-list {
+    margin: 5% 0;
+}
+
+.image-list .image-list-item {
+    height: 100px;
+    cursor: pointer;
+    filter: blur(0.1em);
+}
+
+.image-list .image-list-item img {
+    height: 100%;
+}
+
+.image-list .image-list-item.is-selected {
+    filter: blur(0);
+    border-bottom: 1px solid black;
+}

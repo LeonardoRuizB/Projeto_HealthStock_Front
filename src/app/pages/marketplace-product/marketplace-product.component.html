@@ -15,10 +15,18 @@
     </div>
 </header>
 
-<section class="section"*ngIf="product">
-  <div class="columns is-vcentered is-multiline">
+<section class="section has-background-light"*ngIf="product">
+  <div class="columns is-vcentered is-multiline box">
     <div class="column is-6-tablet is-5-desktop has-text-centered">
-      <img src="{{selectedPhoto ? selectedPhoto.path : 'assets/logo.png'}}" alt="image" class="px-6">
+      <figure class="image">
+        <img src="{{selectedPhoto ? selectedPhoto.path : 'assets/logo.png'}}" alt="image" class="px-6">
+      </figure>
+
+      <div class="columns image-list is-vcentered">
+        <div class="column image-list-item" *ngFor="let photo of product.photos" [ngClass]="{'is-selected': selectedPhoto?.path == photo.path}" (click)="changeImage(photo)">
+            <img src="{{photo ? photo.path : 'assets/logo.png'}}" alt="image">
+        </div>
+      </div>
     </div>
     <div class="column is-6-tablet is-5-desktop">
       <h1 class="is-size-3-mobile is-size-1-desktop title">{{product.name}}</h1>
