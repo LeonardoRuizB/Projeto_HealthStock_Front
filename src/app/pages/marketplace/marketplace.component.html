@@ -52,10 +52,10 @@
   </aside>
 
   <section class="section columns is-9 is-multiline" id="products">
-    <a class="column is-4" [routerLink]="['.',encode(product.name)]" *ngFor="let product of products">
+    <a class="column is-4" [routerLink]="['.', encode(product.name)]" *ngFor="let product of products">
       <div class="card is-shady">
         <div class="card-image">
-          <figure class="image is-4by3">
+          <figure class="image">
             <img [src]="product.photo ? product.photo.path : 'assets/logo.png'" [alt]="product.title">
           </figure>
         </div>
@@ -64,14 +64,15 @@
             <h4>{{product.name}}</h4>
             <p class="description">{{product.description}}</p>
             <p><strong>{{product.price | currency : 'BRL'}}</strong></p>
-
-            <button class="button is-link modal-button" data-target="modal-card">
-              <span class="icon">
-                <i class="fas fa-cart-plus"></i>
-              </span>
-              <span>Adicionar no carrinho</span>
-            </button>
           </div>
+        </div>
+        <div class="card-footer">
+          <a class="button is-link modal-button">
+            <span class="icon">
+              <i class="fas fa-cart-plus"></i>
+            </span>
+            <span>Ver mais sobre</span>
+          </a>
         </div>
       </div>
     </a>

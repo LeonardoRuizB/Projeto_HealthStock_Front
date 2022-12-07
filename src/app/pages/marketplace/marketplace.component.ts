@@ -7,6 +7,8 @@ import {  firstValueFrom } from 'rxjs';
 import { PaginationService } from 'src/app/service/pagination/pagination.service';
 import { CategoryService } from 'src/app/service/models/category/category.service';
 import { AppComponent } from 'src/app/app.component';
+import { ISupplierCatogue } from 'src/app/models/supplierCatalogue';
+import { NotificationService } from 'src/app/service/bulma/notification/notification.service';
 
 
 @Component({
@@ -26,7 +28,7 @@ export class MarketplaceComponent implements OnInit {
     private marketplaceService : MarketplaceService,
     private activatedRoute : ActivatedRoute, private router : Router,
     private categoryService:CategoryService,
-    public paginationService : PaginationService) {
+    public paginationService : PaginationService, private notification : NotificationService) {
     let fb = new FormBuilder();
       this.filters = fb.group({
         search: [ '' ]
@@ -109,5 +111,10 @@ export class MarketplaceComponent implements OnInit {
 
   encode(url : string){
     return AppComponent.encodeURL(url);
+  }
+
+  addToCart(product : ISupplierCatogue) {
+    this.marketplaceService.addCart({id: 1, supplierCatalog: product, quantity: 1});
+    this.notification.showMessage(product.name + " foi adicionado ao carrinho!");
   }
 }

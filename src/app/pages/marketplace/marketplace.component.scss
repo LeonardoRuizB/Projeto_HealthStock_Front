@@ -13,17 +13,31 @@ button:disabled {
     background-color: #84dfe67a;
 }
 
-figure img   {
-  padding: 3%;
-}
-
 .card {
-  padding: 3%;
+  padding: 1%;
+  height: max-content;
 }
 
-.card-content .content p.description {
+.card .card-image figure img {
+  padding: 3% 0;
+  margin: auto;
+  display: block;
+}
+
+.card .card-content .content p.description {
     font-size: 80%;
     white-space: nowrap; 
     overflow: hidden;
     text-overflow: clip; 
+}
+
+.card .card-footer {
+  border: none;
+  padding: 5% 0;
+}
+
+.card .card-footer .button {
+  margin: auto;
+  display: block;
+  min-width: 70%;
 }
