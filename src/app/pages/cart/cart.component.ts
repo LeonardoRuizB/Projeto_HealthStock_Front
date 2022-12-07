@@ -45,6 +45,7 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   updateTotalPrice(){
+    this.totalPrice = 0;
     this.cartList.forEach(item => this.totalPrice += item.quantity * item.supplierCatalog.price)
   }
 
