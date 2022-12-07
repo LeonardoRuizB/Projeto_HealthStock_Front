@@ -86,9 +86,18 @@ export class MarketplaceService {
     sessionStorage.setItem('cart', JSON.stringify(cart));
   }
 
-  addCart(...cartItem : ICartDao[]){
+  addCart(...cartItems : ICartDao[]){
     let cart = this.getCart();
-    cart.push(...cartItem);
+    cart.forEach((cartItem) => {
+      cartItems.forEach((paramCartItem) => {
+        if(cartItem.supplierCatalog.id == paramCartItem.supplierCatalog.id)
+          cartItem.quantity += paramCartItem.quantity;
+        else
+          cart.push(paramCartItem);
+      });
+      
+    });
+    
     this.saveCart(cart);
   }
 }
